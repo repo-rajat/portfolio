@@ -5,10 +5,12 @@ import Skills from "./pages/Skills";
 import Portfolio from "./pages/Portfolio";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import FireflyField from "./components/FireflyField";
 
 function App() {
   return (
     <BrowserRouter>
+      <FireflyField />
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/about" element={<About />} />
