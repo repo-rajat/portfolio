@@ -23,43 +23,72 @@ function Index() {
       <div className="relative z-10 min-h-screen px-6 py-12 lg:py-0 lg:px-16">
         <div className="max-w-7xl mx-auto min-h-screen flex flex-col lg:flex-row lg:items-center gap-12 lg:gap-20 page-enter">
           <div className="lg:w-1/2 inline-block">
-            <div className="orbit-wrapper rounded-full">
-              <svg
-                className="orbit-svg"
-                viewBox="0 0 100 40"
-                preserveAspectRatio="none"
-              >
-                <defs>
-                  <linearGradient id="pillGlowGradient">
-                    <stop offset="0%" stopColor="var(--pill-glow)" stopOpacity="0.9" />
-                    <stop offset="100%" stopColor="var(--pill-glow)" stopOpacity="0.4" />
-                  </linearGradient>
-                </defs>
+            <div className="orbit-wrapper rounded-full mb-5">
+            <svg
+              className="orbit-svg"
+              viewBox="0 0 100 40"
+              preserveAspectRatio="none"
+              style={{ overflow: 'visible' }}
+            >
+              <defs>
+                {/* Radial gradient ensures the "fade" starts from the center out to the edges */}
+                <radialGradient id="pillGlowGradient" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stopColor="var(--pill-glow)" stopOpacity="1" />
+                  <stop offset="100%" stopColor="var(--pill-glow)" stopOpacity="0" />
+                </radialGradient>
 
-                <path
-                  id="pillPath"
-                  d="
-                    M22 5
-                    H78
-                    A15 15 0 0 1 93 20
-                    A15 15 0 0 1 78 35
-                    H22
-                    A15 15 0 0 1 7 20
-                    A15 15 0 0 1 22 5
-                    Z
-                  "
-                  fill="none"
-                />
+                {/* High deviation blur with massive filter bounds to prevent clipping */}
+                <filter
+                  id="pillGlowSoft"
+                  x="-800%"
+                  y="-800%"
+                  width="1600%"
+                  height="1600%"
+                  colorInterpolationFilters="sRGB"
+                >
+                  <feGaussianBlur in="SourceGraphic" stdDeviation="18" result="blur" />
+                  <feColorMatrix
+                    in="blur"
+                    type="matrix"
+                    values="1 0 0 0 0  
+                            0 1 0 0 0  
+                            0 0 1 0 0  
+                            0 0 0 1.2 0"
+                  />
+                </filter>
+              </defs>
 
-                <circle r="3.25" fill="url(#pillGlowGradient)">
+              {/* Motion Path */}
+              <path
+                id="pillPath"
+                d="M22 5 H78 A15 15 0 0 1 93 20 A15 15 0 0 1 78 35 H22 A15 15 0 0 1 7 20 A15 15 0 0 1 22 5 Z"
+                fill="none"
+              />
+
+              <g>
+                {/* The Glow: Radius reduced by 2px as requested, but with a massive blur */}
+                <circle
+                  r="20" 
+                  fill="url(#pillGlowGradient)"
+                  filter="url(#pillGlowSoft)"
+                  opacity="0.4"
+                >
                   <animateMotion dur="12s" repeatCount="indefinite">
                     <mpath href="#pillPath" />
                   </animateMotion>
                 </circle>
-              </svg>
+
+                {/* The Core Circle: Increased from 3px to 4px as requested */}
+                <circle r="2" fill="var(--pill-glow)" >
+                  <animateMotion dur="12s" repeatCount="indefinite">
+                    <mpath href="#pillPath" />
+                  </animateMotion>
+                </circle>
+              </g>
+            </svg>
 
               <div className="pill-reactive rounded-full overflow-hidden">
-                <div className="pill-surface inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border/50 backdrop-blur-sm">
+                <div className="pill-surface inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border/50">
                   <span className="text-2xl">👋</span>
                   <span className="text-sm font-medium text-muted-foreground">
                     Hello, I'm
@@ -81,7 +110,7 @@ function Index() {
               <div className="w-12 h-1.5 rounded-full bg-[hsl(var(--card-violet))]" />
             </div>
 
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground mt-10 mb-4">
               Front-end UI Developer
               <span className="text-gradient-warm"> & Designer</span>
             </h2>
