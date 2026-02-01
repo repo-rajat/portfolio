@@ -55,7 +55,7 @@ export function PageLayout({ children }) {
               <ArrowLeft className={`w-6 h-6 ${styles.text}`} />
             </Link>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold">
+            <h1 className="type-page-title">
               {titleWords.map((word, i) => (
                 <span key={i}>
                   {i === titleWords.length - 1 ? (

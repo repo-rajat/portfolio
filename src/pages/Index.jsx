@@ -27,14 +27,14 @@ function Index() {
               <div className="pill-reactive rounded-full overflow-hidden">
                 <div className="pill-surface inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border/50">
                   <span className="text-2xl">👋</span>
-                  <span className="text-sm font-medium text-[#8a8485]">
+                  <span className="type-body-sm font-medium text-[#8a8485]">
                     Hello, I'm
                   </span>
                 </div>
               </div>
             </div>
 
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight mb-2">
+            <h1 className="type-hero mb-3">
               <span className="text-foreground">Rajat</span>
               <br />
               <span className="text-shimmer">Gulati</span>
@@ -47,12 +47,12 @@ function Index() {
               <div className="w-12 h-1.5 rounded-full bg-[hsl(var(--card-violet))]" />
             </div>
 
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground mt-10 mb-4">
+            <h2 className="type-hero-subtitle text-foreground mt-10 mb-4">
               Front-end UI Developer
               <span className="text-gradient-warm"> & Designer</span>
             </h2>
 
-            <p className="text-muted-foreground text-lg leading-relaxed max-w-md mb-8">
+            <p className="type-body-lg text-muted-foreground max-w-md mb-8">
               Crafting beautiful, interactive experiences with code and
               creativity. Let's create something amazing together.
             </p>

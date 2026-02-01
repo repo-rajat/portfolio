@@ -107,8 +107,8 @@ export function GlowCard(props) {
         </div>
 
         <div className="relative z-10">
-          <h3 className={`text-2xl font-bold mb-1 ${styles.text}`}>{title}</h3>
-          <p className="text-sm text-muted-foreground leading-relaxed">
+          <h3 className={`type-card-title mb-1 ${styles.text}`}>{title}</h3>
+          <p className="type-body-sm text-muted-foreground">
             {description}
           </p>
         </div>
