@@ -21,10 +21,9 @@ const skillsData = {
     "Jira",
   ],
   whatIDo: [
-    "Build responsive, accessible web interfaces using modern frontend technologies",
-    "Develop reusable, component-based UI with clean, maintainable code",
-    "Convert Figma designs into pixel-accurate, production-ready UI",
-    "Improve UI performance, accessibility (WCAG), and cross-browser consistency",
+    "Build responsive, accessible interfaces with clean, scalable UI systems",
+    "Translate Figma into production UI with pixel precision and motion",
+    "Optimize performance, WCAG compliance, and cross-browser consistency",
   ],
 };
 
