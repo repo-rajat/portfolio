@@ -675,7 +675,6 @@
   /* Portfolio stage + thumbnails */
   .portfolio-stage {
     display: grid;
-    gap: 1.75rem;
   }
 
   .portfolio-panel {
@@ -685,6 +684,7 @@
     gap: 2.5rem;
     width: 100%;
     padding: 2.5rem;
+    min-height: 420px;
     border-radius: 2rem;
     background: linear-gradient(135deg, hsl(240 10% 8% / 0.95), hsl(240 10% 6% / 0.85));
     border: 1px solid hsl(240 8% 20% / 0.6);
@@ -712,6 +712,7 @@
     display: flex;
     flex-direction: column;
     gap: 1.1rem;
+    min-height: 100%;
   }
 
   .portfolio-index {
@@ -739,6 +740,10 @@
     font-size: 1rem;
     line-height: 1.6;
     max-width: 28rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
   .portfolio-tags {
@@ -759,8 +764,9 @@
   }
 
   .portfolio-cta {
-    align-self: flex-start;
-    margin-top: 0.35rem;
+    position: absolute;
+    right: 1.4rem;
+    bottom: 1.2rem;
     padding: 0.75rem 1.55rem;
     border-radius: 0.9rem;
     font-weight: 700;
@@ -777,6 +783,7 @@
       0 16px 30px -22px color-mix(in srgb, var(--accent) 70%, transparent),
       inset 0 0 0 1px color-mix(in srgb, var(--accent) 25%, transparent);
     transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    z-index: 3;
   }
 
   .portfolio-cta:hover {
@@ -834,10 +841,71 @@
     opacity: 0.9;
   }
 
+  .portfolio-media-cta-glow {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 55%;
+    height: 55%;
+    background: radial-gradient(circle at 80% 80%, hsl(0 0% 0% / 0.65), transparent 70%);
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .portfolio-thumbs-shell {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 0.75rem;
+    align-items: center;
+  }
+
+  .portfolio-thumbs-shell.no-nav {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .portfolio-thumb-nav {
+    width: 2.6rem;
+    height: 2.6rem;
+    border-radius: 9999px;
+    border: 1px solid hsl(240 8% 25% / 0.6);
+    background: hsl(240 10% 8% / 0.7);
+    color: hsl(var(--foreground));
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .portfolio-thumb-nav:hover {
+    transform: translateY(-2px);
+    border-color: hsl(240 8% 35% / 0.9);
+  }
+
   .portfolio-thumbs {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 1rem;
+    justify-content: center;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(110px, 150px);
+    gap: 0.8rem;
+    overflow-x: auto;
+    overflow-y: visible;
+    padding: 2rem 2rem 4rem;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+  }
+
+  .portfolio-thumbs::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .portfolio-thumbs::-webkit-scrollbar-track {
+    background: hsl(240 10% 8% / 0.35);
+    border-radius: 9999px;
+  }
+
+  .portfolio-thumbs::-webkit-scrollbar-thumb {
+    background: hsl(240 8% 28% / 0.8);
+    border-radius: 9999px;
   }
 
   .portfolio-thumb {
@@ -851,12 +919,13 @@
     cursor: pointer;
     transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease;
     opacity: 0.55;
+    scroll-snap-align: start;
   }
 
   .portfolio-thumb img {
     width: 100%;
     height: 100%;
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 5 / 4;
     object-fit: cover;
     filter: saturate(0.6) brightness(0.75);
     transition: filter 0.25s ease, transform 0.25s ease;
@@ -865,8 +934,8 @@
   .portfolio-thumb-label {
     position: absolute;
     inset: auto 0 0;
-    padding: 0.7rem 0.8rem;
-    font-size: 0.78rem;
+    padding: 0.55rem 0.7rem;
+    font-size: 0.7rem;
     letter-spacing: 0.06em;
     text-transform: uppercase;
     background: linear-gradient(180deg, transparent, hsl(240 10% 4% / 0.85));
@@ -877,8 +946,9 @@
     opacity: 1;
     border-color: color-mix(in srgb, var(--accent) 60%, transparent);
     box-shadow:
-      0 18px 40px -26px color-mix(in srgb, var(--accent) 70%, transparent),
-      0 0 0 1px color-mix(in srgb, var(--accent) 35%, transparent);
+      0 24px 50px -26px color-mix(in srgb, var(--accent) 85%, transparent),
+      0 0 0 1px color-mix(in srgb, var(--accent) 45%, transparent),
+      0 0 24px color-mix(in srgb, var(--accent) 55%, transparent);
     transform: translateY(-4px);
   }
 
@@ -888,8 +958,13 @@
   }
 
   .portfolio-thumb:hover {
-    opacity: 0.9;
-    transform: translateY(-3px);
+    opacity: 0.95;
+    border-color: color-mix(in srgb, var(--accent) 70%, transparent);
+    box-shadow:
+      0 24px 50px -24px color-mix(in srgb, var(--accent) 85%, transparent),
+      0 0 0 1px color-mix(in srgb, var(--accent) 45%, transparent),
+      0 0 24px color-mix(in srgb, var(--accent) 55%, transparent);
+    transform: translateY(-5px);
   }
 
   @media (max-width: 1024px) {
@@ -897,6 +972,7 @@
       grid-template-columns: 1fr;
       gap: 2rem;
       padding: 2rem;
+      min-height: auto;
     }
 
     .portfolio-desc {
@@ -907,8 +983,12 @@
       min-height: 240px;
     }
 
-    .portfolio-thumbs {
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    .portfolio-thumbs-shell {
+      grid-template-columns: 1fr;
+    }
+
+    .portfolio-thumb-nav {
+      display: none;
     }
   }
 
