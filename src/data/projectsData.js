@@ -6,6 +6,8 @@ const projectsData = [
     tags: ["Angular", "TypeScript", "HTML5", "CSS3", "Figma"],
     url: "https://docquity-webinar.netlify.app/",
     thumbnail: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&h=400&fit=crop",
+    letter: "P",
+    accentColor: "#2DD4BF",
   },
   {
     id: 2,
@@ -14,6 +16,8 @@ const projectsData = [
     tags: ["Storybook", "CSS", "Design"],
     url: "https://example.com",
     thumbnail: "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=600&h=400&fit=crop",
+    letter: "W",
+    accentColor: "#FF5DA8",
   },
   {
     id: 3,
@@ -22,6 +26,8 @@ const projectsData = [
     tags: ["React", "Framer Motion", "UI"],
     url: "https://example.com",
     thumbnail: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=600&h=400&fit=crop",
+    letter: "T",
+    accentColor: "#55A7FF",
   },
   {
     id: 4,
@@ -30,6 +36,8 @@ const projectsData = [
     tags: ["Next.js", "Animation", "Design"],
     url: "https://example.com",
     thumbnail: "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=600&h=400&fit=crop",
+    letter: "S",
+    accentColor: "#9B7CFF",
   },
 ];
 

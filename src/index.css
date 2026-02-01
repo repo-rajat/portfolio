@@ -450,6 +450,163 @@
     border: 1px solid hsl(240 8% 20% / 0.5);
   }
 
+  /* Project cards - accent-driven glass panels */
+  .project-card {
+    position: relative;
+    display: block;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    cursor: pointer;
+    backdrop-filter: blur(18px) saturate(140%);
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--accent) 18%, transparent),
+      color-mix(in srgb, var(--accent) 6%, transparent)
+    );
+    border: 1px solid color-mix(in srgb, var(--accent) 28%, transparent);
+    box-shadow:
+      0 20px 40px -28px color-mix(in srgb, var(--accent) 50%, transparent),
+      0 0 40px color-mix(in srgb, var(--accent) 18%, transparent);
+    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  }
+
+  .project-card::before {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    border-radius: inherit;
+    background: linear-gradient(
+      120deg,
+      color-mix(in srgb, var(--accent) 22%, transparent),
+      transparent 55%
+    );
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  .project-card::after {
+    content: "";
+    position: absolute;
+    inset: -20% 0 60%;
+    background: radial-gradient(
+      circle at 50% 120%,
+      color-mix(in srgb, var(--accent) 30%, transparent),
+      transparent 60%
+    );
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  .project-card:hover {
+    transform: translateY(-6px);
+    border-color: color-mix(in srgb, var(--accent) 50%, transparent);
+    box-shadow:
+      0 30px 60px -30px color-mix(in srgb, var(--accent) 70%, transparent),
+      0 0 60px color-mix(in srgb, var(--accent) 28%, transparent);
+  }
+
+  .project-letter {
+    position: absolute;
+    top: 10%;
+    left: 6%;
+    font-size: clamp(6rem, 18vw, 12rem);
+    font-weight: 700;
+    color: color-mix(in srgb, var(--accent) 40%, transparent);
+    letter-spacing: 0.08em;
+    filter: blur(1px);
+    text-shadow: 0 0 30px color-mix(in srgb, var(--accent) 45%, transparent);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .project-media {
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+  }
+
+  .project-media-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.02);
+    filter: saturate(0.85) contrast(1.05);
+    transition: transform 0.6s ease, filter 0.6s ease;
+  }
+
+  .project-card:hover .project-media-img {
+    transform: scale(1.08);
+    filter: saturate(1) blur(1.5px);
+  }
+
+  .project-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      color-mix(in srgb, var(--accent) 14%, black) 0%,
+      color-mix(in srgb, var(--accent) 12%, transparent) 55%,
+      transparent 100%
+    );
+    opacity: 0.85;
+    transition: opacity 0.3s ease;
+    z-index: 2;
+  }
+
+  .project-card:hover .project-overlay {
+    opacity: 0.95;
+  }
+
+  .project-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    padding: 1.25rem;
+    z-index: 3;
+  }
+
+  .project-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: color-mix(in srgb, var(--accent) 28%, white);
+    transition: color 0.3s ease;
+  }
+
+  .project-card:hover .project-title {
+    color: color-mix(in srgb, var(--accent) 45%, white);
+  }
+
+  .project-desc {
+    font-size: 0.9rem;
+    color: color-mix(in srgb, var(--accent) 22%, white);
+    line-height: 1.5;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .project-tag {
+    padding: 0.35rem 0.7rem;
+    font-size: 0.72rem;
+    border-radius: 9999px;
+    background: color-mix(in srgb, var(--accent) 15%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+    color: color-mix(in srgb, var(--accent) 55%, white);
+    transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
+  }
+
+  .project-card:hover .project-tag {
+    background: color-mix(in srgb, var(--accent) 28%, transparent);
+    color: color-mix(in srgb, var(--accent) 70%, white);
+    transform: translateY(-1px);
+  }
+
   /* Theme color utilities */
   .theme-coral {
     --theme-color: var(--card-coral);
