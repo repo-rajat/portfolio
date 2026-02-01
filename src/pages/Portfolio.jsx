@@ -80,7 +80,7 @@ function Portfolio() {
         
         {/* Main Glassmorphic Card */}
         <GlowCard 
-          accentColor={activeProject?.accentColor || 'hsl(var(--card-sky))'} 
+          accentColor={activeProject?.accentColor || 'hsl(var(--sky))'} 
           className="min-h-[400px] lg:h-[450px]"
         >
           <div className="grid lg:grid-cols-2 h-full">

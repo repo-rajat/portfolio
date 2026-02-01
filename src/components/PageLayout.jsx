@@ -4,27 +4,27 @@ import navLinks from "../data/siteData";
 
 const themeClasses = {
   coral: {
-    text: "text-[hsl(var(--card-coral))]",
-    bg: "bg-[hsl(var(--card-coral)/0.1)]",
-    border: "border-[hsl(var(--card-coral)/0.3)]",
+    text: "text-[hsl(var(--coral))]",
+    bg: "bg-[hsl(var(--coral)/0.1)]",
+    border: "border-[hsl(var(--coral)/0.3)]",
     orb: "orb-coral",
   },
   sky: {
-    text: "text-[hsl(var(--card-sky))]",
-    bg: "bg-[hsl(var(--card-sky)/0.1)]",
-    border: "border-[hsl(var(--card-sky)/0.3)]",
+    text: "text-[hsl(var(--sky))]",
+    bg: "bg-[hsl(var(--sky)/0.1)]",
+    border: "border-[hsl(var(--sky)/0.3)]",
     orb: "orb-sky",
   },
   emerald: {
-    text: "text-[hsl(var(--card-emerald))]",
-    bg: "bg-[hsl(var(--card-emerald)/0.1)]",
-    border: "border-[hsl(var(--card-emerald)/0.3)]",
+    text: "text-[hsl(var(--emerald))]",
+    bg: "bg-[hsl(var(--emerald)/0.1)]",
+    border: "border-[hsl(var(--emerald)/0.3)]",
     orb: "orb-emerald",
   },
   violet: {
-    text: "text-[hsl(var(--card-violet))]",
-    bg: "bg-[hsl(var(--card-violet)/0.1)]",
-    border: "border-[hsl(var(--card-violet)/0.3)]",
+    text: "text-[hsl(var(--violet))]",
+    bg: "bg-[hsl(var(--violet)/0.1)]",
+    border: "border-[hsl(var(--violet)/0.3)]",
     orb: "orb-violet",
   },
 };
@@ -48,12 +48,23 @@ export function PageLayout({ children }) {
       <div className="relative z-10 min-h-screen px-6 py-12 lg:px-16 grid items-center">
         <div className="max-w-6xl mx-auto page-enter">
           <div className="flex items-center gap-6 mb-12">
-            <Link
-              to="/"
-              className={`group flex items-center justify-center w-14 h-14 rounded-full border transition-all duration-300 hover:scale-105 ${styles.border} ${styles.bg}`}
-            >
-              <ArrowLeft className={`w-6 h-6 ${styles.text}`} />
-            </Link>
+          <Link
+            to="/"
+            className={`group flex items-center justify-center w-14 h-14 rounded-full border transition-all duration-300 hover:scale-110 ${styles.border} ${styles.bg}`}
+            style={{
+              "--hover-glow": `hsl(var(--${currentPage.theme}))`
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.boxShadow = `0 0 25px 2px var(--hover-glow)`;
+              e.currentTarget.style.borderColor = `var(--hover-glow)`;
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.boxShadow = "none";
+              e.currentTarget.style.borderColor = "";
+            }}
+          >
+            <ArrowLeft className={`w-6 h-6 transition-transform ${styles.text}`} />
+          </Link>
 
             <h1 className="type-page-title">
               {titleWords.map((word, i) => (

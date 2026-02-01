@@ -1,36 +1,37 @@
 import { Link } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
 
 const variantStyles = {
   coral: {
-    text: "text-[hsl(var(--card-coral))]",
+    text: "text-[hsl(var(--coral))]",
     letterColor:
-      "text-[hsl(var(--card-coral)/0.15)] group-hover:text-[hsl(var(--card-coral)/0.35)]",
+      "text-[hsl(var(--coral)/0.15)] group-hover:text-[hsl(var(--coral)/0.35)]",
     iconBg:
-      "bg-[hsl(var(--card-coral)/0.2)] group-hover:bg-[hsl(var(--card-coral)/0.3)]",
+      "bg-[hsl(var(--coral)/0.2)] group-hover:bg-[hsl(var(--coral)/0.3)]",
     glowClass: "glow-coral",
   },
   sky: {
-    text: "text-[hsl(var(--card-sky))]",
+    text: "text-[hsl(var(--sky))]",
     letterColor:
-      "text-[hsl(var(--card-sky)/0.15)] group-hover:text-[hsl(var(--card-sky)/0.35)]",
+      "text-[hsl(var(--sky)/0.15)] group-hover:text-[hsl(var(--sky)/0.35)]",
     iconBg:
-      "bg-[hsl(var(--card-sky)/0.2)] group-hover:bg-[hsl(var(--card-sky)/0.3)]",
+      "bg-[hsl(var(--sky)/0.2)] group-hover:bg-[hsl(var(--sky)/0.3)]",
     glowClass: "glow-sky",
   },
   emerald: {
-    text: "text-[hsl(var(--card-emerald))]",
+    text: "text-[hsl(var(--emerald))]",
     letterColor:
-      "text-[hsl(var(--card-emerald)/0.15)] group-hover:text-[hsl(var(--card-emerald)/0.35)]",
+      "text-[hsl(var(--emerald)/0.15)] group-hover:text-[hsl(var(--emerald)/0.35)]",
     iconBg:
-      "bg-[hsl(var(--card-emerald)/0.2)] group-hover:bg-[hsl(var(--card-emerald)/0.3)]",
+      "bg-[hsl(var(--emerald)/0.2)] group-hover:bg-[hsl(var(--emerald)/0.3)]",
     glowClass: "glow-emerald",
   },
   violet: {
-    text: "text-[hsl(var(--card-violet))]",
+    text: "text-[hsl(var(--violet))]",
     letterColor:
-      "text-[hsl(var(--card-violet)/0.15)] group-hover:text-[hsl(var(--card-violet)/0.35)]",
+      "text-[hsl(var(--violet)/0.15)] group-hover:text-[hsl(var(--violet)/0.35)]",
     iconBg:
-      "bg-[hsl(var(--card-violet)/0.2)] group-hover:bg-[hsl(var(--card-violet)/0.3)]",
+      "bg-[hsl(var(--violet)/0.2)] group-hover:bg-[hsl(var(--violet)/0.3)]",
     glowClass: "glow-violet",
   },
 };
@@ -65,7 +66,7 @@ export function GlowCard(props) {
         `}
         style={{
           boxShadow: isHovered
-            ? `0 0 100px 30px hsl(var(--card-${variant}) / 0.4)`
+            ? `0 0 100px 30px hsl(var(--${variant}) / 0.4)`
             : undefined,
         }}
       >
@@ -87,23 +88,7 @@ export function GlowCard(props) {
           >
             <Icon className={`w-6 h-6 ${styles.text}`} />
           </div>
-          <div
-            className={`w-12 h-12 rounded-full flex items-center justify-center opacity-0 translate-x-[-200%] group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300 ${styles.iconBg}`}
-          >
-            <svg
-              className={`w-5 h-5 ${styles.text}`}
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M17 8l4 4m0 0l-4 4m4-4H3"
-              />
-            </svg>
-          </div>
+            <ArrowLeft className={`w-6 h-6 ${styles.text} rotate-180 opacity-0 scale-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300`} />
         </div>
 
         <div className="relative z-10">

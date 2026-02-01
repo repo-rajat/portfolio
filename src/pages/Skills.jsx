@@ -21,13 +21,13 @@ const GlowCard = ({ children, className = "" }) => {
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setOpacity(1)}
       onMouseLeave={() => setOpacity(0)}
-      className={`relative rounded-2xl border border-white/5 bg-white/[0.02] transition-all duration-300 hover:border-[hsl(var(--card-sky)/0.3)] ${className}`}
+      className={`relative rounded-2xl border border-white/5 bg-white/[0.02] transition-all duration-300 hover:border-[hsl(var(--sky)/0.3)] ${className}`}
     >
       <div
         className="pointer-events-none absolute -inset-px opacity-0 transition duration-300"
         style={{
           opacity,
-          background: `radial-gradient(400px circle at ${position.x}px ${position.y}px, hsl(var(--card-sky) / 0.15), transparent 40%)`,
+          background: `radial-gradient(400px circle at ${position.x}px ${position.y}px, hsl(var(--sky) / 0.15), transparent 40%)`,
         }}
       />
       <div className="relative h-full">{children}</div>
@@ -52,7 +52,7 @@ function Skills() {
             {allSkills.map((category) => (
               <div key={category.level} className="space-y-6">
                 <div className="flex items-center gap-3">
-                   <span className="text-sm font-bold uppercase tracking-[0.2em] text-[hsl(var(--card-sky))]">
+                   <span className="text-sm font-bold uppercase tracking-[0.2em] text-[hsl(var(--sky))]">
                     {category.level}
                   </span>
                 </div>
@@ -66,7 +66,7 @@ function Skills() {
                       </div>
                       <div className="h-1.5 w-full max-w-[200px] bg-white/5 rounded-full overflow-hidden">
                         <div 
-                          className="h-full bg-[hsl(var(--card-sky))] transition-all duration-1000 ease-out shadow-[0_0_12px_hsl(var(--card-sky)/0.5)]"
+                          className="h-full bg-[hsl(var(--sky))] transition-all duration-1000 ease-out shadow-[0_0_12px_hsl(var(--sky)/0.5)]"
                           style={{ width: `${skill.percentage}%` }}
                         />
                       </div>
@@ -83,7 +83,7 @@ function Skills() {
             {/* Toolbox Section - Vibrant Glass Pills */}
             <section className="space-y-4">
               <div className="flex items-center gap-3 text-foreground">
-                <Wrench size={20} className="text-[hsl(var(--card-sky))]" />
+                <Wrench size={20} className="text-[hsl(var(--sky))]" />
                 <h3 className="text-xl font-bold tracking-tight">Ecosystem Tools</h3>
               </div>
               <GlowCard className="p-5">
@@ -91,7 +91,7 @@ function Skills() {
                   {skillsData.tools.map((tool) => (
                     <span 
                       key={tool} 
-                      className="px-3 py-1.5 rounded-lg border border-[hsl(var(--card-sky)/0.2)] bg-[hsl(var(--card-sky)/0.05)] backdrop-blur-md text-sm font-medium text-[hsl(var(--card-sky))] shadow-[0_0_15px_hsl(var(--card-sky)/0.03)] hover:bg-[hsl(var(--card-sky)/0.1)] hover:border-[hsl(var(--card-sky)/0.4)] transition-all cursor-default"
+                      className="px-3 py-1.5 rounded-lg border border-[hsl(var(--sky)/0.2)] bg-[hsl(var(--sky)/0.05)] backdrop-blur-md text-sm font-medium text-[hsl(var(--sky))] shadow-[0_0_15px_hsl(var(--sky)/0.03)] hover:bg-[hsl(var(--sky)/0.1)] hover:border-[hsl(var(--sky)/0.4)] transition-all cursor-default"
                     >
                       {tool}
                     </span>
@@ -103,13 +103,13 @@ function Skills() {
             {/* Craft Section - Premium List */}
             <section className="space-y-4 pt-1">
               <div className="flex items-center gap-3 text-foreground">
-                <Zap size={20} className="text-[hsl(var(--card-sky))]" />
+                <Zap size={20} className="text-[hsl(var(--sky))]" />
                 <h3 className="text-xl font-bold tracking-tight">The Craft</h3>
               </div>
               <div className="space-y-3">
                 {skillsData.whatIDo.map((item, i) => (
-                  <div key={i} className="flex gap-4 items-start p-4 rounded-2xl border border-[hsl(var(--card-sky)/0.1)] bg-[hsl(var(--card-sky)/0.02)] backdrop-blur-sm hover:bg-[hsl(var(--card-sky)/0.05)] transition-colors group">
-                    <CheckCircle className="w-5 h-5 mt-0.5 text-[hsl(var(--card-sky))] drop-shadow-[0_0_5px_hsl(var(--card-sky)/0.5)]" />
+                  <div key={i} className="flex gap-4 items-start p-4 rounded-2xl border border-[hsl(var(--sky)/0.1)] bg-[hsl(var(--sky)/0.02)] backdrop-blur-sm hover:bg-[hsl(var(--sky)/0.05)] transition-colors group">
+                    <CheckCircle className="w-5 h-5 mt-0.5 text-[hsl(var(--sky))] drop-shadow-[0_0_5px_hsl(var(--sky)/0.5)]" />
                     <span className="text-sm leading-relaxed text-muted-foreground group-hover:text-foreground transition-colors">
                       {item}
                     </span>

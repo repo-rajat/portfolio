@@ -48,11 +48,11 @@ const TimelineItem = ({ title, subtitle, date, description, type, isLast }) => (
       <GlowCard className="p-6 group-hover:-translate-y-1 transform transition-transform duration-300">
         <div className="mb-4 flex flex-col justify-between gap-2 sm:flex-row sm:items-center">
           <div>
-            <h3 className="text-xl font-semibold text-white group-hover:text-orange-500 transition-colors">{title}</h3>
+            <h3 className="text-xl font-semibold group-hover:text-[hsl(var(--coral))] transition-colors">{title}</h3>
             <p className="text-sm font-medium text-gray-400">{subtitle}</p>
           </div>
           <div className="flex items-center gap-1.5 rounded-full bg-white/5 px-3 py-1 text-xs font-medium text-gray-300 border border-white/5">
-            <Calendar size={12} className="text-orange-500" />
+            <Calendar size={12} className="text-[hsl(var(--coral))]" />
             <span>{date}</span>
           </div>
         </div>
@@ -77,7 +77,7 @@ export default function About() {
           </div>
 
           <div className="mt-10 flex flex-wrap gap-4">
-            <button className="flex items-center gap-2 rounded-lg bg-orange-500 px-6 py-3 font-semibold text-white shadow-lg shadow-orange-500/20 hover:-translate-y-0.5 transition-transform">
+            <button className="flex items-center gap-2 rounded-lg bg-[hsl(var(--coral))] px-6 py-3 font-semibold text-white shadow-lg shadow-orange-500/20 hover:-translate-y-0.5 transition-transform">
               <Download size={18} /><span>Resume</span>
             </button>
             <div className="flex gap-3">

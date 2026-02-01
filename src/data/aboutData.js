@@ -1,14 +1,14 @@
 const aboutData = {
   description: [
-    "I'm a passionate front-end developer and designer with a keen eye for creating beautiful, functional user interfaces. With years of experience in the industry, I specialize in turning complex problems into elegant, intuitive solutions.",
-    "My journey in tech started with a curiosity for how things work on the web. That curiosity evolved into a deep love for crafting pixel-perfect designs and bringing them to life with clean, efficient code.",
-    "When I'm not coding, you'll find me exploring new design trends, contributing to open-source projects, or sharing knowledge with the community.",
+    "I’m a Front-end Developer with 6+ years of experience building scalable, accessible, and high-performance user interfaces.",
+    "My work focuses on writing clean, maintainable UI code and translating complex Figma designs into production-ready components that work consistently across devices and browsers.",
+    "I’ve worked closely with product managers, designers, and engineers to deliver UI that balances performance, accessibility (WCAG), and visual precision.",
   ],
   cards: [
     {
       title: "Experience",
       listItems: [
-        { name: "Senior Web Designer", listBody: "Bold", extra: "Sep 2022 - May 2025" },
+        { name: "Senior Web Designer / Frontend Developer", listBody: "Bold Technology Systems", extra: "Sep 2022 - May 2025" },
         { name: "UI Developer", listBody: "Avalon Infosys.", extra: "Jan 2019 - Sep 2022" },
       ],
     },
