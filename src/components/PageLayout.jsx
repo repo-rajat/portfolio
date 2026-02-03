@@ -29,7 +29,7 @@ const themeClasses = {
   },
 };
 
-export function PageLayout({ children }) {
+export function PageLayout({ children, left, right }) {
   const { pathname } = useLocation();
   const currentPage = navLinks.find((item) => pathname.includes(item.to));
 
@@ -37,6 +37,9 @@ export function PageLayout({ children }) {
 
   const styles = themeClasses[currentPage.theme];
   const titleWords = currentPage.title.split(" ");
+
+  const hasSplit = Boolean(left || right);
+  const rightContent = hasSplit ? right ?? children : children;
 
   return (
     <div className="min-h-[100svh] animated-gradient-bg noise-overlay overflow-hidden">
@@ -47,46 +50,96 @@ export function PageLayout({ children }) {
 
       <div className="page-shell relative z-10 min-h-[100svh] px-6 py-10 md:py-12 lg:px-16 grid items-center">
         <div className="max-w-6xl mx-auto page-enter">
-          <div className="page-header flex items-center gap-6 mb-10 md:mb-12">
-          <Link
-            to="/"
-            className={`page-back group flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-full border transition-all duration-300 hover:scale-110 ${styles.border} ${styles.bg}`}
-            style={{
-              "--hover-glow": `hsl(var(--${currentPage.theme}))`
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.boxShadow = `0 0 25px 2px var(--hover-glow)`;
-              e.currentTarget.style.borderColor = `var(--hover-glow)`;
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.boxShadow = "none";
-              e.currentTarget.style.borderColor = "";
-            }}
-          >
-            <ArrowLeft className={`w-6 h-6 transition-transform ${styles.text}`} />
-          </Link>
+          {hasSplit ? (
+            <div className="page-grid grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-14 lg:items-start">
+              <div className="page-left">
+                <div className="page-header flex items-center gap-6 mb-10 md:mb-12">
+                  <Link
+                    to="/"
+                    className={`page-back group flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-full border transition-all duration-300 hover:scale-110 ${styles.border} ${styles.bg}`}
+                    style={{
+                      "--hover-glow": `hsl(var(--${currentPage.theme}))`,
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.boxShadow = `0 0 25px 2px var(--hover-glow)`;
+                      e.currentTarget.style.borderColor = `var(--hover-glow)`;
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.boxShadow = "none";
+                      e.currentTarget.style.borderColor = "";
+                    }}
+                  >
+                    <ArrowLeft className={`w-6 h-6 transition-transform ${styles.text}`} />
+                  </Link>
 
-            <h1 className="type-page-title">
-              {titleWords.map((word, i) => (
-                <span key={i}>
-                  {i === titleWords.length - 1 ? (
-                    <span className={styles.text}>{word[0].toUpperCase() + word.slice(1)}</span>
-                  ) : (
-                    <span className="text-foreground">{word[0].toUpperCase() + word.slice(1)} </span>
-                  )}
-                </span>
-              ))}
-            </h1>
-          </div>
+                  <h1 className="type-page-title">
+                    {titleWords.map((word, i) => (
+                      <span key={i}>
+                        {i === titleWords.length - 1 ? (
+                          <span className={styles.text}>
+                            {word[0].toUpperCase() + word.slice(1)}
+                          </span>
+                        ) : (
+                          <span className="text-foreground">
+                            {word[0].toUpperCase() + word.slice(1)}{" "}
+                          </span>
+                        )}
+                      </span>
+                    ))}
+                  </h1>
+                </div>
+
+                <div className="page-left-content">{left}</div>
+              </div>
+
+              <div className="page-content lg:pt-2">{rightContent}</div>
+            </div>
+          ) : (
+            <>
+              <div className="page-header flex items-center gap-6 mb-10 md:mb-12">
+                <Link
+                  to="/"
+                  className={`page-back group flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-full border transition-all duration-300 hover:scale-110 ${styles.border} ${styles.bg}`}
+                  style={{
+                    "--hover-glow": `hsl(var(--${currentPage.theme}))`,
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.boxShadow = `0 0 25px 2px var(--hover-glow)`;
+                    e.currentTarget.style.borderColor = `var(--hover-glow)`;
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.boxShadow = "none";
+                    e.currentTarget.style.borderColor = "";
+                  }}
+                >
+                  <ArrowLeft className={`w-6 h-6 transition-transform ${styles.text}`} />
+                </Link>
+
+                <h1 className="type-page-title">
+                  {titleWords.map((word, i) => (
+                    <span key={i}>
+                      {i === titleWords.length - 1 ? (
+                        <span className={styles.text}>
+                          {word[0].toUpperCase() + word.slice(1)}
+                        </span>
+                      ) : (
+                        <span className="text-foreground">
+                          {word[0].toUpperCase() + word.slice(1)}{" "}
+                        </span>
+                      )}
+                    </span>
+                  ))}
+                </h1>
+              </div>
+
+              <div className="page-content">{children}</div>
+            </>
+          )}
 
           <div className="absolute right-8 lg:right-16 -translate-y-1/2 pointer-events-none select-none">
             <span className={`page-letter text-[18rem] md:text-[30rem] font-black leading-none opacity-[0.03] ${styles.text}`} style={{ opacity: 0.05 }}>
               {currentPage.letter}
             </span>
-          </div>
-
-          <div>
-            {children}
           </div>
         </div>
       </div>

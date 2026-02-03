@@ -10,7 +10,7 @@ import FireflyField from "./components/FireflyField";
 function App() {
   return (
     <BrowserRouter>
-      <FireflyField />
+      {/* <FireflyField /> */}
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/about" element={<About />} />

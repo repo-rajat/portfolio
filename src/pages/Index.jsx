@@ -9,7 +9,7 @@ function Index() {
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
   return (
-    <div className="min-h-[100svh] animated-gradient-bg noise-overlay overflow-hidden">
+    <main className="min-h-[100svh] animated-gradient-bg noise-overlay">
       <div className="fixed inset-0 grid-bg opacity-30 pointer-events-none" />
 
       {/* Background Orbs */}
@@ -17,8 +17,8 @@ function Index() {
       <div className="orb orb-violet w-[500px] h-[500px] top-1/4 -right-64 animate-float-delayed" />
       <div className="orb orb-sky w-72 h-72 bottom-0 left-1/4 animate-float-delayed-2" />
 
-      <div className="home-shell relative z-10 min-h-[100svh] px-6 py-10 md:py-12 lg:py-0 lg:px-16">
-        <div className="max-w-7xl mx-auto min-h-[100svh] flex flex-col lg:flex-row lg:items-center gap-10 sm:gap-12 lg:gap-20 page-enter">
+      <div className="max-w-7xl mx-auto grid relative z-10 min-h-[100dvh] px-6 py-10 md:py-12 lg:py-0 lg:px-16">
+        <div className="w-full flex flex-col lg:flex-row lg:items-center gap-10 sm:gap-12 lg:gap-15 page-enter">
           {/* Left Content Section */}
           <div className="lg:w-1/2">
             {/* 1. Animated Greeting Chip */}
@@ -110,7 +110,7 @@ function Index() {
         }
         .animate-slideUp { animation: slideUp 0.6s ease-out forwards; }
       `}</style>
-    </div>
+    </main>
   );
 }
 

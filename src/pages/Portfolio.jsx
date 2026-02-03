@@ -75,127 +75,136 @@ function Portfolio() {
   }, []);
 
   return (
-    <PageLayout>
-      <div className="max-w-6xl mx-auto" style={{ "--accent": activeProject?.accentColor }}>
-        
-        {/* Main Glassmorphic Card */}
-        <GlowCard 
-          accentColor={activeProject?.accentColor || 'hsl(var(--sky))'} 
-          className="min-h-[400px] lg:h-[450px]"
-        >
-          <div className="grid lg:grid-cols-2 h-full">
-            
-            {/* Left Content */}
-            <div className="p-8 lg:p-14 flex flex-col justify-start">
-              {/* Glowing interesting Number Index */}
-              <div className="relative mb-6 w-fit">
-                <div 
-                  className="absolute inset-0 blur-lg opacity-40 rounded-full" 
-                  style={{ backgroundColor: activeProject?.accentColor }}
+    <PageLayout
+      left={
+        <div style={{ "--accent": activeProject?.accentColor }}>
+          {/* Main Glassmorphic Card */}
+          <GlowCard
+            accentColor={activeProject?.accentColor || "hsl(var(--sky))"}
+            className="min-h-[400px] lg:h-[450px]"
+          >
+            <div className="grid lg:grid-cols-2 h-full">
+              {/* Left Content */}
+              <div className="p-8 lg:p-14 flex flex-col justify-start">
+                {/* Glowing interesting Number Index */}
+                <div className="relative mb-6 w-fit">
+                  <div
+                    className="absolute inset-0 blur-lg opacity-40 rounded-full"
+                    style={{ backgroundColor: activeProject?.accentColor }}
+                  />
+                  <div
+                    className="relative flex items-center justify-center w-14 h-14 rounded-full border border-white/10 bg-black/40 text-md font-bold"
+                    style={{ color: activeProject?.accentColor }}
+                  >
+                    {String(activeIndex + 1).padStart(2, "0")}
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <h2 className="portfolio-title text-3xl lg:text-5xl font-bold tracking-tight text-white">
+                    {activeProject?.title}
+                  </h2>
+
+                  <p className="portfolio-desc text-gray-400 text-lg leading-relaxed line-clamp-3">
+                    {activeProject?.description}
+                  </p>
+
+                  <div className="portfolio-tags pt-5">
+                    {activeProject?.tags.map((tag) => (
+                      <span key={tag} className="portfolio-tag">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Media Section with Floating Action Button */}
+              <div className="relative group overflow-hidden bg-black/40 flex items-center justify-center min-h-[300px] lg:min-h-full border-l border-white/5">
+                <img
+                  src={activeProject?.thumbnail}
+                  alt={activeProject?.title}
+                  className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
                 />
-                <div 
-                  className="relative flex items-center justify-center w-14 h-14 rounded-full border border-white/10 bg-black/40 text-md font-bold"
-                  style={{ color: activeProject?.accentColor }}
-                >
-                  {String(activeIndex + 1).padStart(2, "0")}
-                </div>
-              </div>
 
-              <div className="space-y-4">
-                <h2 className="portfolio-title text-3xl lg:text-5xl font-bold tracking-tight text-white">
-                  {activeProject?.title}
-                </h2>
-                
-                <p className="portfolio-desc text-gray-400 text-lg leading-relaxed line-clamp-3">
-                  {activeProject?.description}
-                </p>
-
-                <div className="portfolio-tags pt-5">
-                  {activeProject?.tags.map((tag) => (
-                    <span key={tag} className="portfolio-tag">
-                      {tag}
-                    </span>
-                  ))}
+                {/* Floating Action Button */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <a
+                      className="portfolio-cta"
+                      href={activeProject?.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      View Live Project
+                      <span aria-hidden="true" className="portfolio-cta-arrow">
+                        ↗
+                      </span>
+                    </a>
+                  </div>
                 </div>
+
+                <div className="absolute inset-0 bg-gradient-to-l from-black/40 via-transparent to-transparent" />
               </div>
             </div>
-
-            {/* Right Media Section with Floating Action Button */}
-            <div className="relative group overflow-hidden bg-black/40 flex items-center justify-center min-h-[300px] lg:min-h-full border-l border-white/5">
-              <img
-                src={activeProject?.thumbnail}
-                alt={activeProject?.title}
-                className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
-              />
-              
-              {/* Floating Action Button */}
-              <div className="absolute inset-0 flex items-center justify-center">
-              <div className="absolute inset-0 flex items-center justify-center">
-                 <a
-                  className="portfolio-cta"
-                  href={activeProject?.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  View Live Project
-                  <span aria-hidden="true" className="portfolio-cta-arrow">↗</span>
-                </a>
-              </div>
-              </div>
-              
-              <div className="absolute inset-0 bg-gradient-to-l from-black/40 via-transparent to-transparent" />
-            </div>
-          </div>
-        </GlowCard>
-
-        {/* Thumbnail Navigation */}
-        <div
-          className={`portfolio-thumbs-shell${showThumbNav ? "" : " no-nav"}`}
-          role="tablist"
-          aria-label="Project thumbnails"
-        >
-          {showThumbNav && (
-            <button
-              type="button"
-              className="portfolio-thumb-nav"
-              aria-label="Scroll thumbnails left"
-              onClick={() => scrollThumbs(-1)}
-            >
-              ←
-            </button>
-          )}
-
-          <div className="portfolio-thumbs" ref={thumbsRef}>
-            {projectsData.map((project) => {
-              const isActive = project.id === activeProject?.id;
-              return (
-                <button
-                  key={project.id}
-                  type="button"
-                  className={`portfolio-thumb${isActive ? " is-active" : ""}`}
-                  style={{ "--accent": project.accentColor }}
-                  onClick={() => setActiveId(project.id)}
-                  aria-pressed={isActive}
-                >
-                  <img src={project.thumbnail} alt={project.title} loading="lazy" />
-                </button>
-              );
-            })}
-          </div>
-
-          {showThumbNav && (
-            <button
-              type="button"
-              className="portfolio-thumb-nav"
-              aria-label="Scroll thumbnails right"
-              onClick={() => scrollThumbs(1)}
-            >
-              →
-            </button>
-          )}
+          </GlowCard>
         </div>
-      </div>
-    </PageLayout>
+      }
+      right={
+        <div className="mt-6 lg:mt-0" style={{ "--accent": activeProject?.accentColor }}>
+          {/* Thumbnail Navigation */}
+          <div
+            className={`portfolio-thumbs-shell${showThumbNav ? "" : " no-nav"}`}
+            role="tablist"
+            aria-label="Project thumbnails"
+          >
+            {showThumbNav && (
+              <button
+                type="button"
+                className="portfolio-thumb-nav"
+                aria-label="Scroll thumbnails left"
+                onClick={() => scrollThumbs(-1)}
+              >
+                ←
+              </button>
+            )}
+
+            <div className="portfolio-thumbs" ref={thumbsRef}>
+              {projectsData.map((project) => {
+                const isActive = project.id === activeProject?.id;
+                return (
+                  <button
+                    key={project.id}
+                    type="button"
+                    className={`portfolio-thumb${isActive ? " is-active" : ""}`}
+                    style={{ "--accent": project.accentColor }}
+                    onClick={() => setActiveId(project.id)}
+                    aria-pressed={isActive}
+                  >
+                    <img
+                      src={project.thumbnail}
+                      alt={project.title}
+                      loading="lazy"
+                    />
+                  </button>
+                );
+              })}
+            </div>
+
+            {showThumbNav && (
+              <button
+                type="button"
+                className="portfolio-thumb-nav"
+                aria-label="Scroll thumbnails right"
+                onClick={() => scrollThumbs(1)}
+              >
+                →
+              </button>
+            )}
+          </div>
+        </div>
+      }
+    />
   );
 }
 

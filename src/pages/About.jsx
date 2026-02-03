@@ -75,19 +75,19 @@ export default function About() {
   const [activeTab, setActiveTab] = useState("Experience");
 
   return (
-    <PageLayout>
-      <div className="grid lg:grid-cols-[1fr_1.5fr] gap-12 lg:gap-20 items-start">
-        
-        {/* Left Side: Sticky Profile Info */}
-        <div className="lg:sticky lg:top-24 h-fit">
-
+    <PageLayout
+      left={
+        <div className="space-y-10">
           <div className="space-y-6 text-lg leading-relaxed text-gray-400">
-            {aboutData.description.map((para, i) => <p key={i}>{para}</p>)}
+            {aboutData.description.map((para, i) => (
+              <p key={i}>{para}</p>
+            ))}
           </div>
 
-          <div className="mt-10 flex flex-wrap gap-4">
+          <div className="flex flex-wrap gap-4">
             <button className="flex items-center gap-2 rounded-lg bg-[hsl(var(--coral))] px-6 py-3 font-semibold text-white shadow-lg shadow-orange-500/20 hover:-translate-y-0.5 transition-transform">
-              <Download size={18} /><span>Resume</span>
+              <Download size={18} />
+              <span>Resume</span>
             </button>
             <div className="flex gap-3">
               {SOCIAL_LINKS.map(({ id, icon: Icon, href, label }) => (
@@ -102,20 +102,26 @@ export default function About() {
             </div>
           </div>
         </div>
-
-        {/* Right Side: Interactive Tabs & Timeline */}
-        <div className="relative">
+      }
+      right={
+        <div className="relative mt-6 lg:mt-0">
           <div className="sticky top-4 z-10 mb-8 flex justify-center lg:justify-center">
             <div className="flex gap-1 rounded-full border border-white/10 bg-black/60 p-1.5 backdrop-blur-xl shadow-xl">
-              {['Experience', 'Education'].map((tab) => (
+              {["Experience", "Education"].map((tab) => (
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
                   className={`flex items-center gap-2 rounded-full px-5 py-2 text-sm font-medium transition-all duration-300 ${
-                    activeTab === tab ? 'bg-orange-500/10 text-orange-500 ring-1 ring-orange-500/20' : 'text-gray-400 hover:text-white'
+                    activeTab === tab
+                      ? "bg-orange-500/10 text-orange-500 ring-1 ring-orange-500/20"
+                      : "text-gray-400 hover:text-white"
                   }`}
                 >
-                  {tab === 'Experience' ? <Layers size={16} /> : <BookOpen size={16} />}
+                  {tab === "Experience" ? (
+                    <Layers size={16} />
+                  ) : (
+                    <BookOpen size={16} />
+                  )}
                   {tab}
                 </button>
               ))}
@@ -124,9 +130,12 @@ export default function About() {
 
           <div className="relative min-h-[500px]">
             {aboutData.cards
-              .filter(card => card.title === activeTab)
+              .filter((card) => card.title === activeTab)
               .map((card) => (
-                <div key={card.title} className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+                <div
+                  key={card.title}
+                  className="animate-in fade-in slide-in-from-bottom-4 duration-500"
+                >
                   {card.listItems.map((item, index) => (
                     <TimelineItem
                       key={index}
@@ -142,8 +151,7 @@ export default function About() {
               ))}
           </div>
         </div>
-
-      </div>
-    </PageLayout>
+      }
+    />
   );
 }
