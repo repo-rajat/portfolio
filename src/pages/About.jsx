@@ -1,7 +1,16 @@
-import React, { useState, useRef } from 'react';
-import { Briefcase, GraduationCap, Calendar, Download, Github, Linkedin, Mail, ArrowLeft, Layers, BookOpen } from 'lucide-react';
+import React, { useState, useRef } from "react";
+import {
+  Briefcase,
+  GraduationCap,
+  Calendar,
+  Download,
+  Layers,
+  BookOpen,
+} from "lucide-react";
 import { PageLayout } from "../components/PageLayout";
 import aboutData from "../data/aboutData";
+import IconButton from "../utilities/IconButton";
+import { SOCIAL_LINKS } from "../data/assets";
 
 // --- GlowCard Component Logic ---
 const GlowCard = ({ children, className = "" }) => {
@@ -63,7 +72,7 @@ const TimelineItem = ({ title, subtitle, date, description, type, isLast }) => (
 );
 
 export default function About() {
-  const [activeTab, setActiveTab] = useState('Experience');
+  const [activeTab, setActiveTab] = useState("Experience");
 
   return (
     <PageLayout>
@@ -81,10 +90,14 @@ export default function About() {
               <Download size={18} /><span>Resume</span>
             </button>
             <div className="flex gap-3">
-              {[Github, Linkedin, Mail].map((Icon, i) => (
-                <button key={i} className="flex h-12 w-12 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-gray-400 hover:text-white hover:border-white/30 transition-all">
-                  <Icon size={20} />
-                </button>
+              {SOCIAL_LINKS.map(({ id, icon: Icon, href, label }) => (
+                <IconButton
+                  key={id}
+                  icon={Icon}
+                  theme="neutral"
+                  href={href}
+                  aria-label={label}
+                />
               ))}
             </div>
           </div>

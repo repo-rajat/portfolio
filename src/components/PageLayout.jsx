@@ -39,18 +39,18 @@ export function PageLayout({ children }) {
   const titleWords = currentPage.title.split(" ");
 
   return (
-    <div className="min-h-screen animated-gradient-bg noise-overlay overflow-hidden">
+    <div className="min-h-[100svh] animated-gradient-bg noise-overlay overflow-hidden">
       <div className="fixed inset-0 grid-bg opacity-30 pointer-events-none" />
 
       <div className={`orb ${styles.orb} w-[600px] h-[600px] -top-64 -right-64 animate-float-slow`} />
       <div className={`orb ${styles.orb} w-96 h-96 bottom-0 -left-48 animate-float-delayed opacity-50`} />
 
-      <div className="relative z-10 min-h-screen px-6 py-12 lg:px-16 grid items-center">
+      <div className="page-shell relative z-10 min-h-[100svh] px-6 py-10 md:py-12 lg:px-16 grid items-center">
         <div className="max-w-6xl mx-auto page-enter">
-          <div className="flex items-center gap-6 mb-12">
+          <div className="page-header flex items-center gap-6 mb-10 md:mb-12">
           <Link
             to="/"
-            className={`group flex items-center justify-center w-14 h-14 rounded-full border transition-all duration-300 hover:scale-110 ${styles.border} ${styles.bg}`}
+            className={`page-back group flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-full border transition-all duration-300 hover:scale-110 ${styles.border} ${styles.bg}`}
             style={{
               "--hover-glow": `hsl(var(--${currentPage.theme}))`
             }}
@@ -80,7 +80,7 @@ export function PageLayout({ children }) {
           </div>
 
           <div className="absolute right-8 lg:right-16 -translate-y-1/2 pointer-events-none select-none">
-            <span className={`text-[20rem] md:text-[30rem] font-black leading-none opacity-[0.03] ${styles.text}`} style={{ opacity: 0.05 }}>
+            <span className={`page-letter text-[18rem] md:text-[30rem] font-black leading-none opacity-[0.03] ${styles.text}`} style={{ opacity: 0.05 }}>
               {currentPage.letter}
             </span>
           </div>

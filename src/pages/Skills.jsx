@@ -45,10 +45,10 @@ function Skills() {
   return (
     <PageLayout>
       <div className="max-w-6xl mx-auto pt-4 lg:pt-4">
-        <div className="grid lg:grid-cols-12 gap-8 items-start">
+        <div className="grid lg:grid-cols-12 gap-16 items-start">
           
           {/* Left Column: Skill Meters (7/12 Width) */}
-          <div className="lg:col-span-7 space-y-10">
+          <div className="  lg:col-span-7 space-y-10">
             {allSkills.map((category) => (
               <div key={category.level} className="space-y-6">
                 <div className="flex items-center gap-3">
@@ -86,7 +86,7 @@ function Skills() {
                 <Wrench size={20} className="text-[hsl(var(--sky))]" />
                 <h3 className="text-xl font-bold tracking-tight">Ecosystem Tools</h3>
               </div>
-              <GlowCard className="p-5">
+              <GlowCard className="p-4">
                 <div className="flex flex-wrap gap-2">
                   {skillsData.tools.map((tool) => (
                     <span 

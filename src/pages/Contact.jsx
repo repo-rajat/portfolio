@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { PageLayout } from "../components/PageLayout";
-import { Send, Mail, MapPin, Phone, Github, Linkedin, Twitter } from "lucide-react";
+import IconButton from "../utilities/IconButton";
+import { Send } from "lucide-react";
+import { ICONS, SOCIAL_LINKS } from "../data/assets";
 
 function Contact() {
   const [formData, setFormData] = useState({
@@ -15,15 +17,9 @@ function Contact() {
   }
 
   const contactInfo = [
-    { icon: Mail, label: "Email", value: "hello@rajatgulati.com" },
-    { icon: Phone, label: "Phone", value: "+91 98765 43210" },
-    { icon: MapPin, label: "Location", value: "New Delhi, India" },
-  ];
-
-  const socialLinks = [
-    { icon: Github, label: "GitHub", href: "#" },
-    { icon: Linkedin, label: "LinkedIn", href: "#" },
-    { icon: Twitter, label: "Twitter", href: "#" },
+    { icon: ICONS.mail, label: "Email", value: "hello@rajatgulati.com" },
+    { icon: ICONS.phone, label: "Phone", value: "+91 98765 43210" },
+    { icon: ICONS.mapPin, label: "Location", value: "New Delhi, India" },
   ];
 
   return (
@@ -89,9 +85,7 @@ function Contact() {
                 const Icon = item.icon;
                 return (
                   <div key={item.label} className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-[hsl(var(--violet)/0.2)] flex items-center justify-center">
-                      <Icon className="w-5 h-5 text-[hsl(var(--violet))]" />
-                    </div>
+                    <IconButton icon={Icon} theme="violet" size="sm" />
                     <div>
                       <p className="type-caption text-muted-foreground">{item.label}</p>
                       <p className="type-body text-foreground font-medium">{item.value}</p>
@@ -106,16 +100,16 @@ function Contact() {
             <h3 className="type-section-title text-[hsl(var(--violet))] mb-5">Follow Me</h3>
 
             <div className="flex gap-4">
-              {socialLinks.map((item) => {
+              {SOCIAL_LINKS.map((item) => {
                 const Icon = item.icon;
                 return (
-                  <a
+                  <IconButton
                     key={item.label}
+                    icon={Icon}
+                    theme="violet"
                     href={item.href}
-                    className="w-12 h-12 rounded-xl bg-[hsl(var(--violet)/0.2)] flex items-center justify-center hover:bg-[hsl(var(--violet))] transition-all duration-300 group"
-                  >
-                    <Icon className="w-5 h-5 text-[hsl(var(--violet))] group-hover:text-white transition-colors" />
-                  </a>
+                    aria-label={item.label}
+                  />
                 );
               })}
             </div>
