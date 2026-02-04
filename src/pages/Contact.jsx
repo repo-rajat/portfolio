@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { PageLayout } from "../components/PageLayout";
-import IconButton from "../utilities/IconButton";
-import { Send } from "lucide-react";
-import { ICONS, SOCIAL_LINKS } from "../data/assets";
+import IconButton from "../components/IconButton";
 
-function Contact() {
+function Contact({ data, page }) {
+  const { contact, socialLinks } = data;
+  const SendIcon = contact.form.icon;
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -16,85 +16,89 @@ function Contact() {
     console.log("Form submitted:", formData);
   }
 
-  const contactInfo = [
-    { icon: ICONS.mail, label: "Email", value: "hello@rajatgulati.com" },
-    { icon: ICONS.phone, label: "Phone", value: "+91 98765 43210" },
-    { icon: ICONS.mapPin, label: "Location", value: "New Delhi, India" },
-  ];
-
   return (
     <PageLayout
+      page={page}
       left={
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="space-y-2">
-            <label htmlFor="name" className="type-label font-medium text-foreground">
-              Name
+            <label
+              htmlFor="name"
+              className="type-label font-medium text-foreground"
+            >
+              {contact.form.fields.name.label}
             </label>
             <input
               id="name"
+              name="name"
               type="text"
               required
               value={formData.name}
               onChange={(e) =>
                 setFormData({ ...formData, name: e.target.value })
               }
-              placeholder="Your name"
-              className="w-full px-4 py-3 rounded-xl bg-secondary/50 border border-border focus:border-[hsl(var(--violet))] focus:ring-1 focus:ring-[hsl(var(--violet))] outline-none transition-all text-foreground placeholder:text-muted-foreground"
+              placeholder={contact.form.fields.name.placeholder}
+              className="form-field"
             />
           </div>
 
           <div className="space-y-2">
-            <label htmlFor="email" className="type-label font-medium text-foreground">
-              Email
+            <label
+              htmlFor="email"
+              className="type-label font-medium text-foreground"
+            >
+              {contact.form.fields.email.label}
             </label>
             <input
               id="email"
+              name="email"
               type="email"
               required
               value={formData.email}
               onChange={(e) =>
                 setFormData({ ...formData, email: e.target.value })
               }
-              placeholder="your@email.com"
-              className="w-full px-4 py-3 rounded-xl bg-secondary/50 border border-border focus:border-[hsl(var(--violet))] focus:ring-1 focus:ring-[hsl(var(--violet))] outline-none transition-all text-foreground placeholder:text-muted-foreground"
+              placeholder={contact.form.fields.email.placeholder}
+              className="form-field"
             />
           </div>
 
           <div className="space-y-2">
-            <label htmlFor="message" className="type-label font-medium text-foreground">
-              Message
+            <label
+              htmlFor="message"
+              className="type-label font-medium text-foreground"
+            >
+              {contact.form.fields.message.label}
             </label>
             <textarea
               id="message"
+              name="message"
               required
               rows={5}
               value={formData.message}
               onChange={(e) =>
                 setFormData({ ...formData, message: e.target.value })
               }
-              placeholder="Tell me about your project..."
-              className="w-full px-4 py-3 rounded-xl bg-secondary/50 border border-border focus:border-[hsl(var(--violet))] focus:ring-1 focus:ring-[hsl(var(--violet))] outline-none transition-all resize-none text-foreground placeholder:text-muted-foreground"
+              placeholder={contact.form.fields.message.placeholder}
+              className="form-field resize-none"
             />
           </div>
 
-          <button
-            type="submit"
-            className="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-[hsl(var(--violet))] to-[hsl(var(--violet-dark))] text-white font-semibold flex items-center justify-center gap-2 hover:opacity-90 hover:scale-[1.02] active:scale-[0.98] transition-all shadow-lg shadow-[hsl(var(--violet)/0.3)]"
-          >
-            <Send className="w-5 h-5" />
-            Send Message
+          <button type="submit" className="primary-button">
+            <SendIcon className="w-5 h-5" />
+            {contact.form.submitLabel}
           </button>
         </form>
       }
       right={
         <div className="space-y-8 mt-6 lg:mt-0">
-          <div className="p-6 rounded-2xl glass-card">
+          <div className="glass-panel">
             <h3 className="type-section-title text-[hsl(var(--violet))] mb-5">
-              Get in Touch
+              {contact.infoTitle}
             </h3>
 
             <div className="space-y-4">
-              {contactInfo.map((item) => {
+              {contact.info.map((item) => {
                 const Icon = item.icon;
                 return (
                   <div key={item.label} className="flex items-center gap-4">
@@ -113,13 +117,13 @@ function Contact() {
             </div>
           </div>
 
-          <div className="p-6 rounded-2xl glass-card">
+          <div className="glass-panel">
             <h3 className="type-section-title text-[hsl(var(--violet))] mb-5">
-              Follow Me
+              {contact.followTitle}
             </h3>
 
             <div className="flex gap-4">
-              {SOCIAL_LINKS.map((item) => {
+              {socialLinks.map((item) => {
                 const Icon = item.icon;
                 return (
                   <IconButton
@@ -134,18 +138,18 @@ function Contact() {
             </div>
           </div>
 
-          <div className="p-6 rounded-2xl glass-card border border-[hsl(var(--emerald)/0.3)]">
+          <div className="glass-panel border border-[hsl(var(--emerald)/0.3)]">
             <div className="flex items-center gap-3">
               <span className="relative flex h-3 w-3">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[hsl(var(--emerald))] opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-3 w-3 bg-[hsl(var(--emerald))]"></span>
               </span>
               <span className="type-body text-foreground font-medium">
-                Available for freelance work
+                {contact.availability.title}
               </span>
             </div>
             <p className="type-body-sm text-muted-foreground mt-2">
-              Currently taking on new projects. Let's discuss your ideas!
+              {contact.availability.description}
             </p>
           </div>
         </div>

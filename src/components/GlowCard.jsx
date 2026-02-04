@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
-import IconButton from "../utilities/IconButton";
+import IconButton from "./IconButton";
 
 const variantStyles = {
   coral: {
@@ -77,14 +77,14 @@ export function GlowCard(props) {
 
         <div className="flex justify-between items-center overflow-hidden">
           <IconButton icon={Icon} theme={variant} size="lg" />
-          <ArrowLeft className={`w-6 h-6 ${styles.text} rotate-180 opacity-0 scale-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300`} />
+          <ArrowLeft
+            className={`w-6 h-6 ${styles.text} rotate-180 opacity-0 scale-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300`}
+          />
         </div>
 
         <div className="relative z-10">
           <h3 className={`type-card-title mb-1 ${styles.text}`}>{title}</h3>
-          <p className="type-body-sm text-muted-foreground">
-            {description}
-          </p>
+          <p className="type-body-sm text-muted-foreground">{description}</p>
         </div>
       </div>
     </Link>

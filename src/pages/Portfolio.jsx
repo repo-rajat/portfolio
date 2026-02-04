@@ -1,92 +1,44 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useState } from "react";
 import { PageLayout } from "../components/PageLayout";
-import projectsData from "../data/projectsData";
 
-// --- Sub-component: Glow Effect for Main Card ---
-const GlowCard = ({ children, className = "", accentColor }) => {
-  const divRef = useRef(null);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [opacity, setOpacity] = useState(0);
+function Portfolio({ data, page }) {
+  const { projects, portfolio } = data;
+  const [activeId, setActiveId] = useState(projects[0]?.id ?? 0);
 
-  const handleMouseMove = (e) => {
-    if (!divRef.current) return;
-    const rect = divRef.current.getBoundingClientRect();
-    setPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
-  };
-
-  return (
-    <div
-      ref={divRef}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => setOpacity(1)}
-      onMouseLeave={() => setOpacity(0)}
-      className={`relative overflow-hidden rounded-3xl border border-white/5 bg-white/[0.015] backdrop-blur-md transition-all duration-300 hover:border-white/10 ${className}`}
-    >
-      {/* Static Top-Left Ambient Glow */}
-      <div 
-        className="absolute -top-24 -left-24 w-80 h-80 rounded-full blur-[100px] opacity-20 pointer-events-none transition-colors duration-500"
-        style={{ background: accentColor }}
-      />
-
-      {/* Interactive Cursor Glow */}
-      <div
-        className="pointer-events-none absolute -inset-px opacity-0 transition duration-300"
-        style={{
-          opacity,
-          background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, ${accentColor}15, transparent 40%)`,
-        }}
-      />
-      <div className="relative z-10 h-full">{children}</div>
-    </div>
+  const activeProject =
+    projects.find((project) => project.id === activeId) || projects[0];
+  const activeIndex = Math.max(
+    0,
+    projects.findIndex((project) => project.id === activeId)
   );
-};
-
-function Portfolio() {
-  const [activeId, setActiveId] = useState(projectsData[0]?.id ?? 0);
-  const thumbsRef = useRef(null);
-  const [showThumbNav, setShowThumbNav] = useState(false);
-
-  const activeProject = useMemo(
-    () => projectsData.find((project) => project.id === activeId) ?? projectsData[0],
-    [activeId]
-  );
-  
-  const activeIndex = useMemo(
-    () => Math.max(0, projectsData.findIndex((project) => project.id === activeId)),
-    [activeId]
-  );
+  const showThumbNav = projects.length > 4;
 
   const scrollThumbs = (direction) => {
-    if (!thumbsRef.current) return;
-    const shift = Math.max(220, thumbsRef.current.clientWidth * 0.6);
-    thumbsRef.current.scrollBy({ left: direction * shift, behavior: "smooth" });
+    const thumbs = document.getElementById("portfolio-thumbs");
+    if (!thumbs) return;
+    const shift = Math.max(220, thumbs.clientWidth * 0.6);
+    thumbs.scrollBy({ left: direction * shift, behavior: "smooth" });
   };
-
-  useEffect(() => {
-    if (!thumbsRef.current) return;
-    const updateNav = () => {
-      const hasOverflow = thumbsRef.current.scrollWidth > thumbsRef.current.clientWidth + 8;
-      setShowThumbNav(projectsData.length > 4 || hasOverflow);
-    };
-    updateNav();
-    const observer = new ResizeObserver(updateNav);
-    observer.observe(thumbsRef.current);
-    return () => observer.disconnect();
-  }, []);
 
   return (
     <PageLayout
+      page={page}
       left={
         <div style={{ "--accent": activeProject?.accentColor }}>
-          {/* Main Glassmorphic Card */}
-          <GlowCard
-            accentColor={activeProject?.accentColor || "hsl(var(--sky))"}
-            className="min-h-[400px] lg:h-[450px]"
-          >
-            <div className="grid lg:grid-cols-2 h-full">
-              {/* Left Content */}
+          <div className="portfolio-main-card min-h-[400px] lg:h-[450px]">
+            <div
+              className="absolute -top-24 -left-24 w-80 h-80 rounded-full blur-[100px] opacity-20 pointer-events-none transition-colors duration-500"
+              style={{ background: activeProject?.accentColor }}
+            />
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background: `radial-gradient(600px circle at 20% 20%, ${activeProject?.accentColor}25, transparent 45%)`,
+              }}
+            />
+
+            <div className="relative z-10 grid lg:grid-cols-2 h-full">
               <div className="p-8 lg:p-14 flex flex-col justify-start">
-                {/* Glowing interesting Number Index */}
                 <div className="relative mb-6 w-fit">
                   <div
                     className="absolute inset-0 blur-lg opacity-40 rounded-full"
@@ -119,7 +71,6 @@ function Portfolio() {
                 </div>
               </div>
 
-              {/* Right Media Section with Floating Action Button */}
               <div className="relative group overflow-hidden bg-black/40 flex items-center justify-center min-h-[300px] lg:min-h-full border-l border-white/5">
                 <img
                   src={activeProject?.thumbnail}
@@ -127,7 +78,6 @@ function Portfolio() {
                   className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
                 />
 
-                {/* Floating Action Button */}
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="absolute inset-0 flex items-center justify-center">
                     <a
@@ -136,9 +86,9 @@ function Portfolio() {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      View Live Project
+                      {portfolio.ctaLabel}
                       <span aria-hidden="true" className="portfolio-cta-arrow">
-                        ↗
+                        {portfolio.ctaArrow}
                       </span>
                     </a>
                   </div>
@@ -147,30 +97,32 @@ function Portfolio() {
                 <div className="absolute inset-0 bg-gradient-to-l from-black/40 via-transparent to-transparent" />
               </div>
             </div>
-          </GlowCard>
+          </div>
         </div>
       }
       right={
-        <div className="mt-6 lg:mt-0" style={{ "--accent": activeProject?.accentColor }}>
-          {/* Thumbnail Navigation */}
+        <div
+          className="mt-6 lg:mt-0"
+          style={{ "--accent": activeProject?.accentColor }}
+        >
           <div
             className={`portfolio-thumbs-shell${showThumbNav ? "" : " no-nav"}`}
             role="tablist"
-            aria-label="Project thumbnails"
+            aria-label={portfolio.thumbsLabel}
           >
             {showThumbNav && (
               <button
                 type="button"
                 className="portfolio-thumb-nav"
-                aria-label="Scroll thumbnails left"
+                aria-label={portfolio.thumbLeftLabel}
                 onClick={() => scrollThumbs(-1)}
               >
                 ←
               </button>
             )}
 
-            <div className="portfolio-thumbs" ref={thumbsRef}>
-              {projectsData.map((project) => {
+            <div className="portfolio-thumbs" id="portfolio-thumbs">
+              {projects.map((project) => {
                 const isActive = project.id === activeProject?.id;
                 return (
                   <button
@@ -195,7 +147,7 @@ function Portfolio() {
               <button
                 type="button"
                 className="portfolio-thumb-nav"
-                aria-label="Scroll thumbnails right"
+                aria-label={portfolio.thumbRightLabel}
                 onClick={() => scrollThumbs(1)}
               >
                 →
