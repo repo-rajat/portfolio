@@ -542,7 +542,7 @@
   }
 
   .portfolio-thumbs {
-    @apply grid justify-center gap-[0.8rem] auto-cols-[minmax(50px,90px)] grid-flow-col overflow-x-auto snap-x snap-mandatory scroll-smooth;
+    @apply grid justify-center gap-[0.8rem] auto-cols-[minmax(50px,90px)] grid-flow-col snap-x snap-mandatory scroll-smooth;
   }
 
   .portfolio-thumbs::-webkit-scrollbar {

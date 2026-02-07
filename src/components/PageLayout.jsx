@@ -95,45 +95,53 @@ export function PageLayout(props) {
             </div>
           ) : (
             <>
-              <div className="page-header flex items-center gap-6 mb-10 md:mb-12">
-                <Link
-                  to="/"
-                  className={"page-back group flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-full border transition-all duration-300 hover:scale-110 " + styles.border + " " + styles.bg}
-                  style={{
-                    "--hover-glow": "hsl(var(--" + themeName + "))",
-                  }}
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  <ArrowLeft
-                    className={"w-6 h-6 transition-transform " + styles.text}
-                  />
-                </Link>
+              <div className="page-header flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-10 md:mb-12">
+                <div className="flex items-center gap-6">
+                  <Link
+                    to="/"
+                    className={"page-back group flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-full border transition-all duration-300 hover:scale-110 " + styles.border + " " + styles.bg}
+                    style={{
+                      "--hover-glow": "hsl(var(--" + themeName + "))",
+                    }}
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                  >
+                    <ArrowLeft
+                      className={"w-6 h-6 transition-transform " + styles.text}
+                    />
+                  </Link>
 
-                <h1 className="type-page-title">
-                  {titleWords.map(function(word, i) {
-                     return (
-                      <span key={i}>
-                        {i === titleWords.length - 1 ? (
-                          <span className={styles.text}>
-                            {word[0].toUpperCase() + word.slice(1)}
-                          </span>
-                        ) : (
-                          <span className="text-foreground">
-                            {word[0].toUpperCase() + word.slice(1) + " "} 
-                          </span>
-                        )}
-                      </span>
-                    )
-                  })}
-                </h1>
+                  <h1 className="type-page-title">
+                    {titleWords.map(function(word, i) {
+                      return (
+                        <span key={i}>
+                          {i === titleWords.length - 1 ? (
+                            <span className={styles.text}>
+                              {word[0].toUpperCase() + word.slice(1)}
+                            </span>
+                          ) : (
+                            <span className="text-foreground">
+                              {word[0].toUpperCase() + word.slice(1) + " "} 
+                            </span>
+                          )}
+                        </span>
+                      )
+                    })}
+                  </h1>
+                </div>
+
+                {props.headerContent && (
+                  <div className="w-full lg:w-auto mt-4 lg:mt-0">
+                    {props.headerContent}
+                  </div>
+                )}
               </div>
 
               <div className="page-content">{children}</div>
             </>
           )}
 
-          <div className="absolute right-8 lg:right-16 -translate-y-1/2 pointer-events-none select-none">
+          <div className="fixed right-0 -top-[100px] pointer-events-none select-none">
             <span
               className={"page-letter text-[18rem] md:text-[30rem] font-black leading-none opacity-[0.03] " + styles.text}
               style={{ opacity: 0.05 }}

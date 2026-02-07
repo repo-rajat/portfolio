@@ -11,40 +11,48 @@ function Portfolio() {
     {
       id: 1,
       title: "Docquity - Webinar Landing Page",
-      description: "Developed a responsive webinar landing page as part of a front-end interview assignment",
+      description:
+        "Developed a responsive webinar landing page as part of a front-end interview assignment",
       tags: ["Angular", "TypeScript", "HTML5", "CSS3", "Figma"],
       url: "https://docquity-webinar.netlify.app/",
-      thumbnail: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&h=400&fit=crop",
+      thumbnail:
+        "https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&h=400&fit=crop",
       letter: "P",
       accentColor: "#2DD4BF",
     },
     {
       id: 2,
       title: "Design System",
-      description: "Comprehensive component library with documentation and accessibility features.",
+      description:
+        "Comprehensive component library with documentation and accessibility features.",
       tags: ["Storybook", "CSS", "Design"],
       url: "https://example.com",
-      thumbnail: "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=600&h=400&fit=crop",
+      thumbnail:
+        "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=600&h=400&fit=crop",
       letter: "W",
       accentColor: "#FF5DA8",
     },
     {
       id: 3,
       title: "Portfolio Template",
-      description: "Clean, minimalist portfolio template for creative professionals.",
+      description:
+        "Clean, minimalist portfolio template for creative professionals.",
       tags: ["React", "Framer Motion", "UI"],
       url: "https://example.com",
-      thumbnail: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=600&h=400&fit=crop",
+      thumbnail:
+        "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=600&h=400&fit=crop",
       letter: "T",
       accentColor: "#55A7FF",
     },
     {
       id: 4,
       title: "SaaS Landing Page",
-      description: "High-converting landing page with animations and modern aesthetics.",
+      description:
+        "High-converting landing page with animations and modern aesthetics.",
       tags: ["Next.js", "Animation", "Design"],
       url: "https://example.com",
-      thumbnail: "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=600&h=400&fit=crop",
+      thumbnail:
+        "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=600&h=400&fit=crop",
       letter: "S",
       accentColor: "#9B7CFF",
     },
@@ -64,7 +72,7 @@ function Portfolio() {
   // Logic to find active project
   let activeProject = projects[0];
   let activeIndex = 0;
-  
+
   for (let i = 0; i < projects.length; i++) {
     if (projects[i].id === activeId) {
       activeProject = projects[i];
@@ -94,7 +102,10 @@ function Portfolio() {
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            background: "radial-gradient(600px circle at 20% 20%, " + activeProject.accentColor + "25, transparent 45%)",
+            background:
+              "radial-gradient(600px circle at 20% 20%, " +
+              activeProject.accentColor +
+              "25, transparent 45%)",
           }}
         />
 
@@ -123,7 +134,7 @@ function Portfolio() {
               </p>
 
               <div className="portfolio-tags pt-5">
-                {activeProject.tags.map(function(tag) {
+                {activeProject.tags.map(function (tag) {
                   return (
                     <span key={tag} className="portfolio-tag">
                       {tag}
@@ -138,7 +149,7 @@ function Portfolio() {
             <img
               src={activeProject.thumbnail}
               alt={activeProject.title}
-              className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
             />
 
             <div className="absolute inset-0 flex items-center justify-center">
@@ -157,19 +168,19 @@ function Portfolio() {
               </div>
             </div>
 
-            <div className="absolute inset-0 bg-gradient-to-l from-black/40 via-transparent to-transparent" />
+            <div
+              className="
+              absolute bottom-0 left-0 w-full h-[45%] bg-gradient-to-t from-black/65 via-black/35 to-transparent"
+            />
           </div>
         </div>
       </div>
     </div>
   );
 
-  // Right Content
-  const rightContent = (
-    <div
-      className="mt-6 lg:mt-0"
-      style={{ "--accent": activeProject.accentColor }}
-    >
+  // Thumbnails (Header Content)
+  const thumbsContent = (
+    <div className="" style={{ "--accent": activeProject.accentColor }}>
       <div
         className={"portfolio-thumbs-shell" + (showThumbNav ? "" : " no-nav")}
         role="tablist"
@@ -180,18 +191,20 @@ function Portfolio() {
             type="button"
             className="portfolio-thumb-nav"
             aria-label={portfolioStrings.thumbLeftLabel}
-            onClick={function() { scrollThumbs(-1); }}
+            onClick={function () {
+              scrollThumbs(-1);
+            }}
           >
             ←
           </button>
         )}
 
         <div className="portfolio-thumbs" id="portfolio-thumbs">
-          {projects.map(function(project) {
+          {projects.map(function (project) {
             const isActive = project.id === activeProject.id;
             let activeClass = "";
             if (isActive) {
-                activeClass = " is-active";
+              activeClass = " is-active";
             }
             return (
               <button
@@ -199,7 +212,9 @@ function Portfolio() {
                 type="button"
                 className={"portfolio-thumb" + activeClass}
                 style={{ "--accent": project.accentColor }}
-                onClick={function() { setActiveId(project.id); }}
+                onClick={function () {
+                  setActiveId(project.id);
+                }}
                 aria-pressed={isActive}
               >
                 <img
@@ -217,7 +232,9 @@ function Portfolio() {
             type="button"
             className="portfolio-thumb-nav"
             aria-label={portfolioStrings.thumbRightLabel}
-            onClick={function() { scrollThumbs(1); }}
+            onClick={function () {
+              scrollThumbs(1);
+            }}
           >
             →
           </button>
@@ -228,12 +245,13 @@ function Portfolio() {
 
   return (
     <PageLayout
-        themeName={themeName}
-        title={title}
-        letter={letter}
-        left={leftContent}
-        right={rightContent}
-    />
+      themeName={themeName}
+      title={title}
+      letter={letter}
+      headerContent={thumbsContent}
+    >
+      {leftContent}
+    </PageLayout>
   );
 }
 
