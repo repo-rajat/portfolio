@@ -1,73 +1,29 @@
 import React from "react";
 import { PageLayout } from "../components/PageLayout";
+import { useContent } from "../context/ContentContext";
 
 function Portfolio() {
-  const themeName = "emerald";
-  const title = "my portfolio";
-  const letter = "P";
+  const { content, loading } = useContent();
+  const [activeId, setActiveId] = React.useState(1);
 
-  // Hardcoded Data
-  const projects = [
-    {
-      id: 1,
-      title: "Docquity - Webinar Landing Page",
-      description:
-        "Developed a responsive webinar landing page as part of a front-end interview assignment",
-      tags: ["Angular", "TypeScript", "HTML5", "CSS3", "Figma"],
-      url: "https://docquity-webinar.netlify.app/",
-      thumbnail:
-        "https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&h=400&fit=crop",
-      letter: "P",
-      accentColor: "#2DD4BF",
-    },
-    {
-      id: 2,
-      title: "Design System",
-      description:
-        "Comprehensive component library with documentation and accessibility features.",
-      tags: ["Storybook", "CSS", "Design"],
-      url: "https://example.com",
-      thumbnail:
-        "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=600&h=400&fit=crop",
-      letter: "W",
-      accentColor: "#FF5DA8",
-    },
-    {
-      id: 3,
-      title: "Portfolio Template",
-      description:
-        "Clean, minimalist portfolio template for creative professionals.",
-      tags: ["React", "Framer Motion", "UI"],
-      url: "https://example.com",
-      thumbnail:
-        "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=600&h=400&fit=crop",
-      letter: "T",
-      accentColor: "#55A7FF",
-    },
-    {
-      id: 4,
-      title: "SaaS Landing Page",
-      description:
-        "High-converting landing page with animations and modern aesthetics.",
-      tags: ["Next.js", "Animation", "Design"],
-      url: "https://example.com",
-      thumbnail:
-        "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=600&h=400&fit=crop",
-      letter: "S",
-      accentColor: "#9B7CFF",
-    },
-  ];
+  if (loading) {
+    return (
+      <div className="min-h-screen grid place-items-center text-white">
+        Loading...
+      </div>
+    );
+  }
+
+  const { portfolio } = content;
+  const { meta, cta, projects } = portfolio;
 
   const portfolioStrings = {
-    ctaLabel: "View Live Project",
-    ctaArrow: "↗",
+    ctaLabel: cta.label,
+    ctaArrow: cta.arrow,
     thumbsLabel: "Project thumbnails",
     thumbLeftLabel: "Scroll thumbnails left",
     thumbRightLabel: "Scroll thumbnails right",
   };
-
-  // State
-  const [activeId, setActiveId] = React.useState(1);
 
   // Logic to find active project
   let activeProject = projects[0];
@@ -93,18 +49,18 @@ function Portfolio() {
 
   // Left Content
   const leftContent = (
-    <div style={{ "--accent": activeProject.accentColor }}>
+    <div style={{ "--accent": activeProject.accent }}>
       <div className="portfolio-main-card min-h-[400px] lg:h-[450px]">
         <div
           className="absolute -top-24 -left-24 w-80 h-80 rounded-full blur-[100px] opacity-20 pointer-events-none transition-colors duration-500"
-          style={{ background: activeProject.accentColor }}
+          style={{ background: activeProject.accent }}
         />
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
               "radial-gradient(600px circle at 20% 20%, " +
-              activeProject.accentColor +
+              activeProject.accent +
               "25, transparent 45%)",
           }}
         />
@@ -114,11 +70,11 @@ function Portfolio() {
             <div className="relative mb-6 w-fit">
               <div
                 className="absolute inset-0 blur-lg opacity-40 rounded-full"
-                style={{ backgroundColor: activeProject.accentColor }}
+                style={{ backgroundColor: activeProject.accent }}
               />
               <div
                 className="relative flex items-center justify-center w-14 h-14 rounded-full border border-white/10 bg-black/40 text-md font-bold"
-                style={{ color: activeProject.accentColor }}
+                style={{ color: activeProject.accent }}
               >
                 {String(activeIndex + 1).padStart(2, "0")}
               </div>
@@ -180,7 +136,7 @@ function Portfolio() {
 
   // Thumbnails (Header Content)
   const thumbsContent = (
-    <div className="" style={{ "--accent": activeProject.accentColor }}>
+    <div className="" style={{ "--accent": activeProject.accent }}>
       <div
         className={"portfolio-thumbs-shell" + (showThumbNav ? "" : " no-nav")}
         role="tablist"
@@ -211,7 +167,7 @@ function Portfolio() {
                 key={project.id}
                 type="button"
                 className={"portfolio-thumb" + activeClass}
-                style={{ "--accent": project.accentColor }}
+                style={{ "--accent": project.accent }}
                 onClick={function () {
                   setActiveId(project.id);
                 }}
@@ -245,9 +201,9 @@ function Portfolio() {
 
   return (
     <PageLayout
-      themeName={themeName}
-      title={title}
-      letter={letter}
+      themeName={meta.theme}
+      title={meta.title}
+      letter={meta.letter}
       headerContent={thumbsContent}
     >
       {leftContent}

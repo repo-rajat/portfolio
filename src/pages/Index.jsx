@@ -1,72 +1,22 @@
 import React from "react";
 import { GlowCard } from "../components/GlowCard";
 import IconButton from "../components/IconButton";
-import { User, Zap, Briefcase, Mail, Github, Linkedin, Twitter } from "lucide-react";
+import { useContent } from "../context/ContentContext";
+import { getIcon } from "../utils/iconMap";
 
 function Index() {
   const [hoveredIndex, setHoveredIndex] = React.useState(null);
+  const { content, loading } = useContent();
 
-  // Hardcoded Data
-  const homeData = {
-    greeting: {
-      label: "hello_world",
-      intro: "I'm",
-    },
-    name: {
-      first: "Rajat",
-      last: "Gulati",
-    },
-    subtitle: {
-      intro: "Frontend Developer specializing in",
-      highlight: "UI Engineering",
-    },
-    description: "Building responsive, accessible, and high-performance web interfaces using HTML, CSS, JavaScript, and React.",
-  };
+  if (loading) {
+    return (
+      <div className="min-h-screen grid place-items-center text-white">
+        Loading...
+      </div>
+    );
+  }
 
-  const socialLinks = [
-    { id: "github", label: "GitHub", icon: Github, href: "#" },
-    { id: "linkedin", label: "LinkedIn", icon: Linkedin, href: "#" },
-    { id: "twitter", label: "Twitter", icon: Twitter, href: "#" },
-  ];
-
-  const navLinks = [
-    {
-      id: 1,
-      page: "about",
-      description: "My journey & story",
-      to: "/about",
-      theme: "coral",
-      letter: "A",
-      icon: User,
-    },
-    {
-      id: 2,
-      page: "skills",
-      description: "Tech & expertise",
-      to: "/skills",
-      theme: "sky",
-      letter: "S",
-      icon: Zap,
-    },
-    {
-      id: 3,
-      page: "portfolio",
-      description: "Featured work",
-      to: "/portfolio",
-      theme: "emerald",
-      letter: "P",
-      icon: Briefcase,
-    },
-    {
-      id: 4,
-      page: "contact",
-      description: "Let's connect",
-      to: "/contact",
-      theme: "violet",
-      letter: "C",
-      icon: Mail,
-    },
-  ];
+  const { home, global } = content;
 
   return (
     <main className="min-h-[100svh] animated-gradient-bg noise-overlay">
@@ -86,11 +36,11 @@ function Index() {
               </span>
               <p className="text-[10px] sm:text-xs md:text-sm font-mono tracking-widest uppercase text-white/80 break-words">
                 <span className="text-cyan-400">&lt;</span>
-                {homeData.greeting.label}
+                {home.greeting.label}
                 <span className="text-cyan-400"> /&gt;</span>
                 <span className="ml-2 text-white/40">|</span>
                 <span className="ml-2 text-white font-semibold">
-                  {homeData.greeting.intro}
+                  {home.greeting.intro}
                 </span>
               </p>
             </div>
@@ -98,30 +48,33 @@ function Index() {
             <div className="grid grid-cols-1 grid-rows-1 items-start w-full max-w-2xl">
               <div className="col-start-1 row-start-1 z-10">
                 <h1 className="type-hero mb-0">
-                  <span className="text-foreground">{homeData.name.first}</span>
+                  <span className="text-foreground">{home.name.first}</span>
                   <br />
-                  <span className="">{homeData.name.last}</span>
+                  <span className="">{home.name.last}</span>
                 </h1>
               </div>
             </div>
 
             <h2 className="home-subtitle text-2xl sm:text-3xl text-white/90 mt-8 lg:mt-10 mb-3 lg:mb-4 font-medium leading-snug sm:leading-[40px]">
-              {homeData.subtitle.intro}
-              <span className="block text-shimmer">{homeData.subtitle.highlight}</span>
+              {home.subtitle.intro}
+              <span className="block text-shimmer">
+                {home.subtitle.highlight}
+              </span>
             </h2>
 
             <p className="type-body-lg text-muted-foreground mb-8 lg:mb-10 leading-relaxed">
-              {homeData.description}
+              {home.description}
             </p>
 
             <div className="flex gap-4 sm:gap-5">
-              {socialLinks.map(function(link) {
+              {global.socialLinks.map(function (link) {
+                const Icon = getIcon(link.icon);
                 return (
                   <IconButton
                     key={link.id}
-                    icon={link.icon}
+                    icon={Icon}
                     theme="neutral"
-                    href={link.href}
+                    href={link.url}
                     aria-label={link.label}
                   />
                 );
@@ -131,34 +84,41 @@ function Index() {
 
           <div className="lg:w-1/2">
             <div className="grid grid-cols-2 gap-3 sm:gap-4 md:gap-6 max-w-md mx-auto lg:max-w-none">
-              {navLinks.map(function(item, index) {
+              {home.navigation.map(function (item, index) {
                 let size = "normal";
                 if (index < 2) {
-                    size = "large";
+                  size = "large";
                 }
-                
+
                 const isHovered = hoveredIndex === index;
                 let isDimmed = false;
                 if (hoveredIndex !== null) {
-                    if (hoveredIndex !== index) {
-                        isDimmed = true;
-                    }
+                  if (hoveredIndex !== index) {
+                    isDimmed = true;
+                  }
                 }
+                const Icon = getIcon(item.icon);
 
                 return (
                   <div
-                    key={item.id}
-                    onMouseEnter={function() { setHoveredIndex(index); }}
-                    onMouseLeave={function() { setHoveredIndex(null); }}
+                    key={item.page}
+                    onMouseEnter={function () {
+                      setHoveredIndex(index);
+                    }}
+                    onMouseLeave={function () {
+                      setHoveredIndex(null);
+                    }}
                     className="min-w-0"
                   >
                     <GlowCard
                       variant={item.theme}
                       letter={item.letter}
-                      title={item.page.charAt(0).toUpperCase() + item.page.slice(1)}
+                      title={
+                        item.page.charAt(0).toUpperCase() + item.page.slice(1)
+                      }
                       description={item.description}
-                      to={item.to}
-                      icon={item.icon}
+                      to={item.route}
+                      icon={Icon}
                       size={size}
                       isHovered={isHovered}
                       isDimmed={isDimmed}

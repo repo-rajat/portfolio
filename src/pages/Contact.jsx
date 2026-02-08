@@ -1,19 +1,29 @@
 import React from "react";
 import { PageLayout } from "../components/PageLayout";
 import IconButton from "../components/IconButton";
-import { Send, Mail, Phone, MapPin, Github, Linkedin, Twitter } from "lucide-react";
+import { Send } from "lucide-react";
+import { useContent } from "../context/ContentContext";
+import { getIcon } from "../utils/iconMap";
 
 function Contact() {
-  const themeName = "violet";
-  const title = "get in touch";
-  const letter = "C";
+  const { content, loading } = useContent();
 
-  // State
   const [formData, setFormData] = React.useState({
     name: "",
     email: "",
     message: "",
   });
+
+  if (loading) {
+    return (
+      <div className="min-h-screen grid place-items-center text-white">
+        Loading...
+      </div>
+    );
+  }
+
+  const { contact, global } = content;
+  const { meta, form, info, availability } = contact;
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -24,35 +34,12 @@ function Contact() {
     // A bit more manual state update
     const name = e.target.name;
     const value = e.target.value;
-    
+
     setFormData({
       ...formData,
-      [name]: value
+      [name]: value,
     });
   }
-
-  const socialLinks = [
-    { id: "github", label: "GitHub", icon: Github, href: "#" },
-    { id: "linkedin", label: "LinkedIn", icon: Linkedin, href: "#" },
-    { id: "twitter", label: "Twitter", icon: Twitter, href: "#" },
-  ];
-
-  const contactInfo = [
-    { icon: Mail, label: "Email", value: "hello@rajatgulati.com" },
-    { icon: Phone, label: "Phone", value: "+91 98765 43210" },
-    { icon: MapPin, label: "Location", value: "New Delhi, India" },
-  ];
-
-  const availability = {
-    title: "Available for freelance work",
-    description: "Currently taking on new projects. Let's discuss your ideas!",
-  };
-
-  const formFields = {
-    name: { label: "Name", placeholder: "Your name" },
-    email: { label: "Email", placeholder: "your@email.com" },
-    message: { label: "Message", placeholder: "Tell me about your project..." }
-  };
 
   // Left Content
   const leftContent = (
@@ -62,7 +49,7 @@ function Contact() {
           htmlFor="name"
           className="type-label font-medium text-foreground"
         >
-          {formFields.name.label}
+          {form.fields.name.label}
         </label>
         <input
           id="name"
@@ -71,7 +58,7 @@ function Contact() {
           required
           value={formData.name}
           onChange={handleInputChange}
-          placeholder={formFields.name.placeholder}
+          placeholder={form.fields.name.placeholder}
           className="form-field"
         />
       </div>
@@ -81,7 +68,7 @@ function Contact() {
           htmlFor="email"
           className="type-label font-medium text-foreground"
         >
-          {formFields.email.label}
+          {form.fields.email.label}
         </label>
         <input
           id="email"
@@ -90,7 +77,7 @@ function Contact() {
           required
           value={formData.email}
           onChange={handleInputChange}
-          placeholder={formFields.email.placeholder}
+          placeholder={form.fields.email.placeholder}
           className="form-field"
         />
       </div>
@@ -100,7 +87,7 @@ function Contact() {
           htmlFor="message"
           className="type-label font-medium text-foreground"
         >
-          {formFields.message.label}
+          {form.fields.message.label}
         </label>
         <textarea
           id="message"
@@ -109,14 +96,14 @@ function Contact() {
           rows={5}
           value={formData.message}
           onChange={handleInputChange}
-          placeholder={formFields.message.placeholder}
+          placeholder={form.fields.message.placeholder}
           className="form-field resize-none"
         />
       </div>
 
       <button type="submit" className="primary-button">
         <Send className="w-5 h-5" />
-        Send Message
+        {form.submitLabel}
       </button>
     </form>
   );
@@ -130,8 +117,8 @@ function Contact() {
         </h3>
 
         <div className="space-y-4">
-          {contactInfo.map(function(item) {
-            const Icon = item.icon;
+          {info.map(function (item) {
+            const Icon = getIcon(item.icon);
             return (
               <div key={item.label} className="flex items-center gap-4">
                 <IconButton icon={Icon} theme="violet" size="sm" />
@@ -155,13 +142,14 @@ function Contact() {
         </h3>
 
         <div className="flex gap-4">
-          {socialLinks.map(function(item) {
+          {global.socialLinks.map(function (item) {
+            const Icon = getIcon(item.icon);
             return (
               <IconButton
                 key={item.label}
-                icon={item.icon}
+                icon={Icon}
                 theme="violet"
-                href={item.href}
+                href={item.url}
                 aria-label={item.label}
               />
             );
@@ -188,11 +176,11 @@ function Contact() {
 
   return (
     <PageLayout
-        themeName={themeName}
-        title={title}
-        letter={letter}
-        left={leftContent}
-        right={rightContent}
+      themeName={meta.theme}
+      title={meta.title}
+      letter={meta.letter}
+      left={leftContent}
+      right={rightContent}
     />
   );
 }

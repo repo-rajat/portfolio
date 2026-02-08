@@ -1,26 +1,21 @@
 import React from "react";
 import { PageLayout } from "../components/PageLayout";
 import IconButton from "../components/IconButton";
-import { 
-  Download, 
-  Layers, 
-  Briefcase, 
-  BookOpen, 
-  GraduationCap, 
-  Github, 
-  Linkedin, 
-  Twitter, 
-  Calendar 
-} from "lucide-react";
+import { Download, Calendar } from "lucide-react";
+import { useContent } from "../context/ContentContext";
+import { getIcon } from "../utils/iconMap";
 
 // Local component, renamed to avoid confusion
 function SimpleCard(props) {
   const children = props.children;
   const className = props.className || "";
-  
+
   return (
     <div
-      className={"simple-card transition-transform duration-300 hover:-translate-y-1 " + className}
+      className={
+        "simple-card transition-transform duration-300 hover:-translate-y-1 " +
+        className
+      }
     >
       {children}
     </div>
@@ -40,7 +35,7 @@ function TimelineItem(props) {
     <div className="group relative flex gap-6 pb-12 last:pb-0">
       <div className="flex flex-col items-center">
         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 bg-[#0a0a0a] transition-colors duration-300 group-hover:border-orange-500/50 group-hover:text-orange-500 shadow-lg">
-          <ItemIcon size={18} />
+          {ItemIcon && <ItemIcon size={18} />}
         </div>
         {!isLast && (
           <div className="h-full w-px bg-gradient-to-b from-white/10 to-transparent group-hover:from-orange-500/40" />
@@ -68,74 +63,34 @@ function TimelineItem(props) {
 }
 
 function About() {
-  const themeName = "coral";
-  const title = "about me";
-  const letter = "A";
-
+  const { content, loading } = useContent();
   const [activeTab, setActiveTab] = React.useState("Experience");
 
-  const descriptionParas = [
-    "I’m a Front-end Developer with 6+ years of experience building scalable, accessible, and high-performance user interfaces.",
-    "My work focuses on writing clean, maintainable UI code and translating complex Figma designs into production-ready components that work consistently across devices and browsers.",
-    "I’ve worked closely with product managers, designers, and engineers to deliver UI that balances performance, accessibility (WCAG), and visual precision."
-  ];
+  if (loading) {
+    return (
+      <div className="min-h-screen grid place-items-center text-white">
+        Loading...
+      </div>
+    );
+  }
 
-  const socialLinks = [
-    { id: "github", label: "GitHub", icon: Github, href: "#" },
-    { id: "linkedin", label: "LinkedIn", icon: Linkedin, href: "#" },
-    { id: "twitter", label: "Twitter", icon: Twitter, href: "#" },
-  ];
-
-  const tabs = [
-    {
-      title: "Experience",
-      icon: Layers,
-      itemIcon: Briefcase,
-      items: [
-        {
-          name: "Senior Web Designer / Frontend Developer",
-          listBody: "Bold Technology Systems",
-          extra: "Sep 2022 - May 2025",
-        },
-        {
-          name: "UI Developer",
-          listBody: "Avalon Infosys.",
-          extra: "Jan 2019 - Sep 2022",
-        },
-      ],
-    },
-    {
-      title: "Education",
-      icon: BookOpen,
-      itemIcon: GraduationCap,
-      items: [
-        {
-          name: "Bachelor's in Computer Science",
-          listBody: "University Name • 2020",
-        },
-        {
-          name: "Bachelor's in Computer Science",
-          listBody: "University Name • 2020",
-        },
-      ],
-    },
-  ];
+  const { about, global } = content;
+  const { meta, description, tabs } = about;
 
   // Logic to find active tab data
   let activeTabData = tabs[0];
   for (let i = 0; i < tabs.length; i++) {
-    if (tabs[i].title === activeTab) {
+    if (tabs[i].label === activeTab) {
       activeTabData = tabs[i];
     }
   }
 
-  const timelineDescription = "Brief overview of responsibilities and achievements in this role.";
   const presentLabel = "Present";
 
   const leftContent = (
     <div className="space-y-10">
       <div className="space-y-6 text-lg leading-relaxed text-gray-400">
-        {descriptionParas.map(function(para, i) {
+        {description.map(function (para, i) {
           return <p key={i}>{para}</p>;
         })}
       </div>
@@ -143,16 +98,17 @@ function About() {
       <div className="flex flex-wrap gap-4">
         <button className="flex items-center gap-2 rounded-lg bg-[hsl(var(--coral))] px-6 py-3 font-semibold text-white shadow-lg shadow-orange-500/20 hover:-translate-y-0.5 transition-transform">
           <Download size={18} />
-          <span>Resume</span>
+          <span>{global.resume.label}</span>
         </button>
         <div className="flex gap-3">
-          {socialLinks.map(function(link) {
+          {global.socialLinks.map(function (link) {
+            const Icon = getIcon(link.icon);
             return (
               <IconButton
                 key={link.id}
-                icon={link.icon}
+                icon={Icon}
                 theme="neutral"
-                href={link.href}
+                href={link.url}
                 aria-label={link.label}
               />
             );
@@ -166,20 +122,26 @@ function About() {
     <div className="relative mt-6 lg:mt-0">
       <div className="sticky top-4 z-10 mb-8 flex justify-center lg:justify-center">
         <div className="flex gap-1 rounded-full border border-white/10 bg-black/60 p-1.5 backdrop-blur-xl shadow-xl">
-          {tabs.map(function(tab) {
-            const TabIcon = tab.icon;
+          {tabs.map(function (tab) {
+            const TabIcon = getIcon(tab.icon);
             let activeClass = "text-gray-400 hover:text-white";
-            if (activeTab === tab.title) {
-                activeClass = "bg-orange-500/10 text-orange-500 ring-1 ring-orange-500/20";
+            if (activeTab === tab.label) {
+              activeClass =
+                "bg-orange-500/10 text-orange-500 ring-1 ring-orange-500/20";
             }
             return (
               <button
-                key={tab.title}
-                onClick={function() { setActiveTab(tab.title); }}
-                className={"flex items-center gap-2 rounded-full px-5 py-2 text-sm font-medium transition-all duration-300 " + activeClass}
+                key={tab.label}
+                onClick={function () {
+                  setActiveTab(tab.label);
+                }}
+                className={
+                  "flex items-center gap-2 rounded-full px-5 py-2 text-sm font-medium transition-all duration-300 " +
+                  activeClass
+                }
               >
-                <TabIcon size={16} />
-                {tab.title}
+                {TabIcon && <TabIcon size={16} />}
+                {tab.label}
               </button>
             );
           })}
@@ -189,18 +151,19 @@ function About() {
       <div className="relative min-h-[500px]">
         {activeTabData && (
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-            {activeTabData.items.map(function(item, index) {
-              const date = item.extra || presentLabel;
+            {activeTabData.items.map(function (item, index) {
+              const date = item.date || presentLabel;
               const isLast = index === activeTabData.items.length - 1;
+              const ItemIcon = getIcon(activeTabData.itemIcon);
               return (
                 <TimelineItem
                   key={index}
-                  title={item.name}
-                  subtitle={item.listBody}
+                  title={item.title}
+                  subtitle={item.subtitle}
                   date={date}
-                  description={timelineDescription}
+                  description={activeTabData.timelineDescription}
                   isLast={isLast}
-                  itemIcon={activeTabData.itemIcon}
+                  itemIcon={ItemIcon}
                   calendarIcon={Calendar}
                 />
               );
@@ -213,11 +176,11 @@ function About() {
 
   return (
     <PageLayout
-        themeName={themeName}
-        title={title}
-        letter={letter}
-        left={leftContent}
-        right={rightContent}
+      themeName={meta.theme}
+      title={meta.title}
+      letter={meta.letter}
+      left={leftContent}
+      right={rightContent}
     />
   );
 }

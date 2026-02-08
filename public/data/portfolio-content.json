@@ -1,0 +1,221 @@
+{
+  "global": {
+    "socialLinks": [
+      { "id": "github", "label": "GitHub", "url": "#", "icon": "Github" },
+      { "id": "linkedin", "label": "LinkedIn", "url": "#", "icon": "Linkedin" },
+      { "id": "twitter", "label": "Twitter", "url": "#", "icon": "Twitter" }
+    ],
+    "resume": {
+      "label": "Resume",
+      "file": "/resume.pdf"
+    }
+  },
+
+  "home": {
+    "greeting": {
+      "label": "hello_world",
+      "intro": "I'm"
+    },
+    "name": {
+      "first": "Rajat",
+      "last": "Gulati"
+    },
+    "subtitle": {
+      "intro": "Frontend Developer specializing in",
+      "highlight": "UI Engineering"
+    },
+    "description": "Building responsive, accessible, and high-performance web interfaces using HTML, CSS, JavaScript, and React.",
+
+    "navigation": [
+      {
+        "page": "about",
+        "description": "My journey & story",
+        "route": "/about",
+        "theme": "coral",
+        "letter": "A",
+        "icon": "User"
+      },
+      {
+        "page": "skills",
+        "description": "Tech & expertise",
+        "route": "/skills",
+        "theme": "sky",
+        "letter": "S",
+        "icon": "Zap"
+      },
+      {
+        "page": "portfolio",
+        "description": "Featured work",
+        "route": "/portfolio",
+        "theme": "emerald",
+        "letter": "P",
+        "icon": "Briefcase"
+      },
+      {
+        "page": "contact",
+        "description": "Let's connect",
+        "route": "/contact",
+        "theme": "violet",
+        "letter": "C",
+        "icon": "Mail"
+      }
+    ]
+  },
+
+  "about": {
+    "meta": {
+      "title": "about me",
+      "letter": "A",
+      "theme": "coral"
+    },
+
+    "description": [
+      "I’m a Front-end Developer with 6+ years of experience building scalable, accessible, and high-performance user interfaces.",
+      "My work focuses on writing clean, maintainable UI code and translating complex Figma designs into production-ready components.",
+      "I’ve worked closely with PMs, designers, and engineers to balance performance, accessibility, and visual precision."
+    ],
+
+    "tabs": [
+      {
+        "id": "experience",
+        "label": "Experience",
+        "icon": "Layers",
+        "itemIcon": "Briefcase",
+        "timelineDescription": "Brief overview of responsibilities and achievements in this role.",
+        "items": [
+          {
+            "title": "Senior Web Designer / Frontend Developer",
+            "subtitle": "Bold Technology Systems",
+            "date": "Sep 2022 - May 2025"
+          },
+          {
+            "title": "UI Developer",
+            "subtitle": "Avalon Infosys",
+            "date": "Jan 2019 - Sep 2022"
+          }
+        ]
+      },
+      {
+        "id": "education",
+        "label": "Education",
+        "icon": "BookOpen",
+        "itemIcon": "GraduationCap",
+        "timelineDescription": "Academic background and formal education.",
+        "items": [
+          {
+            "title": "Bachelor's in Computer Science",
+            "subtitle": "University Name",
+            "date": "2020"
+          }
+        ]
+      }
+    ]
+  },
+
+  "skills": {
+    "meta": {
+      "title": "my skills",
+      "letter": "S",
+      "theme": "sky"
+    },
+
+    "levels": [
+      {
+        "label": "Advanced",
+        "skills": [
+          { "name": "HTML/CSS", "percentage": 90 },
+          { "name": "JavaScript", "percentage": 90 }
+        ]
+      },
+      {
+        "label": "Proficient",
+        "skills": [
+          { "name": "React", "percentage": 85 },
+          { "name": "TypeScript", "percentage": 80 }
+        ]
+      },
+      {
+        "label": "Working Knowledge",
+        "skills": [
+          { "name": "Angular", "percentage": 65 }
+        ]
+      }
+    ],
+
+    "tools": [
+      "VS Code",
+      "Git / GitHub",
+      "Browser DevTools",
+      "SCSS",
+      "Tailwind CSS",
+      "Bootstrap",
+      "Figma",
+      "Jira"
+    ],
+
+    "craft": [
+      "Build responsive, accessible interfaces with clean UI systems",
+      "Translate Figma into production UI with pixel precision",
+      "Optimize performance, WCAG compliance, and cross-browser consistency"
+    ]
+  },
+
+  "portfolio": {
+    "meta": {
+      "title": "my portfolio",
+      "letter": "P",
+      "theme": "emerald"
+    },
+
+    "cta": {
+      "label": "View Live Project",
+      "arrow": "↗"
+    },
+
+    "projects": [
+      {
+        "id": 1,
+        "title": "Docquity - Webinar Landing Page",
+        "description": "Developed a responsive webinar landing page as part of a front-end interview assignment",
+        "tags": ["Angular", "TypeScript", "HTML5", "CSS3", "Figma"],
+        "url": "https://docquity-webinar.netlify.app/",
+        "thumbnail": "https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&h=400&fit=crop",
+        "accent": "#2DD4BF"
+      }
+    ]
+  },
+
+  "contact": {
+    "meta": {
+      "title": "get in touch",
+      "letter": "C",
+      "theme": "violet"
+    },
+
+    "form": {
+      "submitLabel": "Send Message",
+      "fields": {
+        "name": { "label": "Name", "placeholder": "Your name" },
+        "email": { "label": "Email", "placeholder": "your@email.com" },
+        "message": { "label": "Message", "placeholder": "Tell me about your project..." }
+      }
+    },
+
+    "info": [
+      { "label": "Email", "value": "hello@rajatgulati.com", "icon": "Mail" },
+      { "label": "Phone", "value": "+91 98765 43210", "icon": "Phone" },
+      { "label": "Location", "value": "New Delhi, India", "icon": "MapPin" }
+    ],
+
+    "availability": {
+      "title": "Available for freelance work",
+      "description": "Currently taking on new projects. Let's discuss your ideas!"
+    }
+  },
+
+  "notFound": {
+    "title": "404",
+    "message": "Oops! Page not found",
+    "linkLabel": "Return to Home"
+  }
+}
