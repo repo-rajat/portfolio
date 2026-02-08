@@ -100,17 +100,17 @@ function Index() {
                 <h1 className="type-hero mb-0">
                   <span className="text-foreground">{homeData.name.first}</span>
                   <br />
-                  <span className="text-shimmer">{homeData.name.last}</span>
+                  <span className="">{homeData.name.last}</span>
                 </h1>
               </div>
             </div>
 
             <h2 className="home-subtitle text-2xl sm:text-3xl text-white/90 mt-8 lg:mt-10 mb-3 lg:mb-4 font-medium leading-snug sm:leading-[40px]">
               {homeData.subtitle.intro}
-              <span className="block">{homeData.subtitle.highlight}</span>
+              <span className="block text-shimmer">{homeData.subtitle.highlight}</span>
             </h2>
 
-            <p className="type-body-lg text-muted-foreground max-w-md mb-8 lg:mb-10 leading-relaxed">
+            <p className="type-body-lg text-muted-foreground mb-8 lg:mb-10 leading-relaxed">
               {homeData.description}
             </p>
 
