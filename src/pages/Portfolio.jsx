@@ -1,6 +1,7 @@
 import React from "react";
 import { PageLayout } from "../components/PageLayout";
 import { useContent } from "../context/ContentContext";
+import PrimaryButton from "../components/PrimaryButton";
 
 function Portfolio() {
   const { content, loading } = useContent();
@@ -110,17 +111,17 @@ function Portfolio() {
 
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="absolute inset-0 flex items-center justify-center">
-                <a
-                  className="portfolio-cta"
-                  href={activeProject.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {portfolioStrings.ctaLabel}
-                  <span aria-hidden="true" className="portfolio-cta-arrow">
-                    {portfolioStrings.ctaArrow}
-                  </span>
-                </a>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <PrimaryButton
+                    href={activeProject.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="absolute right-[1.4rem] bottom-[1.2rem]"
+                    icon={portfolioStrings.ctaArrow}
+                  >
+                    {portfolioStrings.ctaLabel}
+                  </PrimaryButton>
+                </div>
               </div>
             </div>
 

@@ -4,17 +4,22 @@ import IconButton from "../components/IconButton";
 import { Download, Calendar } from "lucide-react";
 import { useContent } from "../context/ContentContext";
 import { getIcon } from "../utils/iconMap";
+import PrimaryButton from "../components/PrimaryButton";
 
 // Local component, renamed to avoid confusion
 function SimpleCard(props) {
   const children = props.children;
   const className = props.className || "";
+  const isActive = props.isActive;
 
   return (
     <div
       className={
-        "simple-card transition-transform duration-300 hover:-translate-y-1 " +
-        className
+        `simple-card transition-all duration-300 hover:-translate-y-1 ${
+          isActive
+            ? "border-orange-500/50 bg-orange-500/5 shadow-[0_0_30px_-10px_rgba(249,115,22,0.3)] translate-y-[-4px]"
+            : "border-white/10 hover:border-orange-500/30 hover:shadow-[0_0_20px_-10px_rgba(249,115,22,0.1)]"
+        } ` + className
       }
     >
       {children}
@@ -30,32 +35,73 @@ function TimelineItem(props) {
   const isLast = props.isLast;
   const ItemIcon = props.itemIcon;
   const CalendarIcon = props.calendarIcon;
-  // const description = props.description;
+  const isActive = props.isActive;
+  const onMouseEnter = props.onMouseEnter;
 
   return (
-    <div className="group relative flex gap-6 pb-12 last:pb-0">
+    <div
+      className="group relative flex gap-6 pb-12 last:pb-0"
+      onMouseEnter={onMouseEnter}
+    >
       <div className="flex flex-col items-center">
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 bg-[#0a0a0a] transition-colors duration-300 group-hover:border-orange-500/50 group-hover:text-orange-500 shadow-lg">
+        <div
+          className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full border bg-[#0a0a0a] transition-all duration-300 shadow-lg ${
+            isActive
+              ? "border-orange-500/50 text-orange-500 scale-110 shadow-orange-500/20"
+              : "border-white/10 text-gray-400 group-hover:border-orange-500/30 group-hover:text-orange-400"
+          }`}
+        >
           {ItemIcon && <ItemIcon size={18} />}
         </div>
         {!isLast && (
-          <div className="h-full w-px bg-gradient-to-b from-white/10 to-transparent group-hover:from-orange-500/40" />
+          <div
+            className={`h-full w-px bg-gradient-to-b transition-colors duration-300 ${
+              isActive
+                ? "from-orange-500/40 via-orange-500/10 to-transparent"
+                : "from-white/10 to-transparent group-hover:from-orange-500/20"
+            }`}
+          />
         )}
       </div>
       <div className="w-full pt-1">
-        <SimpleCard className="p-6">
+        <SimpleCard className="p-6" isActive={isActive}>
           <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-start">
-            <h3 className="text-xl font-semibold group-hover:text-[hsl(var(--coral))] transition-colors">
+            <h3
+              className={`text-xl font-semibold transition-colors duration-300 ${
+                isActive
+                  ? "text-[hsl(var(--coral))]"
+                  : "text-white group-hover:text-[hsl(var(--coral))]/80"
+              }`}
+            >
               {title}
             </h3>
-            <div className="flex items-center gap-1.5 rounded-full bg-white/5 px-3 py-1 text-xs font-medium text-gray-300 border border-white/5">
-              <CalendarIcon size={12} className="text-[hsl(var(--coral))]" />
+            <div
+              className={`flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium border transition-colors duration-300 ${
+                isActive
+                  ? "bg-orange-500/10 text-orange-200 border-orange-500/20"
+                  : "bg-white/5 text-gray-300 border-white/5 group-hover:border-white/10"
+              }`}
+            >
+              <CalendarIcon
+                size={12}
+                className={`transition-colors duration-300 ${
+                  isActive ? "text-[hsl(var(--coral))]" : "text-gray-400"
+                }`}
+              />
               <span className="text-nowrap">{date}</span>
             </div>
           </div>
 
-          <p className="text-sm font-medium text-gray-400 mt-2">{subtitle}</p>
-          <p className={`${percentage ? "text-sm leading-relaxed text-gray-400 mt-4" : ""}`}>{percentage}</p>
+          <p className="text-sm font-medium text-gray-400 mt-2 transition-colors duration-300 group-hover:text-gray-300">
+            {subtitle}
+          </p>
+          <p
+            className={`${
+              percentage ? "text-sm leading-relaxed text-gray-400 mt-4" : ""
+            }`}
+          >
+            {percentage}
+          </p>
         </SimpleCard>
       </div>
     </div>
@@ -65,6 +111,12 @@ function TimelineItem(props) {
 function About() {
   const { content, loading } = useContent();
   const [activeTab, setActiveTab] = React.useState("Experience");
+  const [hoveredIndex, setHoveredIndex] = React.useState(null);
+
+  // Reset hovered state when tab changes
+  React.useEffect(() => {
+    setHoveredIndex(null);
+  }, [activeTab]);
 
   if (loading) {
     return (
@@ -96,10 +148,13 @@ function About() {
       </div>
 
       <div className="flex flex-wrap gap-4">
-        <button className="flex items-center gap-2 rounded-lg bg-[hsl(var(--coral))] px-6 py-3 font-semibold text-white shadow-lg shadow-orange-500/20 hover:-translate-y-0.5 transition-transform">
-          <Download size={18} />
-          <span>{global.resume.label}</span>
-        </button>
+        <PrimaryButton
+          href={global.resume.file}
+          target="_blank"
+          icon={<Download size={18} />}
+        >
+          {global.resume.label}
+        </PrimaryButton>
         <div className="flex gap-3">
           {global.socialLinks.map(function (link) {
             const Icon = getIcon(link.icon);
@@ -150,11 +205,17 @@ function About() {
 
       <div className="relative min-h-[500px]">
         {activeTabData && (
-          <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+          <div
+            className="animate-in fade-in slide-in-from-bottom-4 duration-500"
+            onMouseLeave={() => setHoveredIndex(null)}
+          >
             {activeTabData.items.map(function (item, index) {
               const date = item.date || presentLabel;
               const isLast = index === activeTabData.items.length - 1;
               const ItemIcon = getIcon(activeTabData.itemIcon);
+              const isActive =
+                hoveredIndex === null ? index === 0 : hoveredIndex === index;
+
               return (
                 <TimelineItem
                   key={index}
@@ -166,6 +227,8 @@ function About() {
                   isLast={isLast}
                   itemIcon={ItemIcon}
                   calendarIcon={Calendar}
+                  isActive={isActive}
+                  onMouseEnter={() => setHoveredIndex(index)}
                 />
               );
             })}

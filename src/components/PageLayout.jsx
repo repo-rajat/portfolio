@@ -16,10 +16,10 @@ export function PageLayout(props) {
 
   const styles = themes[themeName];
   const titleWords = title.split(" ");
-  
+
   const hasSplit = left || right;
   let rightContent = children;
-  
+
   if (hasSplit) {
     if (right) {
       rightContent = right;
@@ -43,13 +43,26 @@ export function PageLayout(props) {
       <div className="fixed inset-0 grid-bg opacity-30 pointer-events-none" />
 
       <div
-        className={"orb " + styles.orb + " w-[600px] h-[600px] -top-64 -right-64 animate-float-slow"}
+        className={
+          "orb " +
+          styles.orb +
+          " w-[600px] h-[600px] -top-64 -right-64 animate-float-slow"
+        }
       />
       <div
-        className={"orb " + styles.orb + " w-96 h-96 bottom-0 -left-48 animate-float-delayed opacity-50"}
+        className={
+          "orb " +
+          styles.orb +
+          " w-96 h-96 bottom-0 -left-48 animate-float-delayed opacity-50"
+        }
       />
 
-      <div className="page-shell relative z-10 min-h-[100svh] px-6 py-10 md:py-12 lg:px-16 grid items-center">
+      <div
+        className="page-shell relative z-10 min-h-[100svh] px-6 py-10 md:py-12 lg:px-16 grid items-center"
+        style={{
+          "--accent": "hsl(var(--" + themeName + "))",
+        }}
+      >
         <div className="max-w-6xl mx-auto page-enter">
           {hasSplit ? (
             <div className="page-grid grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-14 lg:items-start">
@@ -57,7 +70,12 @@ export function PageLayout(props) {
                 <div className="page-header flex items-center gap-6 mb-10 md:mb-12">
                   <Link
                     to="/"
-                    className={"page-back group flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-full border transition-all duration-300 hover:scale-110 " + styles.border + " " + styles.bg}
+                    className={
+                      "page-back group flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-full border transition-all duration-300 hover:scale-110 " +
+                      styles.border +
+                      " " +
+                      styles.bg
+                    }
                     style={{
                       "--hover-glow": "hsl(var(--" + themeName + "))",
                     }}
@@ -70,20 +88,20 @@ export function PageLayout(props) {
                   </Link>
 
                   <h1 className="type-page-title">
-                    {titleWords.map(function(word, i) {
-                        return (
-                          <span key={i}>
-                            {i === titleWords.length - 1 ? (
-                              <span className={styles.text}>
-                                {word[0].toUpperCase() + word.slice(1)}
-                              </span>
-                            ) : (
-                              <span className="text-foreground">
-                                {word[0].toUpperCase() + word.slice(1) + " "} 
-                              </span>
-                            )}
-                          </span>
-                        )
+                    {titleWords.map(function (word, i) {
+                      return (
+                        <span key={i}>
+                          {i === titleWords.length - 1 ? (
+                            <span className={styles.text}>
+                              {word[0].toUpperCase() + word.slice(1)}
+                            </span>
+                          ) : (
+                            <span className="text-foreground">
+                              {word[0].toUpperCase() + word.slice(1) + " "}
+                            </span>
+                          )}
+                        </span>
+                      );
                     })}
                   </h1>
                 </div>
@@ -99,7 +117,12 @@ export function PageLayout(props) {
                 <div className="flex items-center gap-6">
                   <Link
                     to="/"
-                    className={"page-back group flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-full border transition-all duration-300 hover:scale-110 " + styles.border + " " + styles.bg}
+                    className={
+                      "page-back group flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-full border transition-all duration-300 hover:scale-110 " +
+                      styles.border +
+                      " " +
+                      styles.bg
+                    }
                     style={{
                       "--hover-glow": "hsl(var(--" + themeName + "))",
                     }}
@@ -112,7 +135,7 @@ export function PageLayout(props) {
                   </Link>
 
                   <h1 className="type-page-title">
-                    {titleWords.map(function(word, i) {
+                    {titleWords.map(function (word, i) {
                       return (
                         <span key={i}>
                           {i === titleWords.length - 1 ? (
@@ -121,11 +144,11 @@ export function PageLayout(props) {
                             </span>
                           ) : (
                             <span className="text-foreground">
-                              {word[0].toUpperCase() + word.slice(1) + " "} 
+                              {word[0].toUpperCase() + word.slice(1) + " "}
                             </span>
                           )}
                         </span>
-                      )
+                      );
                     })}
                   </h1>
                 </div>
@@ -143,7 +166,10 @@ export function PageLayout(props) {
 
           <div className="fixed right-0 -top-[100px] pointer-events-none select-none">
             <span
-              className={"page-letter text-[18rem] md:text-[30rem] font-black leading-none opacity-[0.03] " + styles.text}
+              className={
+                "page-letter text-[18rem] md:text-[30rem] font-black leading-none opacity-[0.03] " +
+                styles.text
+              }
               style={{ opacity: 0.05 }}
             >
               {letter}

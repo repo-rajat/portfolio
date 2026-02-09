@@ -54,6 +54,7 @@
   }
 
   @supports (overflow: clip) {
+
     html,
     body,
     #root {
@@ -78,11 +79,9 @@
 
   .glass-panel {
     @apply p-6 rounded-2xl border border-[hsl(240_8%_20%/0.5)] backdrop-blur-xl;
-    background: linear-gradient(
-      135deg,
-      hsl(240 10% 12% / 0.8),
-      hsl(240 10% 8% / 0.6)
-    );
+    background: linear-gradient(135deg,
+        hsl(240 10% 12% / 0.8),
+        hsl(240 10% 8% / 0.6));
   }
 
   .form-field {
@@ -100,23 +99,28 @@
 
 @layer utilities {
   .type-hero {
-    @apply text-[clamp(3rem,6.8vw,6rem)] leading-[0.95] tracking-[-0.02em] font-extrabold max-[360px]:text-[2.75rem];
+    font-size: clamp(3.0rem, 6.8vw, 6rem);
+    @apply leading-[0.95] tracking-[-0.02em] font-extrabold max-[360px]:text-[2.75rem];
   }
 
   .type-hero-subtitle {
-    @apply text-[clamp(1.5rem,2.6vw,2.25rem)] leading-tight tracking-[-0.01em] font-bold;
+    font-size: clamp(1.5rem, 2.6vw, 2.25rem);
+    @apply leading-tight tracking-[-0.01em] font-bold;
   }
 
   .type-page-title {
-    @apply text-[clamp(2.25rem,4vw,3.75rem)] leading-[1.08] tracking-[-0.015em] font-bold;
+    font-size: clamp(2.25rem, 4vw, 3.75rem);
+    @apply leading-[1.08] tracking-[-0.015em] font-bold;
   }
 
   .type-section-title {
-    @apply text-[clamp(1.1rem,1.6vw,1.35rem)] leading-tight font-bold;
+    font-size: clamp(1.1rem, 1.6vw, 1.35rem);
+    @apply leading-tight font-bold;
   }
 
   .type-card-title {
-    @apply text-[clamp(1.2rem,2vw,1.6rem)] leading-tight font-bold;
+    font-size: clamp(1.2rem, 2vw, 1.6rem);
+    @apply leading-tight font-bold;
   }
 
   .type-body-lg {
@@ -164,6 +168,7 @@
   }
 
   @keyframes gradient-shift {
+
     0%,
     100% {
       background-position: 0% 50%;
@@ -175,13 +180,11 @@
   }
 
   .animated-gradient-bg {
-    background: linear-gradient(
-      -45deg,
-      hsl(240 10% 4%),
-      hsl(260 15% 8%),
-      hsl(220 15% 6%),
-      hsl(280 10% 6%)
-    );
+    background: linear-gradient(-45deg,
+        hsl(240 10% 4%),
+        hsl(260 15% 8%),
+        hsl(220 15% 6%),
+        hsl(280 10% 6%));
     background-size: 400% 400%;
     animation: gradient-shift 15s ease infinite;
   }
@@ -204,11 +207,9 @@
 
   .glow-coral {
     @apply relative overflow-hidden;
-    background: linear-gradient(
-      145deg,
-      hsl(var(--coral) / 0.12),
-      hsl(var(--coral-dark) / 0.05)
-    );
+    background: linear-gradient(145deg,
+        hsl(var(--coral) / 0.12),
+        hsl(var(--coral-dark) / 0.05));
     border: 1px solid hsl(var(--coral) / 0.15);
   }
 
@@ -216,11 +217,9 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: radial-gradient(
-      circle at 50% 120%,
-      hsl(var(--coral) / 0.2),
-      transparent 60%
-    );
+    background: radial-gradient(circle at 50% 120%,
+        hsl(var(--coral) / 0.2),
+        transparent 60%);
     opacity: 0;
     transition: opacity 0.5s ease;
   }
@@ -240,11 +239,9 @@
 
   .glow-sky {
     @apply relative overflow-hidden;
-    background: linear-gradient(
-      145deg,
-      hsl(var(--sky) / 0.12),
-      hsl(var(--sky-dark) / 0.05)
-    );
+    background: linear-gradient(145deg,
+        hsl(var(--sky) / 0.12),
+        hsl(var(--sky-dark) / 0.05));
     border: 1px solid hsl(var(--sky) / 0.15);
   }
 
@@ -252,11 +249,9 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: radial-gradient(
-      circle at 50% 120%,
-      hsl(var(--sky) / 0.2),
-      transparent 60%
-    );
+    background: radial-gradient(circle at 50% 120%,
+        hsl(var(--sky) / 0.2),
+        transparent 60%);
     opacity: 0;
     transition: opacity 0.5s ease;
   }
@@ -276,11 +271,9 @@
 
   .glow-emerald {
     @apply relative overflow-hidden;
-    background: linear-gradient(
-      145deg,
-      hsl(var(--emerald) / 0.12),
-      hsl(var(--emerald-dark) / 0.05)
-    );
+    background: linear-gradient(145deg,
+        hsl(var(--emerald) / 0.12),
+        hsl(var(--emerald-dark) / 0.05));
     border: 1px solid hsl(var(--emerald) / 0.15);
   }
 
@@ -288,11 +281,9 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: radial-gradient(
-      circle at 50% 120%,
-      hsl(var(--emerald) / 0.2),
-      transparent 60%
-    );
+    background: radial-gradient(circle at 50% 120%,
+        hsl(var(--emerald) / 0.2),
+        transparent 60%);
     opacity: 0;
     transition: opacity 0.5s ease;
   }
@@ -312,11 +303,9 @@
 
   .glow-violet {
     @apply relative overflow-hidden;
-    background: linear-gradient(
-      145deg,
-      hsl(var(--violet) / 0.12),
-      hsl(var(--violet-dark) / 0.05)
-    );
+    background: linear-gradient(145deg,
+        hsl(var(--violet) / 0.12),
+        hsl(var(--violet-dark) / 0.05));
     border: 1px solid hsl(var(--violet) / 0.15);
   }
 
@@ -324,11 +313,9 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: radial-gradient(
-      circle at 50% 120%,
-      hsl(var(--violet) / 0.2),
-      transparent 60%
-    );
+    background: radial-gradient(circle at 50% 120%,
+        hsl(var(--violet) / 0.2),
+        transparent 60%);
     opacity: 0;
     transition: opacity 0.5s ease;
   }
@@ -347,6 +334,7 @@
   }
 
   @keyframes float {
+
     0%,
     100% {
       transform: translateY(0px);
@@ -358,6 +346,7 @@
   }
 
   @keyframes float-slow {
+
     0%,
     100% {
       transform: translateY(0px) rotate(0deg);
@@ -425,6 +414,7 @@
   }
 
   @keyframes ping {
+
     75%,
     100% {
       transform: scale(2);
@@ -447,14 +437,12 @@
   }
 
   .text-shimmer {
-    background: linear-gradient(
-      90deg,
-      hsl(var(--foreground)) 0%,
-      hsl(var(--coral)) 25%,
-      hsl(var(--violet)) 50%,
-      hsl(var(--sky)) 75%,
-      hsl(var(--foreground)) 100%
-    );
+    background: linear-gradient(90deg,
+        hsl(var(--foreground)) 0%,
+        hsl(var(--coral)) 25%,
+        hsl(var(--violet)) 50%,
+        hsl(var(--sky)) 75%,
+        hsl(var(--foreground)) 100%);
     background-size: 200% auto;
     background-clip: text;
     -webkit-background-clip: text;
@@ -483,7 +471,8 @@
   }
 
   .portfolio-title {
-    @apply text-[clamp(2rem,2.6vw,2.8rem)] font-bold leading-[1.15];
+    font-size: clamp(2rem, 2.6vw, 2.8rem);
+    @apply font-bold leading-[1.15];
   }
 
   .portfolio-desc {
@@ -495,42 +484,16 @@
   }
 
   .portfolio-tag {
-    @apply px-[0.8rem] py-[0.35rem] rounded-full text-xs border border-[color-mix(in_srgb,var(--accent)_45%,transparent)] bg-[color-mix(in_srgb,var(--accent)_18%,transparent)] text-[color-mix(in_srgb,var(--accent)_70%,white)] uppercase tracking-widest;
-  }
-
-  .portfolio-cta {
-    @apply absolute right-[1.4rem] bottom-[1.2rem] px-[1.55rem] py-[0.75rem] rounded-[0.9rem] font-bold text-[0.95rem] inline-flex items-center gap-[0.6rem] text-foreground z-[3] transition-all duration-[250];
-    background: linear-gradient(
-      130deg,
-      color-mix(in srgb, var(--accent) 65%, transparent),
-      color-mix(in srgb, var(--accent) 30%, transparent)
-    );
-    border: 1px solid color-mix(in srgb, var(--accent) 65%, transparent);
-    box-shadow:
-      0 16px 30px -22px color-mix(in srgb, var(--accent) 70%, transparent),
-      inset 0 0 0 1px color-mix(in srgb, var(--accent) 25%, transparent);
-  }
-
-  .portfolio-cta:hover {
-    transform: translateY(-2px);
-    background: linear-gradient(
-      130deg,
-      color-mix(in srgb, var(--accent) 80%, transparent),
-      color-mix(in srgb, var(--accent) 40%, transparent)
-    );
-    box-shadow: 0 22px 40px -26px color-mix(in srgb, var(--accent) 75%, transparent);
-  }
-
-  .portfolio-cta-arrow {
-    @apply inline-flex items-center justify-center w-8 h-8 rounded-[0.7rem] bg-white/10 border border-white/20 transition-transform duration-[250];
-  }
-
-  .portfolio-cta:hover .portfolio-cta-arrow {
-    transform: translateX(4px) translateY(-2px);
+    @apply px-[0.8rem] py-[0.35rem] rounded-full text-xs uppercase tracking-widest;
+    border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+    background-color: color-mix(in srgb, var(--accent) 18%, transparent);
+    color: color-mix(in srgb, var(--accent) 70%, white);
   }
 
   .portfolio-thumbs-shell {
-    @apply grid gap-3 items-center grid-cols-[auto_minmax(0,1fr)_auto] max-lg:grid-cols-1;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    @apply gap-3 items-center max-lg:grid-cols-1;
   }
 
   .portfolio-thumbs-shell.no-nav {
@@ -542,7 +505,9 @@
   }
 
   .portfolio-thumbs {
-    @apply grid justify-center gap-[0.8rem] auto-cols-[minmax(50px,90px)] grid-flow-col snap-x snap-mandatory scroll-smooth;
+    display: grid;
+    grid-auto-columns: minmax(50px, 90px);
+    @apply justify-center gap-[0.8rem] grid-flow-col snap-x snap-mandatory scroll-smooth;
   }
 
   .portfolio-thumbs::-webkit-scrollbar {
@@ -560,7 +525,12 @@
   }
 
   .portfolio-thumb {
-    @apply relative rounded-[1.1rem] overflow-hidden border border-[hsl(240_8%_20%/0.6)] bg-[hsl(240_10%_7%/0.9)] p-0 text-left cursor-pointer transition-all duration-[250] opacity-55 snap-start;
+    @apply relative overflow-hidden p-0 text-left cursor-pointer transition-all snap-start;
+    border-radius: 1.1rem;
+    border: 1px solid hsl(240 8% 20% / 0.6);
+    background-color: hsl(240 10% 7% / 0.9);
+    transition-duration: 250ms;
+    opacity: 0.55;
   }
 
   .portfolio-thumb img {
@@ -585,5 +555,34 @@
       0 24px 150px -24px color-mix(in srgb, var(--accent) 85%, transparent),
       0 0 0 1px color-mix(in srgb, var(--accent) 45%, transparent),
       0 0 24px color-mix(in srgb, var(--accent) 55%, transparent);
+  }
+
+  .primary-btn {
+    @apply px-[1.55rem] py-[0.75rem] rounded-[0.9rem] font-bold text-[0.95rem] inline-flex items-center gap-[0.6rem] text-foreground z-[3] transition-all;
+    transition-duration: 250ms;
+    background: linear-gradient(130deg,
+        color-mix(in srgb, var(--accent) 65%, transparent),
+        color-mix(in srgb, var(--accent) 30%, transparent));
+    border: 1px solid color-mix(in srgb, var(--accent) 65%, transparent);
+    box-shadow:
+      0 16px 30px -22px color-mix(in srgb, var(--accent) 70%, transparent),
+      inset 0 0 0 1px color-mix(in srgb, var(--accent) 25%, transparent);
+  }
+
+  .primary-btn:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(130deg,
+        color-mix(in srgb, var(--accent) 80%, transparent),
+        color-mix(in srgb, var(--accent) 40%, transparent));
+    box-shadow: 0 22px 40px -26px color-mix(in srgb, var(--accent) 75%, transparent);
+  }
+
+  .primary-btn-icon {
+    @apply inline-flex items-center justify-center w-8 h-8 rounded-[0.7rem] bg-white/10 border border-white/20 transition-transform;
+    transition-duration: 250ms;
+  }
+
+  .primary-btn:hover .primary-btn-icon {
+    transform: translateX(4px) translateY(-2px);
   }
 }
