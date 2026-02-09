@@ -103,9 +103,16 @@
         "timelineDescription": "Academic background and formal education.",
         "items": [
           {
-            "title": "Bachelor's in Computer Science",
-            "subtitle": "University Name",
-            "date": "2020"
+            "title": "Bachelor's in Technology (I.T.)",
+            "subtitle": "Guru Tegh Bahadur Institute of Technology (GGSIPU)",
+            "date": "2013-2017",
+            "percentage": "8.5 CGPA"
+          },
+          {
+            "title": "Higher Secondary (12th)",
+            "subtitle": "D.A.V. Public School, Pushpanjali, CBSE",
+            "date": "2012",
+            "percentage": "85%"
           }
         ]
       }
@@ -136,9 +143,7 @@
       },
       {
         "label": "Working Knowledge",
-        "skills": [
-          { "name": "Angular", "percentage": 65 }
-        ]
+        "skills": [{ "name": "Angular", "percentage": 65 }]
       }
     ],
 
@@ -181,6 +186,15 @@
         "url": "https://docquity-webinar.netlify.app/",
         "thumbnail": "https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&h=400&fit=crop",
         "accent": "#2DD4BF"
+      },
+      {
+        "id": 2,
+        "title": "Docquity - Webinar Landing Page",
+        "description": "Developed a responsive webinar landing page as part of a front-end interview assignment",
+        "tags": ["Angular", "TypeScript", "HTML5", "CSS3", "Figma"],
+        "url": "https://docquity-webinar.netlify.app/",
+        "thumbnail": "https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&h=400&fit=crop",
+        "accent": "#d42fd4"
       }
     ]
   },
@@ -197,7 +211,10 @@
       "fields": {
         "name": { "label": "Name", "placeholder": "Your name" },
         "email": { "label": "Email", "placeholder": "your@email.com" },
-        "message": { "label": "Message", "placeholder": "Tell me about your project..." }
+        "message": {
+          "label": "Message",
+          "placeholder": "Tell me about your project..."
+        }
       }
     },
 

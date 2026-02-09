@@ -26,10 +26,11 @@ function TimelineItem(props) {
   const title = props.title;
   const subtitle = props.subtitle;
   const date = props.date;
-  const description = props.description;
+  const percentage = props.percentage;
   const isLast = props.isLast;
   const ItemIcon = props.itemIcon;
   const CalendarIcon = props.calendarIcon;
+  // const description = props.description;
 
   return (
     <div className="group relative flex gap-6 pb-12 last:pb-0">
@@ -43,19 +44,18 @@ function TimelineItem(props) {
       </div>
       <div className="w-full pt-1">
         <SimpleCard className="p-6">
-          <div className="mb-4 flex flex-col justify-between gap-2 sm:flex-row sm:items-center">
-            <div>
-              <h3 className="text-xl font-semibold group-hover:text-[hsl(var(--coral))] transition-colors">
-                {title}
-              </h3>
-              <p className="text-sm font-medium text-gray-400">{subtitle}</p>
-            </div>
+          <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-start">
+            <h3 className="text-xl font-semibold group-hover:text-[hsl(var(--coral))] transition-colors">
+              {title}
+            </h3>
             <div className="flex items-center gap-1.5 rounded-full bg-white/5 px-3 py-1 text-xs font-medium text-gray-300 border border-white/5">
               <CalendarIcon size={12} className="text-[hsl(var(--coral))]" />
-              <span>{date}</span>
+              <span className="text-nowrap">{date}</span>
             </div>
           </div>
-          <p className="text-sm leading-relaxed text-gray-400">{description}</p>
+
+          <p className="text-sm font-medium text-gray-400 mt-2">{subtitle}</p>
+          <p className={`${percentage ? "text-sm leading-relaxed text-gray-400 mt-4" : ""}`}>{percentage}</p>
         </SimpleCard>
       </div>
     </div>
@@ -161,6 +161,7 @@ function About() {
                   title={item.title}
                   subtitle={item.subtitle}
                   date={date}
+                  percentage={item.percentage}
                   description={activeTabData.timelineDescription}
                   isLast={isLast}
                   itemIcon={ItemIcon}

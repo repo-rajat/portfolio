@@ -26,20 +26,20 @@ function Index() {
       <div className="orb orb-violet w-[500px] h-[500px] top-1/4 -right-64 animate-float-delayed" />
       <div className="orb orb-sky w-72 h-72 bottom-0 left-1/4 animate-float-delayed-2" />
 
-      <div className="max-w-7xl mx-auto grid relative z-10 min-h-[100dvh] px-6 py-10 md:py-12 lg:py-0 lg:px-16">
+      <div className="max-w-7xl mx-auto grid relative z-10 min-h-[100dvh]  px-6 py-10 md:py-12 lg:py-0 lg:px-16">
         <div className="w-full flex flex-col lg:flex-row lg:items-center gap-10 sm:gap-12 lg:gap-15 page-enter">
           <div className="lg:w-1/2">
-            <div className="home-greeting animate-slide-up relative flex flex-wrap items-center gap-3 px-4 sm:px-5 py-2 bg-black/40 border border-white/10 rounded-full mb-8 lg:mb-10 w-fit max-w-[calc(100vw-3rem)] backdrop-blur-md">
-              <span className="flex h-2 w-2 relative">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+            <div className="home-greeting animate-slide-up relative flex flex-wrap items-center gap-2.5 px-3 py-2 bg-black/40 border border-white/15 rounded-full mb-8 lg:mb-10 w-fit max-w-[calc(100vw-3rem)] backdrop-blur-md">
+              <span className="flex h-3 w-3 relative">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-600 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-green-600"></span>
               </span>
               <p className="text-[10px] sm:text-xs md:text-sm font-mono tracking-widest uppercase text-white/80 break-words">
-                <span className="text-cyan-400">&lt;</span>
-                {home.greeting.label}
-                <span className="text-cyan-400"> /&gt;</span>
-                <span className="ml-2 text-white/40">|</span>
-                <span className="ml-2 text-white font-semibold">
+                <span className="text-green-600">&lt;</span>
+                <span className="text-green-600">{home.greeting.label}</span>
+                <span className="text-green-600"> /&gt;</span>
+                <span className="ml-1 text-white/40">|</span>
+                <span className="ml-1.5 text-white font-semibold">
                   {home.greeting.intro}
                 </span>
               </p>
