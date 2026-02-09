@@ -4,6 +4,8 @@ import IconButton from "../components/IconButton";
 import { useContent } from "../context/ContentContext";
 import { getIcon } from "../utils/iconMap";
 import CertificationBadge from "../components/CertificationBadge";
+import PrimaryButton from "../components/PrimaryButton";
+import { ArrowRight, MessageSquare } from "lucide-react";
 
 function Index() {
   const [hoveredIndex, setHoveredIndex] = React.useState(null);
@@ -63,31 +65,33 @@ function Index() {
               </span>
             </h2>
 
-            <p className="type-body-lg text-muted-foreground mb-8 lg:mb-10 leading-relaxed">
+            <p className="type-body-lg text-muted-foreground mb-6 leading-relaxed">
               {home.description}
             </p>
 
             {home.certifications && (
-              <div className="flex flex-col sm:flex-row gap-4 mb-10 animate-slide-up [animation-delay:200ms] opacity-0 [animation-fill-mode:forwards]">
+              <div className="flex flex-col sm:flex-row gap-4 mb-10 animate-slide-up [animation-delay:400ms] opacity-0 [animation-fill-mode:forwards]">
                 {home.certifications.map((cert) => (
                   <CertificationBadge key={cert.id} {...cert} />
                 ))}
               </div>
             )}
 
-            <div className="flex gap-4 sm:gap-5">
-              {global.socialLinks.map(function (link) {
-                const Icon = getIcon(link.icon);
-                return (
-                  <IconButton
-                    key={link.id}
-                    icon={Icon}
-                    theme="neutral"
-                    href={link.url}
-                    aria-label={link.label}
-                  />
-                );
-              })}
+            <div className="flex flex-wrap gap-4 mt-10">
+              <PrimaryButton
+                href="/portfolio"
+                icon={<ArrowRight className="w-4 h-4" />}
+              >
+                View Projects
+              </PrimaryButton>
+              <PrimaryButton
+                href={`https://wa.me/${content.contact?.info?.find((i) => i.label === "Phone")?.value?.replace(/\D/g, "") || "919876543210"}`}
+                theme="neutral"
+                className="!from-white/10 !to-white/5 !border-white/10 !shadow-none"
+                icon={<MessageSquare className="w-4 h-4" />}
+              >
+                Let's Connect
+              </PrimaryButton>
             </div>
           </div>
 
