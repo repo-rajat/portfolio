@@ -59,6 +59,24 @@
         "letter": "C",
         "icon": "Mail"
       }
+    ],
+    "certifications": [
+      {
+        "id": "meta-frontend",
+        "name": "Meta Front-End Developer",
+        "issuer": "Coursera",
+        "date": "2024",
+        "icon": "Meta",
+        "url": "https://www.coursera.org/professional-certificates/meta-front-end-developer"
+      },
+      {
+        "id": "meta-react",
+        "name": "Meta React Specialization",
+        "issuer": "Coursera",
+        "date": "2024",
+        "icon": "Meta",
+        "url": "https://www.coursera.org/specializations/meta-react-native"
+      }
     ]
   },
 

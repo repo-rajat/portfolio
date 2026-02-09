@@ -558,7 +558,7 @@
   }
 
   .primary-btn {
-    @apply px-[1.55rem] py-[0.75rem] rounded-[0.9rem] font-bold text-[0.95rem] inline-flex items-center gap-[0.6rem] text-foreground z-[3] transition-all;
+    @apply px-[1.55rem] py-[0.65rem] rounded-[0.9rem] font-bold text-[0.95rem] inline-flex items-center gap-[0.6rem] text-foreground z-[3] transition-all;
     transition-duration: 250ms;
     background: linear-gradient(130deg,
         color-mix(in srgb, var(--accent) 65%, transparent),
@@ -584,5 +584,49 @@
 
   .primary-btn:hover .primary-btn-icon {
     transform: translateX(4px) translateY(-2px);
+  }
+
+  .cert-badge {
+    @apply relative flex items-center gap-4 px-4 py-3 rounded-2xl border transition-all duration-300 backdrop-blur-md overflow-hidden;
+    background: linear-gradient(135deg, hsl(240 10% 8% / 0.8), hsl(240 10% 4% / 0.9));
+    border-color: hsl(240 8% 18% / 0.5);
+  }
+
+  .cert-badge::before {
+    content: "";
+    @apply absolute inset-0 opacity-0 transition-opacity duration-500 -z-10;
+    background: radial-gradient(circle at center, hsl(195 95% 60% / 0.15), transparent 70%);
+  }
+
+  .cert-badge:hover {
+    @apply -translate-y-1 border-[hsl(195_95%_60%/0.3)] shadow-[0_20px_40px_-15px_hsl(195_95%_60%/0.15)];
+  }
+
+  .cert-badge:hover::before {
+    @apply opacity-100;
+  }
+
+  .cert-icon-box {
+    @apply relative flex items-center justify-center w-12 h-12 rounded-xl border transition-all duration-300;
+    background: hsl(195 95% 60% / 0.05);
+    border-color: hsl(195 95% 60% / 0.1);
+    color: hsl(195 95% 60%);
+  }
+
+  .cert-badge:hover .cert-icon-box {
+    @apply scale-110 shadow-[0_0_20px_hsl(195_95%_60%/0.2)];
+    border-color: hsl(195 95% 60% / 0.4);
+  }
+
+  .cert-shimmer {
+    @apply absolute inset-0 -translate-x-full;
+    background: linear-gradient(90deg, transparent, hsl(195 95% 60% / 0.05), transparent);
+    animation: cert-shimmer 3s infinite;
+  }
+
+  @keyframes cert-shimmer {
+    100% {
+      transform: translateX(100%);
+    }
   }
 }

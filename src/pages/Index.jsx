@@ -3,6 +3,7 @@ import { GlowCard } from "../components/GlowCard";
 import IconButton from "../components/IconButton";
 import { useContent } from "../context/ContentContext";
 import { getIcon } from "../utils/iconMap";
+import CertificationBadge from "../components/CertificationBadge";
 
 function Index() {
   const [hoveredIndex, setHoveredIndex] = React.useState(null);
@@ -65,6 +66,14 @@ function Index() {
             <p className="type-body-lg text-muted-foreground mb-8 lg:mb-10 leading-relaxed">
               {home.description}
             </p>
+
+            {home.certifications && (
+              <div className="flex flex-col sm:flex-row gap-4 mb-10 animate-slide-up [animation-delay:200ms] opacity-0 [animation-fill-mode:forwards]">
+                {home.certifications.map((cert) => (
+                  <CertificationBadge key={cert.id} {...cert} />
+                ))}
+              </div>
+            )}
 
             <div className="flex gap-4 sm:gap-5">
               {global.socialLinks.map(function (link) {

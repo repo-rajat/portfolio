@@ -3,8 +3,8 @@ import { themes } from "../theme";
 
 const sizeStyles = {
   sm: "w-10 h-10 rounded-xl",
-  md: "w-12 h-12 rounded-xl",
-  lg: "w-12 h-12 rounded-2xl",
+  md: "w-14 h-14 rounded-xl",
+  lg: "w-16 h-16 rounded-2xl",
 };
 
 const iconSizeStyles = {
