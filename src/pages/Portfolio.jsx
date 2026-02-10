@@ -259,30 +259,19 @@ function Portfolio() {
                   {String(idx + 1).padStart(2, "0")}
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
-
-                <PrimaryButton
-                  href={project.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  containerClass="absolute right-4 bottom-4 z-10"
-                  className="h-10 px-4 text-xs !rounded-lg"
-                  icon={portfolioStrings.ctaArrow}
-                >
-                  {portfolioStrings.ctaLabel}
-                </PrimaryButton>
               </div>
 
-              <div className="p-6 space-y-4 flex-grow flex flex-col justify-between">
+              <div className="p-5 pb-6 lg:p-6 space-y-4 flex-grow flex flex-col justify-between">
                 <div className="space-y-3">
                   <h2 className="text-2xl font-bold text-white leading-tight">
                     {project.title}
                   </h2>
-                  <p className="text-sm text-gray-400 leading-relaxed line-clamp-4">
+                  <p className="text-sm text-gray-400 leading-relaxed line-clamp-2 lg:line-clamp-4">
                     {project.description}
                   </p>
                 </div>
 
-                <div className="flex flex-wrap gap-2 pt-4 border-t border-white/5">
+                <div className="flex flex-wrap gap-1.5 pb-2">
                   {project.tags.slice(0, 3).map((tag) => (
                     <span
                       key={tag}
@@ -297,6 +286,17 @@ function Portfolio() {
                     </span>
                   )}
                 </div>
+
+                <PrimaryButton
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  containerClass="w-full mt-4"
+                  className="w-full justify-center !py-3 !rounded-xl"
+                  icon={portfolioStrings.ctaArrow}
+                >
+                  {portfolioStrings.ctaLabel}
+                </PrimaryButton>
               </div>
             </div>
           </div>

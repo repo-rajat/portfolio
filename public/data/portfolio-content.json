@@ -44,7 +44,7 @@
         "icon": "Zap"
       },
       {
-        "page": "portfolio",
+        "page": "projects",
         "description": "Featured work",
         "route": "/portfolio",
         "theme": "emerald",
@@ -185,7 +185,7 @@
 
   "portfolio": {
     "meta": {
-      "title": "my portfolio",
+      "title": "my projects",
       "letter": "P",
       "theme": "emerald"
     },

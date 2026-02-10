@@ -25,19 +25,19 @@ function Index() {
     <main className="min-h-[100svh] animated-gradient-bg noise-overlay lg:pb-0 pb-[80px]">
       <div className="fixed inset-0 grid-bg opacity-30 pointer-events-none" />
 
-      <div className="orb orb-coral w-96 h-96 -top-48 -left-48 animate-float-slow" />
-      <div className="orb orb-violet w-[500px] h-[500px] top-1/4 -right-64 animate-float-delayed" />
-      <div className="orb orb-sky w-72 h-72 bottom-0 left-1/4 animate-float-delayed-2" />
+      <div className="orb orb-coral w-[170px] h-[170px] lg:w-96 lg:h-96 -top-18 -left-8 lg:-top-48 lg:-left-48 animate-float-slow" />
+      <div className="orb orb-violet w-[200px] h-[200px] lg:w-[500px] lg:h-[500px] top-1/3 -right-12 lg:-right-64 lg:-top-1/4 animate-float-delayed" />
+      <div className="orb orb-sky w-[200px] h-[200px] lg:w-72 lg:h-72 bottom-0 right-30 lg:bottom-1/4 lg:left-1/4 animate-float-delayed-2" />
 
       <div className="max-w-7xl mx-auto grid relative z-10 min-h-[100dvh]  px-6 py-10 md:py-12 lg:py-0 lg:px-16">
         <div className="w-full flex flex-col lg:flex-row lg:items-center gap-10 sm:gap-12 lg:gap-15 page-enter">
           <div className="lg:w-1/2">
-            <div className="home-greeting animate-slide-up relative flex flex-wrap items-center gap-2.5 px-3 py-1.5 bg-white/[0.03] border border-white/10 rounded-full mb-3 lg:mb-2 w-fit backdrop-blur-md">
+            <div className="home-greeting animate-slide-up relative flex flex-wrap items-center gap-2.5 px-3 py-1.5 bg-white/[0.05] border border-white/10 rounded-full mb-3 lg:mb-2 w-fit backdrop-blur-md">
               <span className="flex h-2 w-2 relative">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
               </span>
-              <p className="text-[10px] sm:text-xs font-mono tracking-[0.2em] uppercase text-green-500/80">
+              <p className="text-xs font-mono tracking-[0.2em] uppercase text-green-500/80">
                 {home.greeting.label}
                 <span className="mx-2 text-white/30">/</span>
                 <span className="text-white/90">{home.greeting.intro}</span>
@@ -98,14 +98,14 @@ function Index() {
                   tooltipTitle="Browse Portfolio"
                   tooltipDesc="Explore my collection of full-stack projects, creative designs, and technical solutions built with modern technologies."
                 >
-                  Projects
+                  My Projects
                 </PrimaryButton>
               </div>
             </div>
           </div>
 
           <div className="lg:w-1/2">
-            <div className="grid grid-cols-2 gap-3 sm:gap-4 md:gap-6 max-w-md mx-auto lg:max-w-none">
+            <div className="grid grid-cols-2 gap-5 lg:gap-4 max-w-md mx-auto lg:max-w-none">
               {home.navigation.map(function (item, index) {
                 let size = "normal";
                 if (index < 2) {

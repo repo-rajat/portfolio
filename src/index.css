@@ -720,7 +720,7 @@
 
   /* Mobile Sticky Bar & Responsive Adjustments */
   .mobile-sticky-bar {
-    @apply fixed bottom-0 left-0 w-full p-3 h-20 bg-black/85 backdrop-blur-3xl border-t border-white/10 z-[100] flex gap-3 items-center lg:relative lg:bottom-auto lg:left-auto lg:p-0 lg:bg-transparent lg:backdrop-blur-none lg:border-t-0 lg:z-10 transition-none;
+    @apply fixed bottom-0 left-0 w-full p-3 h-20 bg-black/45 backdrop-blur-3xl border-t border-white/10 z-[100] flex gap-3 items-center lg:relative lg:bottom-auto lg:left-auto lg:p-0 lg:bg-transparent lg:backdrop-blur-none lg:border-t-0 lg:z-10 transition-none;
   }
 
   @media (max-width: 1023px) {
@@ -761,13 +761,6 @@
       animation: none !important;
       opacity: 1 !important;
       transform: none !important;
-    }
-
-    /* Fix rounded corners for cards on mobile */
-    .portfolio-main-card,
-    .portfolio-main-card>div,
-    .portfolio-main-card [class*="rounded-tr"] {
-      border-radius: 1.5rem !important;
     }
   }
 

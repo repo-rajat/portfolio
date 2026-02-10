@@ -37,7 +37,7 @@ const CertificationBadge = ({ name, issuer, date, url }) => {
 
         {/* Content */}
         <div className="flex items-center gap-2 min-w-0">
-          <h3 className="text-[11px] font-bold text-white/90 group-hover:text-white transition-colors truncate">
+          <h3 className="text-sm text-white/90 group-hover:text-white transition-colors truncate">
             {name}
           </h3>
           <ArrowUpRight className="w-3.5 h-3.5 text-white/20 group-hover:text-white/60 transition-colors" />
