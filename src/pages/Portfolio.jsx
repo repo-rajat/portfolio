@@ -175,6 +175,8 @@ function Portfolio() {
                     rel="noopener noreferrer"
                     className="absolute right-[1.4rem] bottom-[1.2rem]"
                     icon={portfolioStrings.ctaArrow}
+                    tooltipTitle="Launch Application"
+                    tooltipDesc="Opens the live, hosted version of this project in a new tab for you to explore the features and user experience firsthand."
                   >
                     {portfolioStrings.ctaLabel}
                   </PrimaryButton>

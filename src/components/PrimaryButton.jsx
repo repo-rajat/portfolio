@@ -24,24 +24,47 @@ function PrimaryButton(props) {
     </>
   );
 
+  const tooltip =
+    props.tooltipTitle || props.tooltipDesc ? (
+      <div className="tooltip-panel">
+        {props.tooltipTitle && (
+          <span className="tooltip-title">{props.tooltipTitle}</span>
+        )}
+        {props.tooltipDesc && (
+          <span className="tooltip-desc">{props.tooltipDesc}</span>
+        )}
+      </div>
+    ) : null;
+
   if (href) {
     return (
-      <a
-        href={href}
-        className={baseClasses}
-        target={props.target}
-        rel={props.rel}
-        style={style}
-      >
-        {content}
-      </a>
+      <div className={tooltip ? "tooltip-wrapper" : ""}>
+        <a
+          href={href}
+          className={baseClasses}
+          target={props.target}
+          rel={props.rel}
+          style={style}
+        >
+          {content}
+        </a>
+        {tooltip}
+      </div>
     );
   }
 
   return (
-    <button type={type} onClick={onClick} className={baseClasses} style={style}>
-      {content}
-    </button>
+    <div className={tooltip ? "tooltip-wrapper" : ""}>
+      <button
+        type={type}
+        onClick={onClick}
+        className={baseClasses}
+        style={style}
+      >
+        {content}
+      </button>
+      {tooltip}
+    </div>
   );
 }
 

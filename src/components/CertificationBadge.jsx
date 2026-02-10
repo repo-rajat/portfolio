@@ -1,4 +1,5 @@
 import React from "react";
+import { ArrowUpRight } from "lucide-react";
 
 const MetaLogo = ({ className }) => (
   <svg
@@ -16,29 +17,37 @@ const MetaLogo = ({ className }) => (
 
 const CertificationBadge = ({ name, issuer, date, url }) => {
   return (
-    <a
-      href={url}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="cert-badge group inline-flex"
-    >
-      <div className="cert-shimmer" />
+    <div className="tooltip-wrapper">
+      <a
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="cert-badge group inline-flex"
+      >
+        <div className="cert-shimmer" />
 
-      {/* Icon Wrapper */}
-      <div className="cert-icon-box flex-shrink-0">
-        <MetaLogo className="w-5 h-5" />
-      </div>
+        {/* Icon Wrapper */}
+        <div className="cert-icon-box flex-shrink-0">
+          <MetaLogo className="w-5 h-5" />
+        </div>
 
-      {/* Content */}
-      <div className="flex items-center gap-2 min-w-0">
-        <h3 className="text-[11px] font-bold text-white/90 group-hover:text-white transition-colors truncate">
-          {name}
-        </h3>
-        <span className="text-[9px] uppercase tracking-wider text-white/30 group-hover:text-white/50 transition-colors whitespace-nowrap">
-          {issuer}
+        {/* Content */}
+        <div className="flex items-center gap-2 min-w-0">
+          <h3 className="text-[11px] font-bold text-white/90 group-hover:text-white transition-colors truncate">
+            {name}
+          </h3>
+          <ArrowUpRight className="w-3.5 h-3.5 text-white/20 group-hover:text-white/60 transition-colors" />
+        </div>
+      </a>
+
+      <div className="tooltip-panel">
+        <span className="tooltip-title">{issuer}</span>
+        <span className="tooltip-desc">
+          Issued in {date}. Click to verify this professional credential on the
+          official platform and view curriculum details.
         </span>
       </div>
-    </a>
+    </div>
   );
 };
 

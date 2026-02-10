@@ -650,4 +650,34 @@
       transform: translateX(100%);
     }
   }
+
+  /* Tooltip Stylings */
+  .tooltip-wrapper {
+    @apply relative inline-flex;
+  }
+
+  .tooltip-panel {
+    @apply absolute bottom-full left-1/2 -translate-x-1/2 mb-3 px-4 py-3 rounded-xl border border-white/10 bg-black/95 backdrop-blur-xl opacity-0 invisible translate-y-2 transition-all duration-300 z-[100] pointer-events-none;
+    min-width: 220px;
+    box-shadow:
+      0 20px 40px -10px rgba(0, 0, 0, 0.5),
+      0 0 20px -5px color-mix(in srgb, var(--accent, white) 20%, transparent);
+  }
+
+  .tooltip-wrapper:hover .tooltip-panel {
+    @apply opacity-100 visible translate-y-0;
+  }
+
+  .tooltip-panel::after {
+    content: "";
+    @apply absolute top-full left-1/2 -translate-x-1/2 border-[6px] border-transparent border-t-black/95;
+  }
+
+  .tooltip-title {
+    @apply block text-[10px] font-bold uppercase tracking-[0.1em] text-white mb-1.5 text-center;
+  }
+
+  .tooltip-desc {
+    @apply block text-[11px] leading-relaxed text-white/50 font-medium whitespace-normal text-center;
+  }
 }

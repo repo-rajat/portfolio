@@ -82,6 +82,8 @@ function Index() {
                     "violet"
                   }
                   icon={<MessageSquare className="w-4 h-4" />}
+                  tooltipTitle="Instant Connection"
+                  tooltipDesc="Opens a direct WhatsApp chat window to discuss project ideas or professional opportunities in real-time."
                 >
                   Let's Connect
                 </PrimaryButton>
@@ -92,6 +94,8 @@ function Index() {
                       ?.theme || "emerald"
                   }
                   icon={<ArrowRight className="w-4 h-4" />}
+                  tooltipTitle="Browse Portfolio"
+                  tooltipDesc="Explore my collection of full-stack projects, creative designs, and technical solutions built with modern technologies."
                 >
                   View Projects
                 </PrimaryButton>

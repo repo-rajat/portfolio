@@ -152,6 +152,8 @@ function About() {
           href={global.resume.file}
           target="_blank"
           icon={<Download size={18} />}
+          tooltipTitle="Download Portfolio PDF"
+          tooltipDesc="Provides a comprehensive version of my resume in a recruiter-friendly format, containing all key technical skills and contact details."
         >
           {global.resume.label}
         </PrimaryButton>

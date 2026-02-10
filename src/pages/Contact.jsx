@@ -170,6 +170,8 @@ function Contact() {
                   type="submit"
                   theme="violet"
                   icon={<Send className="w-4 h-4" />}
+                  tooltipTitle="Professional Outreach"
+                  tooltipDesc="Sends your message directly to my primary inbox. I review all inquiries and typically respond within 24-48 hours with a detailed reply."
                 >
                   Send Inquiry
                 </PrimaryButton>
