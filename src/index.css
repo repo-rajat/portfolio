@@ -99,8 +99,13 @@
 
 @layer utilities {
   .type-hero {
-    font-size: clamp(3.0rem, 6.8vw, 6rem);
-    @apply leading-[0.95] tracking-[-0.02em] font-extrabold max-[360px]:text-[2.75rem];
+    font-size: clamp(3.0rem, 7.5vw, 6.5rem);
+    @apply leading-[0.85] tracking-[-0.03em] font-extrabold max-[360px]:text-[2.75rem];
+  }
+
+  .type-hero .last-name {
+    @apply block text-[0.45em] font-normal tracking-[0.2em] uppercase text-white/40 mt-2;
+    font-family: var(--font-mono, monospace);
   }
 
   .type-hero-subtitle {
@@ -587,41 +592,21 @@
   }
 
   .cert-badge {
-    @apply relative flex items-center gap-4 px-4 py-3 rounded-2xl border transition-all duration-300 backdrop-blur-md overflow-hidden;
-    background: linear-gradient(135deg, hsl(240 10% 8% / 0.8), hsl(240 10% 4% / 0.9));
-    border-color: hsl(240 8% 18% / 0.5);
-  }
-
-  .cert-badge::before {
-    content: "";
-    @apply absolute inset-0 opacity-0 transition-opacity duration-500 -z-10;
-    background: radial-gradient(circle at center, hsl(195 95% 60% / 0.15), transparent 70%);
+    @apply relative flex items-center gap-2.5 px-3 py-1.5 rounded-full border border-white/10 transition-all duration-300 backdrop-blur-sm overflow-hidden bg-white/[0.03];
   }
 
   .cert-badge:hover {
-    @apply -translate-y-1 border-[hsl(195_95%_60%/0.3)] shadow-[0_20px_40px_-15px_hsl(195_95%_60%/0.15)];
-  }
-
-  .cert-badge:hover::before {
-    @apply opacity-100;
+    @apply border-[hsl(195_95%_60%/0.4)] bg-white/[0.07] -translate-y-0.5 shadow-[0_10px_20px_-10px_hsl(195_95%_60%/0.2)];
   }
 
   .cert-icon-box {
-    @apply relative flex items-center justify-center w-12 h-12 rounded-xl border transition-all duration-300;
-    background: hsl(195 95% 60% / 0.05);
-    border-color: hsl(195 95% 60% / 0.1);
-    color: hsl(195 95% 60%);
-  }
-
-  .cert-badge:hover .cert-icon-box {
-    @apply scale-110 shadow-[0_0_20px_hsl(195_95%_60%/0.2)];
-    border-color: hsl(195 95% 60% / 0.4);
+    @apply flex items-center justify-center text-[hsl(195_95%_60%)];
   }
 
   .cert-shimmer {
     @apply absolute inset-0 -translate-x-full;
-    background: linear-gradient(90deg, transparent, hsl(195 95% 60% / 0.05), transparent);
-    animation: cert-shimmer 3s infinite;
+    background: linear-gradient(90deg, transparent, hsl(195 95% 60% / 0.1), transparent);
+    animation: cert-shimmer 4s infinite;
   }
 
   @keyframes cert-shimmer {

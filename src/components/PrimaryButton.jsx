@@ -7,9 +7,15 @@ function PrimaryButton(props) {
   const className = props.className || "";
   const Icon = props.icon;
   const type = props.type || "button";
+  const theme = props.theme;
 
   // Base classes for the button
   const baseClasses = "primary-btn " + className;
+
+  const style = {};
+  if (theme && theme !== "neutral") {
+    style["--accent"] = "hsl(var(--" + theme + "))";
+  }
 
   const content = (
     <>
@@ -25,6 +31,7 @@ function PrimaryButton(props) {
         className={baseClasses}
         target={props.target}
         rel={props.rel}
+        style={style}
       >
         {content}
       </a>
@@ -32,7 +39,7 @@ function PrimaryButton(props) {
   }
 
   return (
-    <button type={type} onClick={onClick} className={baseClasses}>
+    <button type={type} onClick={onClick} className={baseClasses} style={style}>
       {content}
     </button>
   );

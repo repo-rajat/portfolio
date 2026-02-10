@@ -79,18 +79,24 @@ function Index() {
 
             <div className="flex flex-wrap gap-4 mt-10">
               <PrimaryButton
-                href="/portfolio"
-                icon={<ArrowRight className="w-4 h-4" />}
-              >
-                View Projects
-              </PrimaryButton>
-              <PrimaryButton
                 href={`https://wa.me/${content.contact?.info?.find((i) => i.label === "Phone")?.value?.replace(/\D/g, "") || "919876543210"}`}
-                theme="neutral"
-                className="!from-white/10 !to-white/5 !border-white/10 !shadow-none"
+                theme={
+                  home.navigation.find((n) => n.page === "contact")?.theme ||
+                  "violet"
+                }
                 icon={<MessageSquare className="w-4 h-4" />}
               >
                 Let's Connect
+              </PrimaryButton>
+              <PrimaryButton
+                href="/portfolio"
+                theme={
+                  home.navigation.find((n) => n.page === "portfolio")?.theme ||
+                  "emerald"
+                }
+                icon={<ArrowRight className="w-4 h-4" />}
+              >
+                View Projects
               </PrimaryButton>
             </div>
           </div>

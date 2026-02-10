@@ -63,16 +63,16 @@
     "certifications": [
       {
         "id": "meta-frontend",
-        "name": "Front-End Developer",
-        "issuer": "Coursera (Meta)",
+        "name": "Meta - Front-End Developer",
+        "issuer": "Coursera",
         "date": "2024",
         "icon": "Meta",
         "url": "https://www.coursera.org/professional-certificates/meta-front-end-developer"
       },
       {
         "id": "meta-react",
-        "name": "React Specialization",
-        "issuer": "Coursera (Meta)",
+        "name": "Meta - React Specialization",
+        "issuer": "Coursera",
         "date": "2024",
         "icon": "Meta",
         "url": "https://www.coursera.org/specializations/meta-react-native"
