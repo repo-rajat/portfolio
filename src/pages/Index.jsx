@@ -30,7 +30,7 @@ function Index() {
       <div className="orb orb-sky w-[200px] h-[200px] lg:w-72 lg:h-72 bottom-0 right-30 lg:bottom-1/4 lg:left-1/4 animate-float-delayed-2" />
 
       <div className="max-w-7xl mx-auto grid relative z-10 min-h-[100dvh]  px-6 py-10 md:py-12 lg:py-0 lg:px-16">
-        <div className="w-full flex flex-col lg:flex-row lg:items-center gap-10 sm:gap-12 lg:gap-15 page-enter">
+        <div className="w-full flex flex-col lg:flex-row lg:items-center gap-5 lg:gap-10 lg:gap-15 page-enter">
           <div className="lg:w-1/2">
             <div className="home-greeting animate-slide-up relative flex flex-wrap items-center gap-2.5 px-3 py-1.5 bg-white/[0.05] border border-white/10 rounded-full mb-3 lg:mb-2 w-fit backdrop-blur-md">
               <span className="flex h-2 w-2 relative">
@@ -66,7 +66,7 @@ function Index() {
 
             <div className="flex flex-col gap-8">
               {home.certifications && (
-                <div className="flex gap-3 animate-slide-up [animation-delay:400ms] opacity-0 [animation-fill-mode:forwards] mb-5 w-[calc(100svw-3rem)] lg:w-full overflow-x-auto snap-x snap-mandatory hide-scrollbar">
+                <div className="flex gap-3 animate-slide-up [animation-delay:400ms] opacity-0 [animation-fill-mode:forwards] mb-0 w-[calc(100svw-3rem)] lg:w-full overflow-x-auto snap-x snap-mandatory hide-scrollbar">
                   {home.certifications.map((cert) => (
                     <CertificationBadge key={cert.id} {...cert} />
                   ))}

@@ -18,9 +18,9 @@ export function GlowCard(props) {
   const styles = themes[variant];
 
   // Logic for size class
-  let sizeClass = "h-44 sm:h-52 md:h-60";
+  let sizeClass = "h-[180px] lg:h-[240px]";
   if (size === "large") {
-    sizeClass = "h-56 sm:h-72 md:h-80";
+    sizeClass = "h-[180px] lg:h-[310px]";
   }
 
   // Logic for dimmed class
@@ -47,7 +47,7 @@ export function GlowCard(props) {
         className={
           "glow-card-hover group relative flex flex-col justify-between " +
           sizeClass +
-          " rounded-3xl cursor-pointer overflow-hidden p-5 sm:p-6 " +
+          " rounded-2xl lg:rounded-3xl cursor-pointer overflow-hidden p-4 lg:p-6 " +
           "transition-all duration-300 " +
           styles.glowClass +
           " " +
