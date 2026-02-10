@@ -49,11 +49,12 @@
   }
 
   html {
-    @apply w-full h-full scroll-smooth;
+    @apply w-full min-h-full scroll-smooth;
+    scroll-padding-top: 2rem;
   }
 
   body {
-    @apply w-full h-full antialiased;
+    @apply w-full min-h-full antialiased;
     scrollbar-width: thin;
     scrollbar-color: color-mix(in srgb, var(--accent, hsl(280 75% 65%)) 30%, transparent) transparent;
   }
@@ -124,7 +125,7 @@
   }
 
   .portfolio-main-card {
-    @apply relative overflow-hidden rounded-3xl border border-white/5 bg-white/[0.015] backdrop-blur-md transition-all duration-300 hover:border-white/10;
+    @apply relative rounded-3xl border border-white/5 bg-white/[0.015] backdrop-blur-md transition-all duration-300 hover:border-white/10;
   }
 }
 
@@ -595,7 +596,7 @@
   }
 
   .primary-btn {
-    @apply px-10 h-14 rounded-xl font-semibold text-[0.95rem] inline-flex items-center justify-center gap-[0.6rem] text-foreground z-[3] transition-all;
+    @apply px-7 h-14 rounded-xl font-semibold text-[0.95rem] inline-flex items-center justify-center gap-[0.6rem] text-foreground z-[3] transition-all;
     transition-duration: 300ms;
     background: linear-gradient(130deg,
         color-mix(in srgb, var(--accent) 70%, transparent),
@@ -653,7 +654,7 @@
 
   /* Tooltip Stylings */
   .tooltip-wrapper {
-    @apply relative inline-flex;
+    @apply inline-flex;
   }
 
   .tooltip-panel {
@@ -679,5 +680,30 @@
 
   .tooltip-desc {
     @apply block text-[11px] leading-relaxed text-white/50 font-medium whitespace-normal text-center;
+  }
+
+  /* Alignment Variants */
+  .tooltip-wrapper.tooltip-left .tooltip-panel {
+    @apply left-auto right-0 -translate-x-0 translate-y-2;
+  }
+
+  .tooltip-wrapper.tooltip-left:hover .tooltip-panel {
+    @apply translate-y-0;
+  }
+
+  .tooltip-wrapper.tooltip-left .tooltip-panel::after {
+    @apply left-auto right-5 -translate-x-0;
+  }
+
+  .tooltip-wrapper.tooltip-right .tooltip-panel {
+    @apply left-0 -translate-x-0 translate-y-2;
+  }
+
+  .tooltip-wrapper.tooltip-right:hover .tooltip-panel {
+    @apply translate-y-0;
+  }
+
+  .tooltip-wrapper.tooltip-right .tooltip-panel::after {
+    @apply left-5 -translate-x-0;
   }
 }

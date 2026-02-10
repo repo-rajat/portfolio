@@ -32,14 +32,14 @@ function Index() {
       <div className="max-w-7xl mx-auto grid relative z-10 min-h-[100dvh]  px-6 py-10 md:py-12 lg:py-0 lg:px-16">
         <div className="w-full flex flex-col lg:flex-row lg:items-center gap-10 sm:gap-12 lg:gap-15 page-enter">
           <div className="lg:w-1/2">
-            <div className="home-greeting animate-slide-up relative flex flex-wrap items-center gap-2.5 px-3 py-1.5 bg-white/[0.03] border border-white/10 rounded-full mb-6 lg:mb-8 w-fit backdrop-blur-md">
+            <div className="home-greeting animate-slide-up relative flex flex-wrap items-center gap-2.5 px-3 py-1.5 bg-white/[0.03] border border-white/10 rounded-full mb-3 lg:mb-5 w-fit backdrop-blur-md">
               <span className="flex h-2 w-2 relative">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
               </span>
-              <p className="text-[10px] sm:text-xs font-mono tracking-[0.2em] uppercase text-white/60">
+              <p className="text-[10px] sm:text-xs font-mono tracking-[0.2em] uppercase text-green-500/80">
                 {home.greeting.label}
-                <span className="mx-2 text-white/20">/</span>
+                <span className="mx-2 text-white/30">/</span>
                 <span className="text-white/90">{home.greeting.intro}</span>
               </p>
             </div>
@@ -51,23 +51,22 @@ function Index() {
                 </span>
                 <span className="last-name">{home.name.last}</span>
               </h1>
-              <div className="absolute -left-6 top-1/2 -translate-y-1/2 w-1 h-3/4 bg-gradient-to-b from-transparent via-[hsl(var(--coral))] to-transparent opacity-20 hidden lg:block" />
             </div>
 
-            <h2 className="home-subtitle text-xl sm:text-2xl text-white/90 mt-6 mb-4 font-medium leading-tight">
+            <h2 className="home-subtitle text-xl sm:text-2xl text-white/90 mt-10 mb-4 font-medium leading-tight">
               {home.subtitle.intro}
               <span className="block text-shimmer text-2xl sm:text-3xl font-bold mt-1">
                 {home.subtitle.highlight}
               </span>
             </h2>
 
-            <p className="type-body text-muted-foreground/80 mb-6 max-w-lg leading-relaxed border-l border-white/5 pl-5">
+            <p className="type-body text-muted-foreground/80 mb-6 max-w-lg leading-relaxed">
               {home.description}
             </p>
 
             <div className="flex flex-col gap-8">
               {home.certifications && (
-                <div className="flex flex-wrap gap-3 animate-slide-up [animation-delay:400ms] opacity-0 [animation-fill-mode:forwards]">
+                <div className="flex flex-wrap gap-3 animate-slide-up [animation-delay:400ms] opacity-0 [animation-fill-mode:forwards] mb-5">
                   {home.certifications.map((cert) => (
                     <CertificationBadge key={cert.id} {...cert} />
                   ))}

@@ -1,4 +1,5 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 
 function PrimaryButton(props) {
   const children = props.children;
@@ -8,6 +9,11 @@ function PrimaryButton(props) {
   const Icon = props.icon;
   const type = props.type || "button";
   const theme = props.theme;
+  const tooltipAlign = props.tooltipAlign || "center"; // center, left, right
+  const containerClass = props.containerClass || "";
+
+  const location = useLocation();
+  const isPortfolioPage = location.pathname === "/portfolio";
 
   // Base classes for the button
   const baseClasses = "primary-btn " + className;
@@ -36,9 +42,18 @@ function PrimaryButton(props) {
       </div>
     ) : null;
 
+  const wrapperClasses = [
+    tooltip ? "tooltip-wrapper " : "",
+    tooltip && tooltipAlign !== "center" ? `tooltip-${tooltipAlign}` : "",
+    tooltip && isPortfolioPage ? "" : "relative ",
+    containerClass,
+  ]
+    .filter(Boolean)
+    .join(" ");
+
   if (href) {
     return (
-      <div className={tooltip ? "tooltip-wrapper" : ""}>
+      <div className={wrapperClasses}>
         <a
           href={href}
           className={baseClasses}
@@ -54,7 +69,7 @@ function PrimaryButton(props) {
   }
 
   return (
-    <div className={tooltip ? "tooltip-wrapper" : ""}>
+    <div className={wrapperClasses}>
       <button
         type={type}
         onClick={onClick}

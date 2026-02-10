@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";import { useLocation } from "react-router-dom";
 
 const MetaLogo = ({ className }) => (
   <svg
@@ -16,8 +16,9 @@ const MetaLogo = ({ className }) => (
 );
 
 const CertificationBadge = ({ name, issuer, date, url }) => {
+
   return (
-    <div className="tooltip-wrapper">
+    <div className="tooltip-wrapper relative">
       <a
         href={url}
         target="_blank"

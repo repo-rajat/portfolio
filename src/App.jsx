@@ -7,29 +7,19 @@ import Portfolio from "./pages/Portfolio";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import FireFly from "./components/FireFly";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <FireFly />
       <Routes>
         <Route path="/" element={<Index />} />
-        <Route
-          path="/about"
-          element={<About />}
-        />
-        <Route
-          path="/skills"
-          element={<Skills />}
-        />
-        <Route
-          path="/portfolio"
-          element={<Portfolio />}
-        />
-        <Route
-          path="/contact"
-          element={<Contact />}
-        />
+        <Route path="/about" element={<About />} />
+        <Route path="/skills" element={<Skills />} />
+        <Route path="/portfolio" element={<Portfolio />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

@@ -76,7 +76,7 @@ function Portfolio() {
   // Left Content
   const leftContent = (
     <div style={{ "--accent": activeProject.accent }}>
-      <div className="portfolio-main-card min-h-[400px] lg:h-[450px]">
+      <div className="portfolio-main-card min-h-[400px]">
         <div
           className="absolute -top-24 -left-24 w-80 h-80 rounded-full blur-[100px] opacity-20 pointer-events-none transition-colors duration-500"
           style={{ background: activeProject.accent }}
@@ -103,7 +103,7 @@ function Portfolio() {
               e.currentTarget.style.boxShadow = "none";
               e.currentTarget.style.borderColor = "rgba(255,255,255,0.1)";
             }}
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full border border-white/10 bg-black/60 text-white/50 hover:text-white hover:scale-110 transition-all backdrop-blur-xl hidden md:flex items-center justify-center group/nav"
+            className="absolute -left-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full border border-white/10 bg-black/60 text-white/50 hover:text-white hover:scale-110 transition-all backdrop-blur-xl hidden md:flex items-center justify-center group/nav"
             aria-label="Previous project"
           >
             <ChevronLeft className="w-6 h-6 group-hover/nav:-translate-x-0.5 transition-transform" />
@@ -118,7 +118,7 @@ function Portfolio() {
               e.currentTarget.style.boxShadow = "none";
               e.currentTarget.style.borderColor = "rgba(255,255,255,0.1)";
             }}
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full border border-white/10 bg-black/60 text-white/50 hover:text-white hover:scale-110 transition-all backdrop-blur-xl hidden md:flex items-center justify-center group/nav"
+            className="absolute -right-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full border border-white/10 bg-black/60 text-white/50 hover:text-white hover:scale-110 transition-all backdrop-blur-xl hidden md:flex items-center justify-center group/nav"
             aria-label="Next project"
           >
             <ChevronRight className="w-6 h-6 group-hover/nav:translate-x-0.5 transition-transform" />
@@ -159,35 +159,27 @@ function Portfolio() {
             </div>
           </div>
 
-          <div className="relative group overflow-hidden bg-black/40 flex items-center justify-center min-h-[300px] lg:min-h-full border-l border-white/5">
+          <div className="relative group overflow-hidden bg-black/40 min-h-[300px] lg:min-h-full border-l border-white/5 rounded-tr-3xl rounded-br-3xl">
             <img
               src={activeProject.thumbnail}
               alt={activeProject.title}
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
             />
 
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <PrimaryButton
-                    href={activeProject.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="absolute right-[1.4rem] bottom-[1.2rem]"
-                    icon={portfolioStrings.ctaArrow}
-                    tooltipTitle="Launch Application"
-                    tooltipDesc="Opens the live, hosted version of this project in a new tab for you to explore the features and user experience firsthand."
-                  >
-                    {portfolioStrings.ctaLabel}
-                  </PrimaryButton>
-                </div>
-              </div>
-            </div>
+            <PrimaryButton
+              href={activeProject.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              containerClass="absolute right-[1.6rem] bottom-[1.4rem] z-30"
+              tooltipAlign="left"
+              icon={portfolioStrings.ctaArrow}
+              tooltipTitle="Launch Application"
+              tooltipDesc="Opens the live, hosted version of this project in a new tab for you to explore the features and user experience firsthand."
+            >
+              {portfolioStrings.ctaLabel}
+            </PrimaryButton>
 
-            <div
-              className="
-              absolute bottom-0 left-0 w-full h-[45%] bg-gradient-to-t from-black/65 via-black/35 to-transparent"
-            />
+            <div className="absolute bottom-0 left-0 w-full h-[45%] bg-gradient-to-t from-black/65 via-black/35 to-transparent z-10" />
           </div>
         </div>
       </div>
