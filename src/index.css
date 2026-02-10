@@ -48,9 +48,40 @@
     @apply border-border;
   }
 
-  html,
+  html {
+    @apply w-full h-full scroll-smooth;
+  }
+
   body {
-    @apply w-full;
+    @apply w-full h-full antialiased;
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(in srgb, var(--accent, hsl(280 75% 65%)) 30%, transparent) transparent;
+  }
+
+  /* Global Scrollbar Stylings */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: color-mix(in srgb, var(--accent, hsl(280 75% 65%)) 15%, transparent);
+    border-radius: 20px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    transition: background 0.3s ease;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: color-mix(in srgb, var(--accent, hsl(280 75% 65%)) 35%, transparent);
+  }
+
+  #root {
+    @apply min-h-[100svh] flex flex-col;
   }
 
   @supports (overflow: clip) {
@@ -520,13 +551,14 @@
   }
 
   .portfolio-thumbs::-webkit-scrollbar-track {
-    background: hsl(240 10% 8% / 0.35);
-    border-radius: 9999px;
+    background: transparent;
   }
 
   .portfolio-thumbs::-webkit-scrollbar-thumb {
-    background: hsl(240 8% 28% / 0.8);
-    border-radius: 9999px;
+    background: color-mix(in srgb, var(--accent) 30%, transparent);
+    border-radius: 20px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
   }
 
   .portfolio-thumb {
@@ -563,23 +595,27 @@
   }
 
   .primary-btn {
-    @apply px-[1.55rem] py-[0.65rem] rounded-[0.9rem] font-bold text-[0.95rem] inline-flex items-center gap-[0.6rem] text-foreground z-[3] transition-all;
-    transition-duration: 250ms;
+    @apply px-10 h-14 rounded-xl font-semibold text-[0.95rem] inline-flex items-center justify-center gap-[0.6rem] text-foreground z-[3] transition-all;
+    transition-duration: 300ms;
     background: linear-gradient(130deg,
-        color-mix(in srgb, var(--accent) 65%, transparent),
-        color-mix(in srgb, var(--accent) 30%, transparent));
-    border: 1px solid color-mix(in srgb, var(--accent) 65%, transparent);
+        color-mix(in srgb, var(--accent) 70%, transparent),
+        color-mix(in srgb, var(--accent) 35%, transparent));
+    border: 1px solid color-mix(in srgb, var(--accent) 60%, transparent);
     box-shadow:
-      0 16px 30px -22px color-mix(in srgb, var(--accent) 70%, transparent),
-      inset 0 0 0 1px color-mix(in srgb, var(--accent) 25%, transparent);
+      0 12px 30px -15px color-mix(in srgb, var(--accent) 60%, transparent),
+      inset 0 0 0 1px color-mix(in srgb, var(--accent) 20%, transparent);
   }
 
   .primary-btn:hover {
-    transform: translateY(-2px);
+    @apply opacity-90;
+    transform: translateY(-2px) scale(1.01);
     background: linear-gradient(130deg,
-        color-mix(in srgb, var(--accent) 80%, transparent),
-        color-mix(in srgb, var(--accent) 40%, transparent));
-    box-shadow: 0 22px 40px -26px color-mix(in srgb, var(--accent) 75%, transparent);
+        color-mix(in srgb, var(--accent) 85%, transparent),
+        color-mix(in srgb, var(--accent) 45%, transparent));
+    box-shadow:
+      0 20px 40px -20px color-mix(in srgb, var(--accent) 70%, transparent),
+      0 0 20px -5px color-mix(in srgb, var(--accent) 40%, transparent);
+    border-color: color-mix(in srgb, var(--accent) 80%, transparent);
   }
 
   .primary-btn-icon {

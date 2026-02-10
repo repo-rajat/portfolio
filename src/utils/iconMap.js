@@ -12,6 +12,7 @@ import {
   Phone,
   MapPin,
   ExternalLink,
+  MessageCircle,
 } from "lucide-react";
 
 export const iconMap = {
@@ -28,6 +29,7 @@ export const iconMap = {
   Phone,
   MapPin,
   ExternalLink,
+  MessageCircle,
 };
 
 export const getIcon = (iconName) => {

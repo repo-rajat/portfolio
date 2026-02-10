@@ -20,30 +20,23 @@ const CertificationBadge = ({ name, issuer, date, url }) => {
       href={url}
       target="_blank"
       rel="noopener noreferrer"
-      className="cert-badge group w-full sm:w-auto"
+      className="cert-badge group inline-flex"
     >
       <div className="cert-shimmer" />
 
       {/* Icon Wrapper */}
       <div className="cert-icon-box flex-shrink-0">
-        <MetaLogo className="w-7 h-7" />
-        {/* Subtle glow behind the logo */}
-        <div className="absolute inset-0 bg-[hsl(195_95%_60%/0.1)] blur-lg rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+        <MetaLogo className="w-5 h-5" />
       </div>
 
       {/* Content */}
-      <div className="flex flex-col min-w-0">
-        <div className="flex justify-between">
-            <span className="text-[10px] uppercase tracking-[0.2em] text-[hsl(195_95%_60%)] font-bold mb-0.5 opacity-80 group-hover:opacity-100 transition-opacity">
-          {issuer}
-        </span>
-        <span className="text-[10px] text-white/40 group-hover:text-white/60 transition-colors uppercase tracking-wider">
-          {date}
-        </span>
-        </div>
-        <h3 className="text-sm font-semibold text-white/90 group-hover:text-white transition-colors truncate">
+      <div className="flex items-center gap-2 min-w-0">
+        <h3 className="text-[11px] font-bold text-white/90 group-hover:text-white transition-colors truncate">
           {name}
         </h3>
+        <span className="text-[9px] uppercase tracking-wider text-white/30 group-hover:text-white/50 transition-colors whitespace-nowrap">
+          {issuer}
+        </span>
       </div>
     </a>
   );

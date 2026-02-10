@@ -2,10 +2,24 @@ import React from "react";
 import { PageLayout } from "../components/PageLayout";
 import { useContent } from "../context/ContentContext";
 import PrimaryButton from "../components/PrimaryButton";
+import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 
 function Portfolio() {
   const { content, loading } = useContent();
   const [activeId, setActiveId] = React.useState(1);
+
+  // Keyboard navigation
+  React.useEffect(() => {
+    function handleKeyDown(e) {
+      if (e.key === "ArrowLeft") {
+        navigateProject(-1);
+      } else if (e.key === "ArrowRight") {
+        navigateProject(1);
+      }
+    }
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [content, activeId]);
 
   if (loading) {
     return (
@@ -48,6 +62,17 @@ function Portfolio() {
     }
   }
 
+  function navigateProject(direction) {
+    if (!projects || projects.length <= 1) return;
+    const currentIndex = projects.findIndex((p) => p.id === activeId);
+    let nextIndex = currentIndex + direction;
+
+    if (nextIndex < 0) nextIndex = projects.length - 1;
+    if (nextIndex >= projects.length) nextIndex = 0;
+
+    setActiveId(projects[nextIndex].id);
+  }
+
   // Left Content
   const leftContent = (
     <div style={{ "--accent": activeProject.accent }}>
@@ -67,6 +92,38 @@ function Portfolio() {
         />
 
         <div className="relative z-10 grid lg:grid-cols-2 h-full">
+          {/* Floating Navigation Arrows */}
+          <button
+            onClick={() => navigateProject(-1)}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.boxShadow = `0 0 30px 2px ${activeProject.accent}44`;
+              e.currentTarget.style.borderColor = `${activeProject.accent}66`;
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.boxShadow = "none";
+              e.currentTarget.style.borderColor = "rgba(255,255,255,0.1)";
+            }}
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full border border-white/10 bg-black/60 text-white/50 hover:text-white hover:scale-110 transition-all backdrop-blur-xl hidden md:flex items-center justify-center group/nav"
+            aria-label="Previous project"
+          >
+            <ChevronLeft className="w-6 h-6 group-hover/nav:-translate-x-0.5 transition-transform" />
+          </button>
+          <button
+            onClick={() => navigateProject(1)}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.boxShadow = `0 0 30px 2px ${activeProject.accent}44`;
+              e.currentTarget.style.borderColor = `${activeProject.accent}66`;
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.boxShadow = "none";
+              e.currentTarget.style.borderColor = "rgba(255,255,255,0.1)";
+            }}
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full border border-white/10 bg-black/60 text-white/50 hover:text-white hover:scale-110 transition-all backdrop-blur-xl hidden md:flex items-center justify-center group/nav"
+            aria-label="Next project"
+          >
+            <ChevronRight className="w-6 h-6 group-hover/nav:translate-x-0.5 transition-transform" />
+          </button>
+
           <div className="p-8 lg:p-14 flex flex-col justify-start">
             <div className="relative mb-6 w-fit">
               <div

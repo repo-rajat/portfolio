@@ -32,72 +32,70 @@ function Index() {
       <div className="max-w-7xl mx-auto grid relative z-10 min-h-[100dvh]  px-6 py-10 md:py-12 lg:py-0 lg:px-16">
         <div className="w-full flex flex-col lg:flex-row lg:items-center gap-10 sm:gap-12 lg:gap-15 page-enter">
           <div className="lg:w-1/2">
-            <div className="home-greeting animate-slide-up relative flex flex-wrap items-center gap-2.5 px-3 py-2 bg-black/40 border border-white/15 rounded-full mb-8 lg:mb-10 w-fit max-w-[calc(100vw-3rem)] backdrop-blur-md">
-              <span className="flex h-3 w-3 relative">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-600 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-green-600"></span>
+            <div className="home-greeting animate-slide-up relative flex flex-wrap items-center gap-2.5 px-3 py-1.5 bg-white/[0.03] border border-white/10 rounded-full mb-6 lg:mb-8 w-fit backdrop-blur-md">
+              <span className="flex h-2 w-2 relative">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
               </span>
-              <p className="text-[10px] sm:text-xs md:text-sm font-mono tracking-widest uppercase text-white/80 break-words">
-                <span className="text-green-600">&lt;</span>
-                <span className="text-green-600">{home.greeting.label}</span>
-                <span className="text-green-600"> /&gt;</span>
-                <span className="ml-1 text-white/40">|</span>
-                <span className="ml-1.5 text-white font-semibold">
-                  {home.greeting.intro}
-                </span>
+              <p className="text-[10px] sm:text-xs font-mono tracking-[0.2em] uppercase text-white/60">
+                {home.greeting.label}
+                <span className="mx-2 text-white/20">/</span>
+                <span className="text-white/90">{home.greeting.intro}</span>
               </p>
             </div>
 
-            <div className="grid grid-cols-1 grid-rows-1 items-start w-full max-w-2xl">
-              <div className="col-start-1 row-start-1 z-10">
-                <h1 className="type-hero mb-0">
-                  <span className="text-foreground">{home.name.first}</span>
-                  <br />
-                  <span className="">{home.name.last}</span>
-                </h1>
-              </div>
+            <div className="relative mb-6 lg:mb-8">
+              <h1 className="type-hero">
+                <span className="text-foreground tracking-tight">
+                  {home.name.first}
+                </span>
+                <span className="last-name">{home.name.last}</span>
+              </h1>
+              <div className="absolute -left-6 top-1/2 -translate-y-1/2 w-1 h-3/4 bg-gradient-to-b from-transparent via-[hsl(var(--coral))] to-transparent opacity-20 hidden lg:block" />
             </div>
 
-            <h2 className="home-subtitle text-2xl sm:text-3xl text-white/90 mt-8 lg:mt-10 mb-3 lg:mb-4 font-medium leading-snug sm:leading-[40px]">
+            <h2 className="home-subtitle text-xl sm:text-2xl text-white/90 mt-6 mb-4 font-medium leading-tight">
               {home.subtitle.intro}
-              <span className="block text-shimmer">
+              <span className="block text-shimmer text-2xl sm:text-3xl font-bold mt-1">
                 {home.subtitle.highlight}
               </span>
             </h2>
 
-            <p className="type-body-lg text-muted-foreground mb-6 leading-relaxed">
+            <p className="type-body text-muted-foreground/80 mb-6 max-w-lg leading-relaxed border-l border-white/5 pl-5">
               {home.description}
             </p>
 
-            {home.certifications && (
-              <div className="flex flex-col sm:flex-row gap-4 mb-10 animate-slide-up [animation-delay:400ms] opacity-0 [animation-fill-mode:forwards]">
-                {home.certifications.map((cert) => (
-                  <CertificationBadge key={cert.id} {...cert} />
-                ))}
-              </div>
-            )}
+            <div className="flex flex-col gap-8">
+              {home.certifications && (
+                <div className="flex flex-wrap gap-3 animate-slide-up [animation-delay:400ms] opacity-0 [animation-fill-mode:forwards]">
+                  {home.certifications.map((cert) => (
+                    <CertificationBadge key={cert.id} {...cert} />
+                  ))}
+                </div>
+              )}
 
-            <div className="flex flex-wrap gap-4 mt-10">
-              <PrimaryButton
-                href={`https://wa.me/${content.contact?.info?.find((i) => i.label === "Phone")?.value?.replace(/\D/g, "") || "919876543210"}`}
-                theme={
-                  home.navigation.find((n) => n.page === "contact")?.theme ||
-                  "violet"
-                }
-                icon={<MessageSquare className="w-4 h-4" />}
-              >
-                Let's Connect
-              </PrimaryButton>
-              <PrimaryButton
-                href="/portfolio"
-                theme={
-                  home.navigation.find((n) => n.page === "portfolio")?.theme ||
-                  "emerald"
-                }
-                icon={<ArrowRight className="w-4 h-4" />}
-              >
-                View Projects
-              </PrimaryButton>
+              <div className="flex flex-wrap gap-4 animate-slide-up [animation-delay:500ms] opacity-0 [animation-fill-mode:forwards]">
+                <PrimaryButton
+                  href={`https://wa.me/${content.contact?.info?.find((i) => i.label === "Phone")?.value?.replace(/\D/g, "") || "919876543210"}`}
+                  theme={
+                    home.navigation.find((n) => n.page === "contact")?.theme ||
+                    "violet"
+                  }
+                  icon={<MessageSquare className="w-4 h-4" />}
+                >
+                  Let's Connect
+                </PrimaryButton>
+                <PrimaryButton
+                  href="/portfolio"
+                  theme={
+                    home.navigation.find((n) => n.page === "portfolio")
+                      ?.theme || "emerald"
+                  }
+                  icon={<ArrowRight className="w-4 h-4" />}
+                >
+                  View Projects
+                </PrimaryButton>
+              </div>
             </div>
           </div>
 

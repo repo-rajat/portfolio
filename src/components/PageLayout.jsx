@@ -63,10 +63,10 @@ export function PageLayout(props) {
           "--accent": "hsl(var(--" + themeName + "))",
         }}
       >
-        <div className="max-w-6xl mx-auto page-enter">
+        <div className="max-w-6xl mx-auto page-enter w-full">
           {hasSplit ? (
-            <div className="page-grid grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-14 lg:items-start">
-              <div className="page-left">
+            <div className="page-grid grid gap-10 lg:grid-cols-2 lg:gap-14 lg:items-start w-full">
+              <div className="page-left w-full min-w-0">
                 <div className="page-header flex items-center gap-6 mb-10 md:mb-12">
                   <Link
                     to="/"
@@ -109,7 +109,7 @@ export function PageLayout(props) {
                 <div className="page-left-content">{left}</div>
               </div>
 
-              <div className="page-content lg:pt-2">{rightContent}</div>
+              <div className="page-content lg:pt-2 w-full min-w-0">{rightContent}</div>
             </div>
           ) : (
             <>
