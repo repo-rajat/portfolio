@@ -1,5 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
+import { useIsDesktop } from "../hooks/useIsDesktop";
 
 function PrimaryButton(props) {
   const children = props.children;
@@ -11,6 +12,7 @@ function PrimaryButton(props) {
   const theme = props.theme;
   const tooltipAlign = props.tooltipAlign || "center"; // center, left, right
   const containerClass = props.containerClass || "";
+  const isDesktop = useIsDesktop();
 
   const location = useLocation();
   const isPortfolioPage = location.pathname === "/portfolio";
@@ -31,7 +33,7 @@ function PrimaryButton(props) {
   );
 
   const tooltip =
-    props.tooltipTitle || props.tooltipDesc ? (
+    (props.tooltipTitle || props.tooltipDesc) && isDesktop ? (
       <div className="tooltip-panel">
         {props.tooltipTitle && (
           <span className="tooltip-title">{props.tooltipTitle}</span>
@@ -43,8 +45,10 @@ function PrimaryButton(props) {
     ) : null;
 
   const wrapperClasses = [
-    tooltip ? "tooltip-wrapper " : "",
-    tooltip && tooltipAlign !== "center" ? `tooltip-${tooltipAlign}` : "",
+    tooltip && isDesktop ? "tooltip-wrapper " : "",
+    tooltip && isDesktop && tooltipAlign !== "center"
+      ? `tooltip-${tooltipAlign}`
+      : "",
     tooltip && isPortfolioPage ? "" : "relative ",
     containerClass,
   ]

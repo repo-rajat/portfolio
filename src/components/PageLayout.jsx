@@ -39,7 +39,7 @@ export function PageLayout(props) {
   }
 
   return (
-    <main className="min-h-[100svh] animated-gradient-bg noise-overlay overflow-hidden lg:pb-0 pb-[80px]">
+    <main className="min-h-[calc(100svh-20rem)] pb-10 lg:pb-0 pt-4 lg:pt-0 lg:min-h-[100svh] animated-gradient-bg noise-overlay overflow-x-hidden overflow-y-auto lg:overflow-hidden">
       <div className="fixed inset-0 grid-bg opacity-30 pointer-events-none" />
 
       <div
@@ -58,14 +58,14 @@ export function PageLayout(props) {
       />
 
       <div
-        className="page-shell relative z-10 min-h-[100svh] px-1 py-10 md:py-12 lg:px-16 grid items-center"
+        className="page-shell relative z-10 min-h-[calc(100svh-20rem)] lg:min-h-[100svh] px-1 py-10 md:py-12 lg:px-16 grid items-center"
         style={{
           "--accent": "hsl(var(--" + themeName + "))",
         }}
       >
         <div className="max-w-6xl mx-auto page-enter w-full px-5">
           {hasSplit ? (
-            <div className="page-grid grid gap-10 lg:grid-cols-2 lg:gap-14 lg:items-start w-full">
+            <div className="page-grid grid gap-6 lg:grid-cols-2 lg:gap-14 lg:items-start w-full">
               <div className="page-left w-full min-w-0">
                 <div className="page-header flex items-center gap-6 mb-10 md:mb-12">
                   <Link
@@ -109,7 +109,9 @@ export function PageLayout(props) {
                 <div className="page-left-content">{left}</div>
               </div>
 
-              <div className="page-content lg:pt-2 w-full min-w-0">{rightContent}</div>
+              <div className="page-content lg:pt-2 w-full min-w-0">
+                {rightContent}
+              </div>
             </div>
           ) : (
             <>

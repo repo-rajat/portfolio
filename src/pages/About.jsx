@@ -40,7 +40,7 @@ function TimelineItem(props) {
 
   return (
     <div
-      className="group relative flex gap-6 pb-12 last:pb-0"
+      className="group relative flex gap-6 pb-8 lg:pb-12 last:pb-0"
       onMouseEnter={onMouseEnter}
     >
       <div className="flex flex-col items-center">
@@ -76,7 +76,7 @@ function TimelineItem(props) {
               {title}
             </h3>
             <div
-              className={`flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium border transition-colors duration-300 ${
+              className={`inline-flex w-fit items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium border transition-colors duration-300 ${
                 isActive
                   ? "bg-orange-500/10 text-orange-200 border-orange-500/20"
                   : "bg-white/5 text-gray-300 border-white/5 group-hover:border-white/10"
@@ -206,7 +206,7 @@ function About() {
         </div>
       </div>
 
-      <div className="relative min-h-[500px]">
+      <div className="relative pb-10">
         {activeTabData && (
           <div
             className="animate-in fade-in slide-in-from-bottom-4 duration-500"

@@ -102,6 +102,7 @@
   #root {
     @apply overflow-x-hidden;
   }
+
 }
 
 @layer components {
@@ -136,7 +137,7 @@
   }
 
   .type-hero .last-name {
-    @apply block text-[0.45em] font-normal tracking-[0.2em] uppercase text-white/40 mt-2;
+    @apply block font-normal tracking-[0.2em] uppercase text-white/40 -mt-2;
     font-family: var(--font-mono, monospace);
   }
 
@@ -586,12 +587,12 @@
 
   .portfolio-thumb.is-active img {
     filter: saturate(1) brightness(0.95);
-    transform: scale(1.03);
+    /* transform: scale(1.03); */
   }
 
   .portfolio-thumb:hover,
   .portfolio-thumb.is-active {
-    @apply opacity-95 -translate-y-[5px];
+    @apply opacity-95;
     border-color: color-mix(in srgb, var(--accent) 70%, transparent);
     box-shadow:
       0 24px 150px -24px color-mix(in srgb, var(--accent) 85%, transparent),
@@ -600,7 +601,7 @@
   }
 
   .primary-btn {
-    @apply px-7 h-14 rounded-xl font-semibold text-[0.95rem] inline-flex items-center justify-center gap-[0.6rem] text-foreground z-[3] transition-all;
+    @apply px-7 h-14 rounded-xl font-semibold text-[0.95rem] flex items-center justify-center gap-[0.6rem] text-foreground z-[3] transition-all whitespace-nowrap;
     transition-duration: 300ms;
     background: linear-gradient(130deg,
         color-mix(in srgb, var(--accent) 70%, transparent),
@@ -686,6 +687,12 @@
     @apply block text-[11px] leading-relaxed text-white/50 font-medium whitespace-normal text-center;
   }
 
+  @media (max-width: 1023px) {
+    .tooltip-panel {
+      display: none !important;
+    }
+  }
+
   /* Alignment Variants */
   .tooltip-wrapper.tooltip-left .tooltip-panel {
     @apply left-auto right-0 -translate-x-0 translate-y-2;
@@ -713,8 +720,7 @@
 
   /* Mobile Sticky Bar & Responsive Adjustments */
   .mobile-sticky-bar {
-    @apply fixed bottom-0 left-0 w-full p-3 pb-5 bg-black/85 backdrop-blur-3xl border-t border-white/10 z-[100] flex gap-3 items-center lg:relative lg:bottom-auto lg:left-auto lg:p-0 lg:bg-transparent lg:backdrop-blur-none lg:border-t-0 lg:z-10 transition-none;
-    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.7);
+    @apply fixed bottom-0 left-0 w-full p-3 h-20 bg-black/85 backdrop-blur-3xl border-t border-white/10 z-[100] flex gap-3 items-center lg:relative lg:bottom-auto lg:left-auto lg:p-0 lg:bg-transparent lg:backdrop-blur-none lg:border-t-0 lg:z-10 transition-none;
   }
 
   @media (max-width: 1023px) {
@@ -756,5 +762,22 @@
       opacity: 1 !important;
       transform: none !important;
     }
+
+    /* Fix rounded corners for cards on mobile */
+    .portfolio-main-card,
+    .portfolio-main-card>div,
+    .portfolio-main-card [class*="rounded-tr"] {
+      border-radius: 1.5rem !important;
+    }
+  }
+
+  /* Carousel Utilities */
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
   }
 }

@@ -32,7 +32,7 @@ function Index() {
       <div className="max-w-7xl mx-auto grid relative z-10 min-h-[100dvh]  px-6 py-10 md:py-12 lg:py-0 lg:px-16">
         <div className="w-full flex flex-col lg:flex-row lg:items-center gap-10 sm:gap-12 lg:gap-15 page-enter">
           <div className="lg:w-1/2">
-            <div className="home-greeting animate-slide-up relative flex flex-wrap items-center gap-2.5 px-3 py-1.5 bg-white/[0.03] border border-white/10 rounded-full mb-3 lg:mb-5 w-fit backdrop-blur-md">
+            <div className="home-greeting animate-slide-up relative flex flex-wrap items-center gap-2.5 px-3 py-1.5 bg-white/[0.03] border border-white/10 rounded-full mb-3 lg:mb-2 w-fit backdrop-blur-md">
               <span className="flex h-2 w-2 relative">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
@@ -46,10 +46,10 @@ function Index() {
 
             <div className="relative mb-6 lg:mb-8">
               <h1 className="type-hero">
-                <span className="text-foreground tracking-tight">
+                <span className="text-foreground text-8xl lg:text-9xl">
                   {home.name.first}
                 </span>
-                <span className="last-name">{home.name.last}</span>
+                <span className="last-name text-5xl lg:text-6xl">{home.name.last}</span>
               </h1>
             </div>
 
@@ -60,13 +60,13 @@ function Index() {
               </span>
             </h2>
 
-            <p className="type-body text-muted-foreground/80 mb-6 max-w-lg leading-relaxed">
+            <p className="text-lg text-muted-foreground/80 mb-6 max-w-lg leading-relaxed">
               {home.description}
             </p>
 
             <div className="flex flex-col gap-8">
               {home.certifications && (
-                <div className="flex flex-wrap gap-3 animate-slide-up [animation-delay:400ms] opacity-0 [animation-fill-mode:forwards] mb-5">
+                <div className="flex gap-3 animate-slide-up [animation-delay:400ms] opacity-0 [animation-fill-mode:forwards] mb-5 w-[calc(100svw-3rem)] lg:w-full overflow-x-auto snap-x snap-mandatory hide-scrollbar">
                   {home.certifications.map((cert) => (
                     <CertificationBadge key={cert.id} {...cert} />
                   ))}
@@ -98,7 +98,7 @@ function Index() {
                   tooltipTitle="Browse Portfolio"
                   tooltipDesc="Explore my collection of full-stack projects, creative designs, and technical solutions built with modern technologies."
                 >
-                  View Projects
+                  Projects
                 </PrimaryButton>
               </div>
             </div>

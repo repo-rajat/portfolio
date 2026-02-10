@@ -1,5 +1,7 @@
 import React from "react";
-import { ArrowUpRight } from "lucide-react";import { useLocation } from "react-router-dom";
+import { ArrowUpRight } from "lucide-react";
+import { useLocation } from "react-router-dom";
+import { useIsDesktop } from "../hooks/useIsDesktop";
 
 const MetaLogo = ({ className }) => (
   <svg
@@ -16,9 +18,10 @@ const MetaLogo = ({ className }) => (
 );
 
 const CertificationBadge = ({ name, issuer, date, url }) => {
+  const isDesktop = useIsDesktop();
 
   return (
-    <div className="tooltip-wrapper relative">
+    <div className={(isDesktop ? "tooltip-wrapper " : "") + "relative"}>
       <a
         href={url}
         target="_blank"
@@ -41,13 +44,15 @@ const CertificationBadge = ({ name, issuer, date, url }) => {
         </div>
       </a>
 
-      <div className="tooltip-panel">
-        <span className="tooltip-title">{issuer}</span>
-        <span className="tooltip-desc">
-          Issued in {date}. Click to verify this professional credential on the
-          official platform and view curriculum details.
-        </span>
-      </div>
+      {isDesktop && (
+        <div className="tooltip-panel">
+          <span className="tooltip-title">{issuer}</span>
+          <span className="tooltip-desc">
+            Issued in {date}. Click to verify this professional credential on
+            the official platform and view curriculum details.
+          </span>
+        </div>
+      )}
     </div>
   );
 };
