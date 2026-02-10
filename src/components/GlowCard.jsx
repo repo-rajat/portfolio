@@ -18,9 +18,9 @@ export function GlowCard(props) {
   const styles = themes[variant];
 
   // Logic for size class
-  let sizeClass = "h-[180px] lg:h-[240px]";
+  let sizeClass = "h-[170px] lg:h-[240px]";
   if (size === "large") {
-    sizeClass = "h-[180px] lg:h-[310px]";
+    sizeClass = "h-[190px] lg:h-[310px]";
   }
 
   // Logic for dimmed class
@@ -56,7 +56,7 @@ export function GlowCard(props) {
           hoveredClass
         }
         style={{
-          boxShadow: boxShadowValue
+          boxShadow: boxShadowValue,
         }}
       >
         <span
@@ -72,7 +72,7 @@ export function GlowCard(props) {
         </span>
 
         <div className="flex justify-between items-center overflow-hidden">
-          <IconButton icon={Icon} theme={variant} size="lg" />
+          <IconButton icon={Icon} theme={variant} isNavCard={true} />
           <ArrowLeft
             className={
               "w-6 h-6 " +

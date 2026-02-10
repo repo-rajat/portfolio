@@ -625,7 +625,7 @@
   }
 
   .primary-btn-icon {
-    @apply inline-flex items-center justify-center w-8 h-8 rounded-[0.7rem] bg-white/10 border border-white/20 transition-transform;
+    @apply inline-flex items-center justify-center w-8 h-8 rounded-[0.5rem] bg-white/10 border border-white/20 transition-transform;
     transition-duration: 250ms;
   }
 

@@ -40,7 +40,7 @@ function TimelineItem(props) {
 
   return (
     <div
-      className="group relative flex gap-6 pb-8 lg:pb-12 last:pb-0"
+      className="group relative flex gap-4 lg:gap-6 pb-8 lg:pb-12 last:pb-0"
       onMouseEnter={onMouseEnter}
     >
       <div className="flex flex-col items-center">
@@ -64,10 +64,10 @@ function TimelineItem(props) {
         )}
       </div>
       <div className="w-full pt-1">
-        <SimpleCard className="p-6" isActive={isActive}>
-          <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-start">
+        <SimpleCard className="p-4 lg:p-6" isActive={isActive}>
+          <div className="flex flex-col-reverse justify-between gap-3 lg:gap-5 sm:flex-row sm:items-start">
             <h3
-              className={`text-xl font-semibold transition-colors duration-300 ${
+              className={`text-lg lg:text-xl font-semibold transition-colors duration-300 ${
                 isActive
                   ? "text-[hsl(var(--coral))]"
                   : "text-white group-hover:text-[hsl(var(--coral))]/80"
@@ -92,12 +92,12 @@ function TimelineItem(props) {
             </div>
           </div>
 
-          <p className="text-sm font-medium text-gray-400 mt-2 transition-colors duration-300 group-hover:text-gray-300">
+          <p className="text-sm font-medium text-gray-400 mt-2 lg:mt-2 transition-colors duration-300 group-hover:text-gray-300">
             {subtitle}
           </p>
           <p
             className={`${
-              percentage ? "text-sm leading-relaxed text-gray-400 mt-4" : ""
+              percentage ? "text-sm leading-relaxed text-gray-400 mt-2 lg:mt-4" : ""
             }`}
           >
             {percentage}
@@ -141,7 +141,7 @@ function About() {
 
   const leftContent = (
     <div className="space-y-10">
-      <div className="space-y-6 text-lg leading-relaxed text-gray-400">
+      <div className="space-y-4 lg:space-y-6 text-base lg:text-lg leading-relaxed text-gray-400">
         {description.map(function (para, i) {
           return <p key={i}>{para}</p>;
         })}
@@ -179,7 +179,7 @@ function About() {
   const rightContent = (
     <div className="relative mt-6 lg:mt-0">
       <div className="sticky top-4 z-10 mb-8 flex justify-center lg:justify-center">
-        <div className="flex gap-1 rounded-full border border-white/10 bg-black/60 p-1.5 backdrop-blur-xl shadow-xl">
+        <div className="flex w-full lg:w-auto gap-1 rounded-full border border-white/10 bg-black/60 p-1.5 backdrop-blur-xl shadow-xl">
           {tabs.map(function (tab) {
             const TabIcon = getIcon(tab.icon);
             let activeClass = "text-gray-400 hover:text-white";
@@ -194,7 +194,7 @@ function About() {
                   setActiveTab(tab.label);
                 }}
                 className={
-                  "flex items-center gap-2 rounded-full px-5 py-2 text-sm font-medium transition-all duration-300 " +
+                  "flex w-full lg:w-auto lg:min-w-[160px] items-center justify-center gap-2 rounded-full px-5 py-2 text-sm font-medium transition-all duration-300 " +
                   activeClass
                 }
               >

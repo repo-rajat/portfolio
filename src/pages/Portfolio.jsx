@@ -409,7 +409,7 @@ function Portfolio() {
     <div className="mobile-sticky-bar w-full">
       <PrimaryButton
         href={`https://wa.me/${contact.info.find((i) => i.label === "Phone")?.value?.replace(/\D/g, "") || "919876543210"}`}
-        theme="violet"
+        theme="emerald"
         containerClass="flex-1"
         icon={<MessageSquare className="w-4 h-4" />}
       >

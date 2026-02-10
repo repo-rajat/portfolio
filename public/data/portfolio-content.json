@@ -47,7 +47,7 @@
         "page": "projects",
         "description": "Featured work",
         "route": "/portfolio",
-        "theme": "emerald",
+        "theme": "violet",
         "letter": "P",
         "icon": "Briefcase"
       },
@@ -55,7 +55,7 @@
         "page": "contact",
         "description": "Let's connect",
         "route": "/contact",
-        "theme": "violet",
+        "theme": "emerald",
         "letter": "C",
         "icon": "Mail"
       }
@@ -187,7 +187,7 @@
     "meta": {
       "title": "my projects",
       "letter": "P",
-      "theme": "emerald"
+      "theme": "violet"
     },
 
     "cta": {
@@ -203,7 +203,7 @@
         "tags": ["Angular", "TypeScript", "HTML5", "CSS3", "Figma"],
         "url": "https://docquity-webinar.netlify.app/",
         "thumbnail": "https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&h=400&fit=crop",
-        "accent": "#2DD4BF"
+        "accent": "#d42fd4"
       },
       {
         "id": 2,
@@ -212,7 +212,7 @@
         "tags": ["Angular", "TypeScript", "HTML5", "CSS3", "Figma"],
         "url": "https://docquity-webinar.netlify.app/",
         "thumbnail": "https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&h=400&fit=crop",
-        "accent": "#d42fd4"
+        "accent": "#2DD4BF"
       }
     ]
   },
@@ -221,7 +221,7 @@
     "meta": {
       "title": "get in touch",
       "letter": "C",
-      "theme": "violet"
+      "theme": "emerald"
     },
 
     "form": {

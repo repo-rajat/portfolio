@@ -6,6 +6,7 @@ import { getIcon } from "../utils/iconMap";
 import CertificationBadge from "../components/CertificationBadge";
 import PrimaryButton from "../components/PrimaryButton";
 import { ArrowRight, MessageSquare } from "lucide-react";
+import Whatsapp from "../icons/icon_whatsapp.svg?react";
 
 function Index() {
   const [hoveredIndex, setHoveredIndex] = React.useState(null);
@@ -30,9 +31,9 @@ function Index() {
       <div className="orb orb-sky w-[200px] h-[200px] lg:w-72 lg:h-72 bottom-0 right-30 lg:bottom-1/4 lg:left-1/4 animate-float-delayed-2" />
 
       <div className="max-w-7xl mx-auto grid relative z-10 min-h-[100dvh]  px-6 py-10 md:py-12 lg:py-0 lg:px-16">
-        <div className="w-full flex flex-col lg:flex-row lg:items-center gap-5 lg:gap-10 lg:gap-15 page-enter">
+        <div className="w-full flex flex-col lg:flex-row lg:items-center gap-16 lg:gap-10 lg:gap-15 page-enter">
           <div className="lg:w-1/2">
-            <div className="home-greeting animate-slide-up relative flex flex-wrap items-center gap-2.5 px-3 py-1.5 bg-white/[0.05] border border-white/10 rounded-full mb-3 lg:mb-2 w-fit backdrop-blur-md">
+            <div className="home-greeting animate-slide-up relative flex flex-wrap items-center gap-2.5 px-3 py-1.5 bg-white/[0.05] border border-white/10 rounded-full mb-6 lg:mb-0 w-fit backdrop-blur-md">
               <span className="flex h-2 w-2 relative">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
@@ -44,7 +45,7 @@ function Index() {
               </p>
             </div>
 
-            <div className="relative mb-6 lg:mb-8">
+            <div className="relative mb-4 lg:mb-8">
               <h1 className="type-hero">
                 <span className="text-foreground text-8xl lg:text-9xl">
                   {home.name.first}
@@ -53,14 +54,14 @@ function Index() {
               </h1>
             </div>
 
-            <h2 className="home-subtitle text-xl sm:text-2xl text-white/90 mt-10 mb-4 font-medium leading-tight">
+            <h2 className="home-subtitle text-xl lg:text-2xl text-white/90 mt-12 lg:mt-6 mb-3 lg:mb-4 font-medium leading-tight">
               {home.subtitle.intro}
-              <span className="block text-shimmer text-2xl sm:text-3xl font-bold mt-1">
+              <span className="block text-shimmer text-3xl font-bold mt-1">
                 {home.subtitle.highlight}
               </span>
             </h2>
 
-            <p className="text-lg text-muted-foreground/80 mb-6 max-w-lg leading-relaxed">
+            <p className="text-md lg:text-lg text-muted-foreground/80 mb-6 max-w-lg leading-relaxed">
               {home.description}
             </p>
 
@@ -78,10 +79,10 @@ function Index() {
                   href={`https://wa.me/${content.contact?.info?.find((i) => i.label === "Phone")?.value?.replace(/\D/g, "") || "919876543210"}`}
                   theme={
                     home.navigation.find((n) => n.page === "contact")?.theme ||
-                    "violet"
+                    "emerald"
                   }
                   containerClass="flex-1 lg:flex-none"
-                  icon={<MessageSquare className="w-4 h-4" />}
+                  icon={<Whatsapp className="w-4 h-4" />}
                   tooltipTitle="Instant Connection"
                   tooltipDesc="Opens a direct WhatsApp chat window to discuss project ideas or professional opportunities in real-time."
                 >
@@ -91,7 +92,7 @@ function Index() {
                   href="/portfolio"
                   theme={
                     home.navigation.find((n) => n.page === "portfolio")
-                      ?.theme || "emerald"
+                      ?.theme || "violet"
                   }
                   containerClass="flex-1 lg:flex-none"
                   icon={<ArrowRight className="w-4 h-4" />}
