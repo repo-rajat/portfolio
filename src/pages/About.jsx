@@ -147,10 +147,11 @@ function About() {
         })}
       </div>
 
-      <div className="flex flex-wrap gap-4">
+      <div className="mobile-sticky-bar">
         <PrimaryButton
           href={global.resume.file}
           target="_blank"
+          containerClass="flex-1 lg:flex-none"
           icon={<Download size={18} />}
           tooltipTitle="Download Portfolio PDF"
           tooltipDesc="Provides a comprehensive version of my resume in a recruiter-friendly format, containing all key technical skills and contact details."

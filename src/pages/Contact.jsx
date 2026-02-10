@@ -85,16 +85,8 @@ function Contact() {
             </div>
           </a>
 
-          {!showForm ? (
-            <button
-              onClick={() => setShowForm(true)}
-              className="group flex items-center gap-3 px-2 text-sm font-medium text-white/40 hover:text-[hsl(var(--violet))] transition-all duration-300"
-            >
-              <div className="h-px w-8 bg-white/10 group-hover:w-12 group-hover:bg-[hsl(var(--violet)/0.4)] transition-all" />
-              <span>Or click here to send a detailed inquiry via email</span>
-            </button>
-          ) : (
-            <div className="animate-in fade-in slide-in-from-top-4 duration-500 space-y-8 pt-4 border-t border-white/5">
+          {showForm && (
+            <div className="animate-in fade-in slide-in-from-top-4 duration-500 space-y-8 pt-4 border-t border-white/5 mb-8">
               <div className="flex items-center justify-between">
                 <h3 className="text-xl font-bold text-white/90">
                   Email Inquiry
@@ -107,7 +99,11 @@ function Contact() {
                 </button>
               </div>
 
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form
+                id="contact-form"
+                onSubmit={handleSubmit}
+                className="space-y-6"
+              >
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <label
@@ -165,19 +161,36 @@ function Contact() {
                     className="form-field !bg-white/[0.03] !border-white/10 focus:!border-white/30 resize-none"
                   />
                 </div>
-
-                <PrimaryButton
-                  type="submit"
-                  theme="violet"
-                  icon={<Send className="w-4 h-4" />}
-                  tooltipTitle="Professional Outreach"
-                  tooltipDesc="Sends your message directly to my primary inbox. I review all inquiries and typically respond within 24-48 hours with a detailed reply."
-                >
-                  Send Inquiry
-                </PrimaryButton>
               </form>
             </div>
           )}
+
+          <div className="mobile-sticky-bar lg:mt-6">
+            {!showForm ? (
+              <PrimaryButton
+                onClick={() => setShowForm(true)}
+                theme="violet"
+                className="w-full"
+                icon={<ArrowRight className="w-4 h-4" />}
+                tooltipTitle="Detailed Inquiry"
+                tooltipDesc="Opens a formal contact form for project proposals, partnership opportunities, or detailed technical questions."
+              >
+                Email Inquiry
+              </PrimaryButton>
+            ) : (
+              <PrimaryButton
+                type="submit"
+                form="contact-form"
+                theme="violet"
+                className="w-full"
+                icon={<Send className="w-4 h-4" />}
+                tooltipTitle="Professional Outreach"
+                tooltipDesc="Sends your message directly to my primary inbox. I review all inquiries and typically respond within 24-48 hours with a detailed reply."
+              >
+                Send Inquiry
+              </PrimaryButton>
+            )}
+          </div>
         </div>
       </div>
     </div>

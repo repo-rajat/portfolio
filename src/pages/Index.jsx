@@ -22,7 +22,7 @@ function Index() {
   const { home, global } = content;
 
   return (
-    <main className="min-h-[100svh] animated-gradient-bg noise-overlay">
+    <main className="min-h-[100svh] animated-gradient-bg noise-overlay lg:pb-0 pb-[80px]">
       <div className="fixed inset-0 grid-bg opacity-30 pointer-events-none" />
 
       <div className="orb orb-coral w-96 h-96 -top-48 -left-48 animate-float-slow" />
@@ -73,13 +73,14 @@ function Index() {
                 </div>
               )}
 
-              <div className="flex flex-wrap gap-4 animate-slide-up [animation-delay:500ms] opacity-0 [animation-fill-mode:forwards]">
+              <div className="mobile-sticky-bar">
                 <PrimaryButton
                   href={`https://wa.me/${content.contact?.info?.find((i) => i.label === "Phone")?.value?.replace(/\D/g, "") || "919876543210"}`}
                   theme={
                     home.navigation.find((n) => n.page === "contact")?.theme ||
                     "violet"
                   }
+                  containerClass="flex-1 lg:flex-none"
                   icon={<MessageSquare className="w-4 h-4" />}
                   tooltipTitle="Instant Connection"
                   tooltipDesc="Opens a direct WhatsApp chat window to discuss project ideas or professional opportunities in real-time."
@@ -92,6 +93,7 @@ function Index() {
                     home.navigation.find((n) => n.page === "portfolio")
                       ?.theme || "emerald"
                   }
+                  containerClass="flex-1 lg:flex-none"
                   icon={<ArrowRight className="w-4 h-4" />}
                   tooltipTitle="Browse Portfolio"
                   tooltipDesc="Explore my collection of full-stack projects, creative designs, and technical solutions built with modern technologies."

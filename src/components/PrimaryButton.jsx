@@ -72,6 +72,7 @@ function PrimaryButton(props) {
     <div className={wrapperClasses}>
       <button
         type={type}
+        form={props.form}
         onClick={onClick}
         className={baseClasses}
         style={style}

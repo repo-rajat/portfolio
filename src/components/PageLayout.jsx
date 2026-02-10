@@ -39,7 +39,7 @@ export function PageLayout(props) {
   }
 
   return (
-    <div className="min-h-[100svh] animated-gradient-bg noise-overlay overflow-hidden">
+    <main className="min-h-[100svh] animated-gradient-bg noise-overlay overflow-hidden lg:pb-0 pb-[80px]">
       <div className="fixed inset-0 grid-bg opacity-30 pointer-events-none" />
 
       <div
@@ -58,7 +58,7 @@ export function PageLayout(props) {
       />
 
       <div
-        className="page-shell relative z-10 min-h-[100svh] px-6 py-10 md:py-12 lg:px-16 grid items-center"
+        className="page-shell relative z-10 min-h-[100svh] px-1 py-10 md:py-12 lg:px-16 grid items-center"
         style={{
           "--accent": "hsl(var(--" + themeName + "))",
         }}
@@ -177,6 +177,6 @@ export function PageLayout(props) {
           </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 }

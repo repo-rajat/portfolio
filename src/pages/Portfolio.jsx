@@ -188,9 +188,14 @@ function Portfolio() {
 
   // Thumbnails (Header Content)
   const thumbsContent = (
-    <div className="" style={{ "--accent": activeProject.accent }}>
+    <div
+      className="mobile-sticky-bar lg:px-0 !p-3 lg:bg-transparent lg:border-none lg:shadow-none"
+      style={{ "--accent": activeProject.accent }}
+    >
       <div
-        className={"portfolio-thumbs-shell" + (showThumbNav ? "" : " no-nav")}
+        className={
+          "portfolio-thumbs-shell w-full" + (showThumbNav ? "" : " no-nav")
+        }
         role="tablist"
         aria-label={portfolioStrings.thumbsLabel}
       >

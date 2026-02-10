@@ -195,6 +195,10 @@
       align-items: start;
     }
 
+    .page-shell {
+      @apply pb-[140px] lg:pb-0;
+    }
+
     .page-shell .page-header {
       margin-bottom: 2rem;
     }
@@ -705,5 +709,52 @@
 
   .tooltip-wrapper.tooltip-right .tooltip-panel::after {
     @apply left-5 -translate-x-0;
+  }
+
+  /* Mobile Sticky Bar & Responsive Adjustments */
+  .mobile-sticky-bar {
+    @apply fixed bottom-0 left-0 w-full p-3 pb-5 bg-black/85 backdrop-blur-3xl border-t border-white/10 z-[100] flex gap-3 items-center lg:relative lg:bottom-auto lg:left-auto lg:p-0 lg:bg-transparent lg:backdrop-blur-none lg:border-t-0 lg:z-10 transition-none;
+    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.7);
+  }
+
+  @media (max-width: 1023px) {
+
+    /* Consistent Mobile Button Height (48px standard) */
+    .primary-btn,
+    .mobile-sticky-bar button,
+    .mobile-sticky-bar a {
+      @apply h-12 text-[15px] !important;
+    }
+
+    /* Adjust padding for primary buttons */
+    .primary-btn {
+      @apply px-5 !important;
+    }
+
+    /* Icon Button sizing in bar */
+    .mobile-sticky-bar button.w-10,
+    .mobile-sticky-bar a.w-10,
+    .mobile-sticky-bar button.w-14,
+    .mobile-sticky-bar a.w-14 {
+      @apply w-12 h-12 p-0 flex items-center justify-center !important;
+    }
+
+    /* Portfolio Thumbnails in bar */
+    .portfolio-thumb {
+      @apply h-12 w-16 rounded-xl !important;
+    }
+
+    .portfolio-thumbs {
+      grid-auto-columns: 64px !important;
+      @apply gap-2;
+    }
+
+    /* Remove page enter animations on mobile to prevent layout jumps */
+    .page-enter,
+    .animate-slide-up {
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
   }
 }
